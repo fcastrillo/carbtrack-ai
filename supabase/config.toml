@@ -1,0 +1,21 @@
+# Supabase local dev config (plan: Edge Functions + migrations)
+# https://supabase.com/docs/guides/cli/config
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+
+[db]
+port = 54322
+
+[studio]
+enabled = true
+port = 54323
+
+# Edge Functions: JWT desactivado para invoke desde cliente anónimo (MVP sin auth)
+[functions.analyze-meal]
+verify_jwt = false
+
+[functions.import-carelink-csv]
+verify_jwt = false

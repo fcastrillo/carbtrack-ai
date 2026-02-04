@@ -341,13 +341,13 @@ Usa esta tabla para ir marcando y anotando mientras avanzas. Puedes decir al asi
 
 | Fase | Comando principal | Estado | Notas / gaps |
 |------|-------------------|--------|--------------|
-| 0 | (prerrequisitos) | ⬜ Pendiente | |
-| 1 | `/speckit.constitution` | ⬜ Pendiente | |
-| 2 | `/speckit.specify` | ⬜ Pendiente | |
-| 3 | `/speckit.clarify` | ⬜ Pendiente | |
-| 4 | `/speckit.plan` | ⬜ Pendiente | |
-| 5 | `/speckit.tasks` | ⬜ Pendiente | |
-| 6 | `/speckit.analyze` (opcional) | ⬜ Pendiente | |
+| 0 | (prerrequisitos) | Completado | |
+| 1 | `/speckit.constitution` | Completado | |
+| 2 | `/speckit.specify` | Completado | |
+| 3 | `/speckit.clarify` | Completado | |
+| 4 | `/speckit.plan` | Completado | |
+| 5 | `/speckit.tasks` | Completado | |
+| 6 | `/speckit.analyze` (opcional) | Completado | |
 | 7 | `/speckit.implement` | ⬜ Pendiente | |
 
 **Cómo sacar provecho paso a paso**

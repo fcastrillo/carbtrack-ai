@@ -24,11 +24,11 @@
 
 **Purpose**: Project initialization and structure per plan.md
 
-- [ ] T001 Create repository structure: `frontend/` and `supabase/` directories at repo root per plan.md
-- [ ] T002 Initialize React + Vite + TypeScript project in `frontend/` with Tailwind CSS (e.g. `npm create vite@latest frontend -- --template react-ts`, then add tailwindcss)
-- [ ] T003 [P] Add Supabase JS client dependency in `frontend/package.json` and configure env (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY only; no secrets)
-- [ ] T004 [P] Initialize Supabase project layout: `supabase/config.toml`, `supabase/migrations/`, `supabase/functions/` per plan.md
-- [ ] T005 [P] Configure PWA for frontend (e.g. vite-plugin-pwa in `frontend/vite.config.ts`, manifest in `frontend/public/manifest.webmanifest`)
+- [x] T001 Create repository structure: `frontend/` and `supabase/` directories at repo root per plan.md
+- [x] T002 Initialize React + Vite + TypeScript project in `frontend/` with Tailwind CSS (e.g. `npm create vite@latest frontend -- --template react-ts`, then add tailwindcss)
+- [x] T003 [P] Add Supabase JS client dependency in `frontend/package.json` and configure env (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY only; no secrets)
+- [x] T004 [P] Initialize Supabase project layout: `supabase/config.toml`, `supabase/migrations/`, `supabase/functions/` per plan.md
+- [x] T005 [P] Configure PWA for frontend (e.g. vite-plugin-pwa in `frontend/vite.config.ts`, manifest in `frontend/public/manifest.webmanifest`)
 
 ---
 
@@ -38,13 +38,13 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 Create Supabase migration for `master_food_list` table in `supabase/migrations/` (id uuid PK, alimento text NOT NULL, ch_por_racion numeric(6,2) NOT NULL, medida text, categoria text, created_at timestamptz) per data-model.md
-- [ ] T007 Create Supabase migration for `meal_history` table in `supabase/migrations/` (id uuid PK, image_url text NOT NULL, ai_analysis jsonb, user_confirmed_carbs int NOT NULL, glucose_at_meal int, timestamp timestamptz NOT NULL, user_id uuid optional) per data-model.md
-- [ ] T008 Create Supabase migration for `pump_profile` table in `supabase/migrations/` (id uuid PK, isf numeric(5,2), ratio_ic numeric(5,2), updated_at timestamptz) per data-model.md for manual profile fallback
-- [ ] T009 Create Supabase Storage bucket `meal-images` (or configured name) and policy for public read/upload in MVP per data-model.md
-- [ ] T010 Create Edge Function skeleton `supabase/functions/analyze-meal/index.ts`: accept POST body (image_url or image_base64), return placeholder JSON { items: [], total_carbs: 0 } until US2 implements Vision
-- [ ] T011 Create Edge Function skeleton `supabase/functions/import-carelink-csv/index.ts`: accept POST body (csv_content or csv_base64), return placeholder JSON { entries_count: 0, treatments_count: 0, success: true } until US5 implements CSV logic
-- [ ] T012 Seed or document how to populate `master_food_list` (e.g. seed migration or CSV import script) so Educadies data exists for US2
+- [x] T006 Create Supabase migration for `master_food_list` table in `supabase/migrations/` (id uuid PK, alimento text NOT NULL, ch_por_racion numeric(6,2) NOT NULL, medida text, categoria text, created_at timestamptz) per data-model.md
+- [x] T007 Create Supabase migration for `meal_history` table in `supabase/migrations/` (id uuid PK, image_url text NOT NULL, ai_analysis jsonb, user_confirmed_carbs int NOT NULL, glucose_at_meal int, timestamp timestamptz NOT NULL, user_id uuid optional) per data-model.md
+- [x] T008 Create Supabase migration for `pump_profile` table in `supabase/migrations/` (id uuid PK, isf numeric(5,2), ratio_ic numeric(5,2), updated_at timestamptz) per data-model.md for manual profile fallback
+- [x] T009 Create Supabase Storage bucket `meal-images` (or configured name) and policy for public read/upload in MVP per data-model.md
+- [x] T010 Create Edge Function skeleton `supabase/functions/analyze-meal/index.ts`: accept POST body (image_url or image_base64), return placeholder JSON { items: [], total_carbs: 0 } until US2 implements Vision
+- [x] T011 Create Edge Function skeleton `supabase/functions/import-carelink-csv/index.ts`: accept POST body (csv_content or csv_base64), return placeholder JSON { entries_count: 0, treatments_count: 0, success: true } until US5 implements CSV logic
+- [x] T012 Seed or document how to populate `master_food_list` (e.g. seed migration or CSV import script) so Educadies data exists for US2
 
 **Checkpoint**: Foundation ready — migrations, bucket, and two Edge Function stubs exist; user story implementation can begin
 
@@ -58,11 +58,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T013 [US1] Add routing (e.g. react-router-dom) in `frontend/src/App.tsx` with routes for Hoy, Bitácora, Laboratorio, CargaDatos, Perfil
-- [ ] T014 [P] [US1] Create BottomNav component in `frontend/src/components/BottomNav.tsx` with five items (Hoy, Bitácora, Laboratorio, Carga de Datos, Perfil) and icons (e.g. Lucide-React) per docs/screenshots/UI_REFERENCE.md
-- [ ] T015 [P] [US1] Create global dark theme in `frontend/src/styles/` (background #0a0a0a, cards #18181b) and apply in root layout
-- [ ] T016 [US1] Create placeholder page components in `frontend/src/pages/`: `HoyPage.tsx`, `BitacoraPage.tsx`, `LaboratorioPage.tsx`, `CargaDatosPage.tsx`, `PerfilPage.tsx` (minimal content: title only) and wire to routes
-- [ ] T017 [US1] Compose App layout in `frontend/src/App.tsx`: main content area + BottomNav; ensure no login screen and direct access
+- [x] T013 [US1] Add routing (e.g. react-router-dom) in `frontend/src/App.tsx` with routes for Hoy, Bitácora, Laboratorio, CargaDatos, Perfil
+- [x] T014 [P] [US1] Create BottomNav component in `frontend/src/components/BottomNav.tsx` with five items (Hoy, Bitácora, Laboratorio, Carga de Datos, Perfil) and icons (e.g. Lucide-React) per docs/screenshots/UI_REFERENCE.md
+- [x] T015 [P] [US1] Create global dark theme in `frontend/src/styles/` (background #0a0a0a, cards #18181b) and apply in root layout
+- [x] T016 [US1] Create placeholder page components in `frontend/src/pages/`: `HoyPage.tsx`, `BitacoraPage.tsx`, `LaboratorioPage.tsx`, `CargaDatosPage.tsx`, `PerfilPage.tsx` (minimal content: title only) and wire to routes
+- [x] T017 [US1] Compose App layout in `frontend/src/App.tsx`: main content area + BottomNav; ensure no login screen and direct access
 
 **Checkpoint**: User Story 1 complete — navigation and theme work; all five screens reachable
 
@@ -76,12 +76,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T018 [US2] Implement camera or file input for meal image in `frontend/src/pages/` or `frontend/src/components/CaptureMeal.tsx` (and validate size/format before upload per spec edge case)
-- [ ] T019 [US2] Add service in `frontend/src/services/mealService.ts`: upload image to Supabase Storage bucket `meal-images`, get public URL; call Edge Function `analyze-meal` with image_url (or image_base64), parse response (items, total_carbs)
+- [x] T018 [US2] Implement camera or file input for meal image in `frontend/src/pages/` or `frontend/src/components/CaptureMeal.tsx` (and validate size/format before upload per spec edge case)
+- [x] T019 [US2] Add service in `frontend/src/services/mealService.ts`: upload image to Supabase Storage bucket `meal-images`, get public URL; call Edge Function `analyze-meal` with image_url (or image_base64), parse response (items, total_carbs)
 - [ ] T020 [US2] Implement Edge Function `supabase/functions/analyze-meal/index.ts`: read OPENAI_API_KEY from env; receive image (url or base64); call GPT-4o Vision; query Supabase `master_food_list` and match/cross foods; return { items, total_carbs } per contracts/edge-functions.md
-- [ ] T021 [US2] Add UI in frontend to display suggestion (items + total CH), allow user to confirm or edit total; on confirm insert row into `meal_history` (image_url, ai_analysis, user_confirmed_carbs, timestamp) via Supabase client in `frontend/src/services/mealService.ts`
-- [ ] T022 [US2] Handle errors from analyze-meal (400, 413, 502) with clear user message in `frontend/src/components/CaptureMeal.tsx` or equivalent
-- [ ] T023 [US2] When an item has no match in `master_food_list` (e.g. source vision_only from analyze-meal): show UI suggestion "Especifique manualmente los CH y puede agregar al catálogo"; allow manual CH input for that item; offer "Agregar al catálogo" to insert into `master_food_list` (alimento, ch_por_racion, medida, categoria) via Supabase from capture/confirmation flow in `frontend/src/components/CaptureMeal.tsx` and `frontend/src/services/mealService.ts` (o `catalogService.ts`)
+- [x] T021 [US2] Add UI in frontend to display suggestion (items + total CH), allow user to confirm or edit total; on confirm insert row into `meal_history` (image_url, ai_analysis, user_confirmed_carbs, timestamp) via Supabase client in `frontend/src/services/mealService.ts`
+- [x] T022 [US2] Handle errors from analyze-meal (400, 413, 502) with clear user message in `frontend/src/components/CaptureMeal.tsx` or equivalent
+- [x] T023 [US2] When an item has no match in `master_food_list` (e.g. source vision_only from analyze-meal): show UI suggestion "Especifique manualmente los CH y puede agregar al catálogo"; allow manual CH input for that item; offer "Agregar al catálogo" to insert into `master_food_list` (alimento, ch_por_racion, medida, categoria) via Supabase from capture/confirmation flow in `frontend/src/components/CaptureMeal.tsx` and `frontend/src/services/mealService.ts` (o `catalogService.ts`)
 
 **Checkpoint**: User Story 2 complete — full capture → suggest → persist flow works; sin match → manual + opción agregar al catálogo
 
@@ -95,10 +95,10 @@
 
 ### Implementation for User Story 3
 
-- [ ] T024 [US3] Implement HoyPage in `frontend/src/pages/HoyPage.tsx`: query `meal_history` for today (timestamp in local day range), sum user_confirmed_carbs for header total
-- [ ] T025 [P] [US3] Create MealCard component in `frontend/src/components/MealCard.tsx` showing image (from image_url), food summary from ai_analysis, and user_confirmed_carbs
-- [ ] T026 [US3] Render list of MealCards in HoyPage; add FAB (e.g. central bottom or floating) that navigates to or opens capture flow (same as US2)
-- [ ] T027 [US3] Add empty state in HoyPage when no meals today (total 0, message or empty list) per spec
+- [x] T024 [US3] Implement HoyPage in `frontend/src/pages/HoyPage.tsx`: query `meal_history` for today (timestamp in local day range), sum user_confirmed_carbs for header total
+- [x] T025 [P] [US3] Create MealCard component in `frontend/src/components/MealCard.tsx` showing image (from image_url), food summary from ai_analysis, and user_confirmed_carbs
+- [x] T026 [US3] Render list of MealCards in HoyPage; add FAB (e.g. central bottom or floating) that navigates to or opens capture flow (same as US2)
+- [x] T027 [US3] Add empty state in HoyPage when no meals today (total 0, message or empty list) per spec
 
 **Checkpoint**: User Story 3 complete — Hoy shows daily total and cards; FAB opens capture
 

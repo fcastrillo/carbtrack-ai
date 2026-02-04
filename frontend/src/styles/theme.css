@@ -1,0 +1,19 @@
+/* CarbTrack dark theme per spec (docs/screenshots/UI_REFERENCE.md) */
+:root {
+  --ct-bg: #0a0a0a;
+  --ct-card: #18181b;
+  --ct-text: rgba(255, 255, 255, 0.87);
+  --ct-text-muted: rgba(255, 255, 255, 0.6);
+}
+
+body {
+  background-color: var(--ct-bg);
+  color: var(--ct-text);
+  margin: 0;
+  min-height: 100vh;
+}
+
+.ct-card {
+  background-color: var(--ct-card);
+  border-radius: 0.5rem;
+}

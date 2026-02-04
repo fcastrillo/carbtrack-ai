@@ -35,7 +35,7 @@ La aplicación ofrece una barra de navegación inferior con cinco destinos: Hoy,
 
 ### User Story 2 - Captura inteligente de comidas (Priority: P1)
 
-El usuario dispone de una interfaz de cámara para tomar una foto del plato. La imagen se envía a GPT-4o Vision para identificar alimentos; el sistema cruza los resultados con la tabla `master_food_list` (Catálogo Educadies) y sugiere gramos de carbohidratos por ítem y total.
+El usuario dispone de una interfaz de cámara para tomar una foto del plato. La imagen se envía a GPT-4o Vision para identificar alimentos; el sistema cruza los resultados con la tabla `master_food_list` (Catálogo Educadies) y sugiere gramos de carbohidratos por ítem y total. Si no hay match del alimento con la tabla `master_food_list`, se sugiere que el usuario lo especifique manualmente y se agregue al catálogo.
 
 **Why this priority**: Es el núcleo del valor del producto: sustituir el cálculo manual de CH.
 
