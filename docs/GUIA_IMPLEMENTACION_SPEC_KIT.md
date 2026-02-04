@@ -50,8 +50,9 @@ Confirmar que el entorno y la estructura spec-kit están listos.
    - La carpeta `specs/` no existe aún; la creará el script cuando ejecutes `/speckit.specify` por primera vez.
 
 ### Checkpoint Fase 0
-- [ ] Comandos `/speckit.*` visibles en Cursor.
-- [ ] Decidido: ¿trabajo con ramas Git o solo con `SPECIFY_FEATURE`?
+- [X] Comandos `/speckit.*` visibles en Cursor.
+- [X] Proyecto creado en Git, con remoto en Github (https://github.com/fcastrillo/carbtrack-ai.git), con rama main
+- [x] Decidido: trabajo con **ramas Git** para aprender el flujo completo de spec-kit (proyecto personal; ramas útiles para aprendizaje).
 
 ---
 
