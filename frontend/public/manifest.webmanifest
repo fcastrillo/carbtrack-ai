@@ -1,0 +1,9 @@
+{
+  "name": "CarbTrack",
+  "short_name": "CarbTrack",
+  "description": "Asistente de conteo de carbohidratos",
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
+  "display": "standalone",
+  "start_url": "/"
+}

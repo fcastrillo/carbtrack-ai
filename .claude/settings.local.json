@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rai --help:*)",
+      "Bash(rai init:*)",
+      "Bash(rai discover analyze:*)",
+      "Bash(rai memory build:*)",
+      "Bash(rai memory query:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}

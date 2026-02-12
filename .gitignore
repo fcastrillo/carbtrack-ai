@@ -39,3 +39,6 @@ coverage/
 
 # PWA / tooling
 *.tsbuildinfo
+
+# Supabase CLI local state
+supabase/.temp/
