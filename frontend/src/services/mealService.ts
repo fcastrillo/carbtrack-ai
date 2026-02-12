@@ -104,11 +104,16 @@ export async function getTodayMeals(): Promise<MealEntry[]> {
   const now = new Date()
   const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)
   const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999)
+  return getMealsByRange(startOfDay, endOfDay)
+}
+
+/** Get meals in date range (for Bitácora); start/end in local time. */
+export async function getMealsByRange(start: Date, end: Date): Promise<MealEntry[]> {
   const { data, error } = await supabase
     .from('meal_history')
     .select('id, image_url, ai_analysis, user_confirmed_carbs, timestamp')
-    .gte('timestamp', startOfDay.toISOString())
-    .lte('timestamp', endOfDay.toISOString())
+    .gte('timestamp', start.toISOString())
+    .lte('timestamp', end.toISOString())
     .order('timestamp', { ascending: false })
   if (error) throw new Error(error.message)
   return (data ?? []) as MealEntry[]

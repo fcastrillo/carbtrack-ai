@@ -112,10 +112,10 @@
 
 ### Implementation for User Story 4
 
-- [ ] T028 [P] [US4] Create FilterBar (or equivalent) in `frontend/src/components/FilterBar.tsx` with options: Todas, Hoy, Última semana, Último mes, Rango personalizado; for Rango personalizado show date-from and date-to inputs/pickers (no persist between sessions)
-- [ ] T029 [US4] Implement BitacoraPage in `frontend/src/pages/BitacoraPage.tsx`: map filter to date range, query `meal_history` with timestamp between start/end; render list of MealCards (reuse from US3)
-- [ ] T030 [US4] Show empty state in BitacoraPage with exact text "Sin historial. Tus comidas registradas aparecerán aquí" when no records in selected range per spec
-- [ ] T031 [US4] Style Bitácora filters and cards to match docs/screenshots/ (e.g. 02_bitacora.png) per UI_REFERENCE.md
+- [x] T028 [P] [US4] Create FilterBar (or equivalent) in `frontend/src/components/FilterBar.tsx` with options: Todas, Hoy, Última semana, Último mes, Rango personalizado; for Rango personalizado show date-from and date-to inputs/pickers (no persist between sessions)
+- [x] T029 [US4] Implement BitacoraPage in `frontend/src/pages/BitacoraPage.tsx`: map filter to date range, query `meal_history` with timestamp between start/end; render list of MealCards (reuse from US3)
+- [x] T030 [US4] Show empty state in BitacoraPage with exact text "Sin historial. Tus comidas registradas aparecerán aquí" when no records in selected range per spec
+- [x] T031 [US4] Style Bitácora filters and cards to match docs/screenshots/ (e.g. 02_bitacora.png) per UI_REFERENCE.md
 
 **Checkpoint**: User Story 4 complete — Bitácora filters and empty state work
 
@@ -129,10 +129,10 @@
 
 ### Implementation for User Story 5
 
-- [ ] T032 [US5] Add file input in `frontend/src/pages/CargaDatosPage.tsx` for CSV; read file as text (UTF-8) and call Edge Function `import-carelink-csv` with body { csv_content } (or csv_base64)
-- [ ] T033 [US5] Implement Edge Function `supabase/functions/import-carelink-csv/index.ts`: read NIGHTSCOUT_URL and NIGHTSCOUT_API_SECRET from env; compute SHA1 of secret for header; detect blocks by header "Index,Date,Time,..."; parse Treatments (BWZ Carb Input) and Entries (Sensor Glucose) per docs/cvs_upload/importar_ns_v2.py; POST to Nightscout entries and treatments in batches of 100; return { entries_count, treatments_count, success, errors } per contracts/edge-functions.md
-- [ ] T034 [US5] Handle single-block CSV (only treatments or only entries) per spec edge case in `supabase/functions/import-carelink-csv/index.ts`
-- [ ] T035 [US5] Display success (counts) or error message in CargaDatosPage after upload; do not corrupt already-synced data on partial failure
+- [x] T032 [US5] Add file input in `frontend/src/pages/CargaDatosPage.tsx` for CSV; read file as text (UTF-8) and call Edge Function `import-carelink-csv` with body { csv_content } (or csv_base64)
+- [x] T033 [US5] Implement Edge Function `supabase/functions/import-carelink-csv/index.ts`: read NIGHTSCOUT_URL and NIGHTSCOUT_API_SECRET from env; compute SHA1 of secret for header; detect blocks by header "Index,Date,Time,..."; parse Treatments (BWZ Carb Input) and Entries (Sensor Glucose) per docs/cvs_upload/importar_ns_v2.py; POST to Nightscout entries and treatments in batches of 100; return { entries_count, treatments_count, success, errors } per contracts/edge-functions.md
+- [x] T034 [US5] Handle single-block CSV (only treatments or only entries) per spec edge case in `supabase/functions/import-carelink-csv/index.ts`
+- [x] T035 [US5] Display success (counts) or error message in CargaDatosPage after upload; do not corrupt already-synced data on partial failure
 
 **Checkpoint**: User Story 5 complete — CSV upload syncs to Nightscout; errors shown clearly
 
@@ -146,9 +146,9 @@
 
 ### Implementation for User Story 6
 
-- [ ] T036 [US6] Implement LaboratorioPage in `frontend/src/pages/LaboratorioPage.tsx`: define data source (e.g. meal_history last 7 days + Nightscout data if available, or backend aggregation); display summary of recommendations (e.g. list of "alimentos subestimados" or simple message)
-- [ ] T037 [US6] Add empty state in LaboratorioPage when insufficient data: message like "Carga un CSV y registra comidas para ver recomendaciones" per spec
-- [ ] T038 [US6] If recommendations require server logic (e.g. compare CH vs glucose delta), add optional Edge Function or use existing data; minimal MVP can show "Recomendaciones (última semana)" section with placeholder or simple heuristic
+- [x] T036 [US6] Implement LaboratorioPage in `frontend/src/pages/LaboratorioPage.tsx`: define data source (e.g. meal_history last 7 days + Nightscout data if available, or backend aggregation); display summary of recommendations (e.g. list of "alimentos subestimados" or simple message)
+- [x] T037 [US6] Add empty state in LaboratorioPage when insufficient data: message like "Carga un CSV y registra comidas para ver recomendaciones" per spec
+- [x] T038 [US6] If recommendations require server logic (e.g. compare CH vs glucose delta), add optional Edge Function or use existing data; minimal MVP can show "Recomendaciones (última semana)" section with placeholder or simple heuristic
 
 **Checkpoint**: User Story 6 complete — Laboratorio shows recommendations or explanatory empty state
 
@@ -162,9 +162,9 @@
 
 ### Implementation for User Story 7
 
-- [ ] T039 [US7] Implement PerfilPage in `frontend/src/pages/PerfilPage.tsx`: try to fetch profile from Nightscout (if API available and documented) or read from `pump_profile` table in Supabase; display ISF and ratio_ic
-- [ ] T040 [US7] Add manual entry form in PerfilPage for ISF and ratio I:C when Nightscout profile not used; on save upsert into `pump_profile` (single row for MVP) via Supabase client
-- [ ] T041 [US7] Show empty state or message in PerfilPage when no profile: "Configura sensibilidad y ratio (entrada manual o desde Nightscout cuando esté integrado)" per spec
+- [x] T039 [US7] Implement PerfilPage in `frontend/src/pages/PerfilPage.tsx`: try to fetch profile from Nightscout (if API available and documented) or read from `pump_profile` table in Supabase; display ISF and ratio_ic
+- [x] T040 [US7] Add manual entry form in PerfilPage for ISF and ratio I:C when Nightscout profile not used; on save upsert into `pump_profile` (single row for MVP) via Supabase client
+- [x] T041 [US7] Show empty state or message in PerfilPage when no profile: "Configura sensibilidad y ratio (entrada manual o desde Nightscout cuando esté integrado)" per spec
 
 **Checkpoint**: User Story 7 complete — Perfil shows or allows setting ISF and I:C
 
@@ -176,10 +176,10 @@
 
 **Independent Test**: Ejecutar `npm run test` (o equivalente) en frontend y que pasen los tests sin llamar a APIs reales.
 
-- [ ] T042 [P] Add Vitest to `frontend/` and test setup in `frontend/src/test-utils/` or `frontend/tests/`: mock de Supabase client (`from()`, `invoke()` para Edge Functions); helpers para datos sintéticos (ej. `meal_history` fake, `pump_profile` fake) sin datos reales de salud
-- [ ] T043 [P] Add unit tests for `frontend/src/services/mealService.ts`: mock Supabase Storage upload y Edge Function `analyze-meal`; verificar que con respuesta mock (items + total_carbs) se construye y persiste registro en `meal_history`; usar solo datos sintéticos (ej. total_carbs: 25, items genéricos) en `frontend/tests/` o `frontend/src/services/__tests__/mealService.test.ts`
-- [ ] T044 [P] Add tests for CSV upload flow: mock Edge Function `import-carelink-csv`; verificar que `CargaDatosPage` (o servicio) envía `csv_content` y maneja respuesta success/error; usar CSV sintético (encabezado Index,Date,Time,... y filas falsas) en `frontend/tests/` o similar
-- [ ] T045 [P] Add tests for Perfil: mock Supabase `pump_profile` (select/upsert); verificar que PerfilPage muestra ISF y ratio o estado vacío según datos mock; usar solo valores sintéticos (ej. isf: 50, ratio_ic: 1.2) en `frontend/tests/` o `frontend/src/pages/__tests__/PerfilPage.test.ts`
+- [x] T042 [P] Add Vitest to `frontend/` and test setup in `frontend/src/test-utils/` or `frontend/tests/`: mock de Supabase client (`from()`, `invoke()` para Edge Functions); helpers para datos sintéticos (ej. `meal_history` fake, `pump_profile` fake) sin datos reales de salud
+- [x] T043 [P] Add unit tests for `frontend/src/services/mealService.ts`: mock Supabase Storage upload y Edge Function `analyze-meal`; verificar que con respuesta mock (items + total_carbs) se construye y persiste registro en `meal_history`; usar solo datos sintéticos (ej. total_carbs: 25, items genéricos) en `frontend/tests/` o `frontend/src/services/__tests__/mealService.test.ts`
+- [x] T044 [P] Add tests for CSV upload flow: mock Edge Function `import-carelink-csv`; verificar que `CargaDatosPage` (o servicio) envía `csv_content` y maneja respuesta success/error; usar CSV sintético (encabezado Index,Date,Time,... y filas falsas) en `frontend/tests/` o similar
+- [x] T045 [P] Add tests for Perfil: mock Supabase `pump_profile` (select/upsert); verificar que PerfilPage muestra ISF y ratio o estado vacío según datos mock; usar solo valores sintéticos (ej. isf: 50, ratio_ic: 1.2) en `frontend/tests/` o `frontend/src/pages/__tests__/PerfilPage.test.ts`
 
 **Checkpoint**: Tests de flujos con datos de salud pasan con mocks; ningún dato real en tests
 
@@ -189,10 +189,10 @@
 
 **Purpose**: Final validation and consistency
 
-- [ ] T046 [P] Ensure no API keys or Nightscout secrets in frontend code or frontend env; only VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in client
+- [x] T046 [P] Ensure no API keys or Nightscout secrets in frontend code or frontend env; only VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in client
 - [ ] T047 Run quickstart validation from `specs/001-mvp-asistente-ch/quickstart.md`: tick off checklist (navigation, capture, Hoy, Bitácora, CSV upload, Laboratorio, Perfil, security)
-- [ ] T048 [P] Add or adjust PWA manifest and meta for installability and mobile use in `frontend/public/`
-- [ ] T049 Verify dark mode #0a0a0a / #18181b applied across all pages per docs/screenshots/UI_REFERENCE.md
+- [x] T048 [P] Add or adjust PWA manifest and meta for installability and mobile use in `frontend/public/`
+- [x] T049 Verify dark mode #0a0a0a / #18181b applied across all pages per docs/screenshots/UI_REFERENCE.md
 
 ---
 

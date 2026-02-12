@@ -5,6 +5,11 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test-utils/setup.ts'],
+  },
   server: {
     port: 5173, // Cambia este número si quieres otro puerto (ej. 3000)
   },
