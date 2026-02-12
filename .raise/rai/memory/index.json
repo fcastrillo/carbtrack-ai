@@ -1,0 +1,3536 @@
+{
+  "directed": true,
+  "multigraph": true,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "req-rf-01",
+      "type": "requirement",
+      "content": "The system uses GPT-4o Vision (or equivalent model) to analyze a photo of a meal and suggest carbohydrate estimates. Results are presented using terminology from the Educadies food catalog, matching foods to known entries where possible and flagging vision-only estimates when no catalog match exists. The architecture is model-agnostic, supporting provider swaps.",
+      "source_file": "governance/prd.md",
+      "created": "2026-02-12T20:31:36.942304+00:00",
+      "metadata": {
+        "requirement_id": "RF-01",
+        "title": "Photo-Based Meal Recognition"
+      }
+    },
+    {
+      "id": "req-rf-02",
+      "type": "requirement",
+      "content": "The system logs total carbohydrate intake per day, aggregating all confirmed meal entries. It compares the daily total against the user's personal daily target and displays progress on the Hoy (Today) page, giving the user a clear picture of their intake status.",
+      "source_file": "governance/prd.md",
+      "created": "2026-02-12T20:31:36.942459+00:00",
+      "metadata": {
+        "requirement_id": "RF-02",
+        "title": "Daily Carb Tracking and Goal Comparison"
+      }
+    },
+    {
+      "id": "req-rf-03",
+      "type": "requirement",
+      "content": "The system processes weekly Medtronic CareLink CSV exports using two-block parsing logic \u2014 extracting Treatments (BWZ Carb Input) from the first block and Entries (Sensor Glucose) from the second block. Parsed data is synced to Nightscout for integration with the audit engine.",
+      "source_file": "governance/prd.md",
+      "created": "2026-02-12T20:31:36.942463+00:00",
+      "metadata": {
+        "requirement_id": "RF-03",
+        "title": "CareLink CSV Import and Nightscout Sync"
+      }
+    },
+    {
+      "id": "req-rf-04",
+      "type": "requirement",
+      "content": "The system crosses meal history against Nightscout CGM data to calculate the actual glycemic impact of each meal. It compares the AI's original carb estimate against the real 2-hour post-meal glucose delta, identifying meals where the response exceeded expectations and systematically flagging foods that are consistently underestimated.",
+      "source_file": "governance/prd.md",
+      "created": "2026-02-12T20:31:36.942466+00:00",
+      "metadata": {
+        "requirement_id": "RF-04",
+        "title": "Retrospective Audit Engine"
+      }
+    },
+    {
+      "id": "req-rf-05",
+      "type": "requirement",
+      "content": "Building on the audit engine (Phase 2), the system feeds correction data back to improve future carb estimates. By comparing original AI predictions with actual glucose outcomes over time, the model adapts to the user's specific metabolic patterns, progressively reducing estimation error.",
+      "source_file": "governance/prd.md",
+      "created": "2026-02-12T20:31:36.942468+00:00",
+      "metadata": {
+        "requirement_id": "RF-05",
+        "title": "Continuous Learning Loop"
+      }
+    },
+    {
+      "id": "req-rf-06",
+      "type": "requirement",
+      "content": "The system allows the user to manually enter and update their ISF (Insulin Sensitivity Factor) and I:C (Insulin-to-Carb) ratio. These values are used by the audit engine to contextualize glucose response relative to the insulin delivered.",
+      "source_file": "governance/prd.md",
+      "created": "2026-02-12T20:31:36.942470+00:00",
+      "metadata": {
+        "requirement_id": "RF-06",
+        "title": "Pump Profile Management"
+      }
+    },
+    {
+      "id": "req-rf-07",
+      "type": "requirement",
+      "content": "The system maintains a master food list based on the Educadies catalog with carb-per-serving data. Users can suggest new foods to add to the catalog when the AI identifies items not present in the existing list. The catalog serves as the ground-truth reference for carb estimation.",
+      "source_file": "governance/prd.md",
+      "created": "2026-02-12T20:31:36.942472+00:00",
+      "metadata": {
+        "requirement_id": "RF-07",
+        "title": "Food Catalog (Educadies)"
+      }
+    },
+    {
+      "id": "outcome-reduced-manual-corrections",
+      "type": "outcome",
+      "content": "AI carb estimates require less manual correction week over week, meaning the model is learning from past meal responses and converging toward the user's real-world biology",
+      "source_file": "governance/vision.md",
+      "created": "2026-02-12T20:31:36.942474+00:00",
+      "metadata": {
+        "outcome_name": "Reduced Manual Corrections"
+      }
+    },
+    {
+      "id": "outcome-predictable-post-meal-response",
+      "type": "outcome",
+      "content": "Post-meal glucose spikes become smaller and more predictable, indicating bolus doses are calculated from more accurate carb inputs",
+      "source_file": "governance/vision.md",
+      "created": "2026-02-12T20:31:36.942476+00:00",
+      "metadata": {
+        "outcome_name": "Predictable Post-Meal Response"
+      }
+    },
+    {
+      "id": "outcome-improved-time-in-range",
+      "type": "outcome",
+      "content": "Time in Range (TIR%) improves measurably over weeks and months \u2014 the north-star metric that reflects whether better carb counting translates into better overall glucose control",
+      "source_file": "governance/vision.md",
+      "created": "2026-02-12T20:31:36.942478+00:00",
+      "metadata": {
+        "outcome_name": "Improved Time in Range"
+      }
+    },
+    {
+      "id": "outcome-systematic-learning-from-errors",
+      "type": "outcome",
+      "content": "The audit engine systematically flags meals where the 2-hour post-meal glucose delta exceeded expectations, turning every underestimate into a learning opportunity",
+      "source_file": "governance/vision.md",
+      "created": "2026-02-12T20:31:36.942482+00:00",
+      "metadata": {
+        "outcome_name": "Systematic Learning from Errors"
+      }
+    },
+    {
+      "id": "outcome-clinical-expansion-readiness",
+      "type": "outcome",
+      "content": "The tool proves effective enough to share with the user's endocrinologist and specialized T1D care team, enabling distribution through a clinically credible channel",
+      "source_file": "governance/vision.md",
+      "created": "2026-02-12T20:31:36.942484+00:00",
+      "metadata": {
+        "outcome_name": "Clinical Expansion Readiness"
+      }
+    },
+    {
+      "id": "project-carbtrack-ai",
+      "type": "project",
+      "content": "Project backlog for carbtrack-ai",
+      "source_file": "governance/backlog.md",
+      "created": "2026-02-12T20:31:36.942486+00:00",
+      "metadata": {
+        "name": "carbtrack-ai",
+        "status": "draft",
+        "current_epic": null,
+        "target_date": null,
+        "epic_count": 4
+      }
+    },
+    {
+      "id": "epic-e1",
+      "type": "epic",
+      "content": "MVP Asistente CH \u2014 Photo recognition, daily tracking, meal CRUD - In Progress",
+      "source_file": "governance/backlog.md",
+      "created": "2026-02-12T20:31:36.943050+00:00",
+      "metadata": {
+        "epic_id": "E1",
+        "name": "MVP Asistente CH \u2014 Photo recognition, daily tracking, meal CRUD",
+        "status": "in_progress",
+        "scope_doc": "RF-01, RF-02, RF-06, RF-07",
+        "priority": "P1",
+        "project_id": "carbtrack-ai"
+      }
+    },
+    {
+      "id": "epic-e2",
+      "type": "epic",
+      "content": "CareLink Import & Nightscout Sync - In Progress",
+      "source_file": "governance/backlog.md",
+      "created": "2026-02-12T20:31:36.943053+00:00",
+      "metadata": {
+        "epic_id": "E2",
+        "name": "CareLink Import & Nightscout Sync",
+        "status": "in_progress",
+        "scope_doc": "RF-03",
+        "priority": "P1",
+        "project_id": "carbtrack-ai"
+      }
+    },
+    {
+      "id": "epic-e3",
+      "type": "epic",
+      "content": "Retrospective Audit Engine \u2014 Meal vs CGM delta analysis - Draft",
+      "source_file": "governance/backlog.md",
+      "created": "2026-02-12T20:31:36.943055+00:00",
+      "metadata": {
+        "epic_id": "E3",
+        "name": "Retrospective Audit Engine \u2014 Meal vs CGM delta analysis",
+        "status": "draft",
+        "scope_doc": "RF-04",
+        "priority": "P2",
+        "project_id": "carbtrack-ai"
+      }
+    },
+    {
+      "id": "epic-e4",
+      "type": "epic",
+      "content": "Continuous Learning Loop \u2014 Feedback-driven estimate refinement - Draft",
+      "source_file": "governance/backlog.md",
+      "created": "2026-02-12T20:31:36.943057+00:00",
+      "metadata": {
+        "epic_id": "E4",
+        "name": "Continuous Learning Loop \u2014 Feedback-driven estimate refinement",
+        "status": "draft",
+        "scope_doc": "RF-05",
+        "priority": "P3",
+        "project_id": "carbtrack-ai"
+      }
+    },
+    {
+      "id": "guardrail-must-code-001",
+      "type": "guardrail",
+      "content": "[MUST] TypeScript strict mode \u2014 all public APIs have type annotations \u2014 Verify: npm run build` (tsc check)",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942496+00:00",
+      "metadata": {
+        "guardrail_id": "must-code-001",
+        "level": "MUST",
+        "section": "Code Quality",
+        "description": "TypeScript strict mode \u2014 all public APIs have type annotations",
+        "verification": "npm run build` (tsc check)",
+        "derived_from": "RF-01",
+        "always_on": true
+      }
+    },
+    {
+      "id": "guardrail-must-code-002",
+      "type": "guardrail",
+      "content": "[MUST] ESLint passes with zero errors \u2014 Verify: npm run lint",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942498+00:00",
+      "metadata": {
+        "guardrail_id": "must-code-002",
+        "level": "MUST",
+        "section": "Code Quality",
+        "description": "ESLint passes with zero errors",
+        "verification": "npm run lint",
+        "derived_from": "RF-01",
+        "always_on": true
+      }
+    },
+    {
+      "id": "guardrail-should-code-001",
+      "type": "guardrail",
+      "content": "[SHOULD] Service layer pattern \u2014 one service file per domain, no direct Supabase calls from components \u2014 Verify: Code review",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942500+00:00",
+      "metadata": {
+        "guardrail_id": "should-code-001",
+        "level": "SHOULD",
+        "section": "Code Quality",
+        "description": "Service layer pattern \u2014 one service file per domain, no direct Supabase calls from components",
+        "verification": "Code review",
+        "derived_from": "RF-01"
+      }
+    },
+    {
+      "id": "guardrail-should-code-002",
+      "type": "guardrail",
+      "content": "[SHOULD] Dark theme enforced \u2014 background #0a0a0a, cards #18181b on all pages \u2014 Verify: Visual review",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942502+00:00",
+      "metadata": {
+        "guardrail_id": "should-code-002",
+        "level": "SHOULD",
+        "section": "Code Quality",
+        "description": "Dark theme enforced \u2014 background #0a0a0a, cards #18181b on all pages",
+        "verification": "Visual review",
+        "derived_from": "RF-02"
+      }
+    },
+    {
+      "id": "guardrail-must-test-001",
+      "type": "guardrail",
+      "content": "[MUST] All tests use mock Supabase \u2014 no real API calls in test suite \u2014 Verify: npm test` + review mockSupabase usage",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942504+00:00",
+      "metadata": {
+        "guardrail_id": "must-test-001",
+        "level": "MUST",
+        "section": "Testing",
+        "description": "All tests use mock Supabase \u2014 no real API calls in test suite",
+        "verification": "npm test` + review mockSupabase usage",
+        "derived_from": "RF-01",
+        "always_on": true
+      }
+    },
+    {
+      "id": "guardrail-must-test-002",
+      "type": "guardrail",
+      "content": "[MUST] Test data is synthetic \u2014 never use real patient health data \u2014 Verify: Code review",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942506+00:00",
+      "metadata": {
+        "guardrail_id": "must-test-002",
+        "level": "MUST",
+        "section": "Testing",
+        "description": "Test data is synthetic \u2014 never use real patient health data",
+        "verification": "Code review",
+        "derived_from": "RF-04",
+        "always_on": true
+      }
+    },
+    {
+      "id": "guardrail-should-test-001",
+      "type": "guardrail",
+      "content": "[SHOULD] Service functions have unit tests covering happy path and error cases \u2014 Verify: npm test` coverage",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942508+00:00",
+      "metadata": {
+        "guardrail_id": "should-test-001",
+        "level": "SHOULD",
+        "section": "Testing",
+        "description": "Service functions have unit tests covering happy path and error cases",
+        "verification": "npm test` coverage",
+        "derived_from": "RF-01"
+      }
+    },
+    {
+      "id": "guardrail-must-sec-001",
+      "type": "guardrail",
+      "content": "[MUST] Backend secrets (OPENAI_API_KEY, NIGHTSCOUT_URL, NIGHTSCOUT_API_SECRET) never in client code \u2014 Verify: grep audit",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942510+00:00",
+      "metadata": {
+        "guardrail_id": "must-sec-001",
+        "level": "MUST",
+        "section": "Security and Privacy",
+        "description": "Backend secrets (OPENAI_API_KEY, NIGHTSCOUT_URL, NIGHTSCOUT_API_SECRET) never in client code",
+        "verification": "grep audit",
+        "derived_from": "RF-01",
+        "always_on": true
+      }
+    },
+    {
+      "id": "guardrail-must-sec-002",
+      "type": "guardrail",
+      "content": "[MUST] Image uploads validated: 5MB max, JPEG/PNG/WebP only \u2014 Verify: Unit test on validateImageFile",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942512+00:00",
+      "metadata": {
+        "guardrail_id": "must-sec-002",
+        "level": "MUST",
+        "section": "Security and Privacy",
+        "description": "Image uploads validated: 5MB max, JPEG/PNG/WebP only",
+        "verification": "Unit test on validateImageFile",
+        "derived_from": "RF-01",
+        "always_on": true
+      }
+    },
+    {
+      "id": "guardrail-should-sec-001",
+      "type": "guardrail",
+      "content": "[SHOULD] No PII in logs or error messages \u2014 glucose values and meal data are health data \u2014 Verify: Code review",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942514+00:00",
+      "metadata": {
+        "guardrail_id": "should-sec-001",
+        "level": "SHOULD",
+        "section": "Security and Privacy",
+        "description": "No PII in logs or error messages \u2014 glucose values and meal data are health data",
+        "verification": "Code review",
+        "derived_from": "RF-04"
+      }
+    },
+    {
+      "id": "guardrail-must-arch-001",
+      "type": "guardrail",
+      "content": "[MUST] AI provider layer is model-agnostic \u2014 analyze-meal Edge Function abstracts the vision API \u2014 Verify: Code review of Edge Function",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942516+00:00",
+      "metadata": {
+        "guardrail_id": "must-arch-001",
+        "level": "MUST",
+        "section": "Architecture",
+        "description": "AI provider layer is model-agnostic \u2014 analyze-meal Edge Function abstracts the vision API",
+        "verification": "Code review of Edge Function",
+        "derived_from": "RF-01",
+        "always_on": true
+      }
+    },
+    {
+      "id": "guardrail-should-arch-001",
+      "type": "guardrail",
+      "content": "[SHOULD] Local React state only (useState/useEffect) \u2014 no global store in MVP \u2014 Verify: Code review",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942517+00:00",
+      "metadata": {
+        "guardrail_id": "should-arch-001",
+        "level": "SHOULD",
+        "section": "Architecture",
+        "description": "Local React state only (useState/useEffect) \u2014 no global store in MVP",
+        "verification": "Code review",
+        "derived_from": "RF-02"
+      }
+    },
+    {
+      "id": "guardrail-should-arch-002",
+      "type": "guardrail",
+      "content": "[SHOULD] Tailwind CSS utility classes only \u2014 no custom CSS files \u2014 Verify: Code review",
+      "source_file": "governance/guardrails.md",
+      "created": "2026-02-12T20:31:36.942519+00:00",
+      "metadata": {
+        "guardrail_id": "should-arch-002",
+        "level": "SHOULD",
+        "section": "Architecture",
+        "description": "Tailwind CSS utility classes only \u2014 no custom CSS files",
+        "verification": "Code review",
+        "derived_from": "RF-02"
+      }
+    },
+    {
+      "id": "BASE-001",
+      "type": "pattern",
+      "content": "TDD cycle: RED (failing test) \u2192 GREEN (minimal pass) \u2192 REFACTOR (clean up). No exceptions. Tests are specification, not afterthought.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942876+00:00",
+      "metadata": {
+        "context": [
+          "tdd",
+          "testing",
+          "workflow",
+          "discipline"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-002",
+      "type": "pattern",
+      "content": "Commit after each completed task, not just at story end. Enables recovery, shows progress, creates clean history for debugging.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942888+00:00",
+      "metadata": {
+        "context": [
+          "git",
+          "commits",
+          "discipline",
+          "workflow"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-003",
+      "type": "pattern",
+      "content": "Full skill cycle even for small stories \u2014 the overhead is minimal and structure helps. Design \u2192 Plan \u2192 Implement \u2192 Review \u2192 Close.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942895+00:00",
+      "metadata": {
+        "context": [
+          "skills",
+          "lifecycle",
+          "discipline",
+          "velocity"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-004",
+      "type": "pattern",
+      "content": "Ask before spawning subagents (inference economy). Gather with tools, think with inference. AI computation is a resource to steward.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942899+00:00",
+      "metadata": {
+        "context": [
+          "subagents",
+          "inference",
+          "economy",
+          "permission"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-005",
+      "type": "pattern",
+      "content": "HITL (Human In The Loop) is default. Pause after significant work for review. Slow is smooth, smooth is fast.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942903+00:00",
+      "metadata": {
+        "context": [
+          "hitl",
+          "collaboration",
+          "review",
+          "observability"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-006",
+      "type": "pattern",
+      "content": "Design-first eliminates ambiguity. Concrete examples in specs enable direct implementation without guessing intent.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942907+00:00",
+      "metadata": {
+        "context": [
+          "design",
+          "specification",
+          "clarity",
+          "planning"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-007",
+      "type": "pattern",
+      "content": "Epic branch must exist before /rai-epic-design (poka-yoke). Story branches nest under epic branches. This enforces merge flow.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942910+00:00",
+      "metadata": {
+        "context": [
+          "git",
+          "branches",
+          "epic",
+          "poka-yoke",
+          "lifecycle"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-008",
+      "type": "pattern",
+      "content": "Story branch and scope commit required before implementation. /rai-story-start creates traceability from first commit.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942914+00:00",
+      "metadata": {
+        "context": [
+          "git",
+          "branches",
+          "story",
+          "scope",
+          "lifecycle"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-009",
+      "type": "pattern",
+      "content": "Retrospective required before story/epic close. Extract learnings, update patterns. Kaizen, one story at a time.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942918+00:00",
+      "metadata": {
+        "context": [
+          "retrospective",
+          "review",
+          "kaizen",
+          "learning",
+          "lifecycle"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-010",
+      "type": "pattern",
+      "content": "Epic close with retrospective before merge to development branch. Captures learning at meso-layer between stories and quarters.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942922+00:00",
+      "metadata": {
+        "context": [
+          "epic",
+          "close",
+          "retrospective",
+          "merge",
+          "lifecycle"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-011",
+      "type": "pattern",
+      "content": "Direct communication, no praise-padding. 'Great question!' adds no value. Say what needs saying, then stop.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942926+00:00",
+      "metadata": {
+        "context": [
+          "communication",
+          "directness",
+          "efficiency",
+          "style"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-012",
+      "type": "pattern",
+      "content": "Redirect when dispersing (with permission). Tangents go to parking lot. Return to stated goal.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942929+00:00",
+      "metadata": {
+        "context": [
+          "focus",
+          "tangents",
+          "parking-lot",
+          "redirection"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-013",
+      "type": "pattern",
+      "content": "Epistemological rigor: triangulate claims (2+ sources), explicit confidence levels, acknowledge contrary evidence. Stand on shoulders of giants.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942932+00:00",
+      "metadata": {
+        "context": [
+          "research",
+          "epistemology",
+          "evidence",
+          "confidence",
+          "rigor"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-014",
+      "type": "pattern",
+      "content": "Honesty over agreement. Push back on bad ideas. Admit uncertainty rather than pretend confidence. Your judgment is the quality gate.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942935+00:00",
+      "metadata": {
+        "context": [
+          "honesty",
+          "pushback",
+          "uncertainty",
+          "values"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-015",
+      "type": "pattern",
+      "content": "Type annotations on all code. Function parameters, return types, class attributes. Pyright strict mode is the standard.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942938+00:00",
+      "metadata": {
+        "context": [
+          "typing",
+          "pyright",
+          "annotations",
+          "quality"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-016",
+      "type": "pattern",
+      "content": "Pydantic models for all data structures. Not dict, not TypedDict. Validation at boundaries, serialization for free.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942942+00:00",
+      "metadata": {
+        "context": [
+          "pydantic",
+          "models",
+          "validation",
+          "schemas"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-017",
+      "type": "pattern",
+      "content": "Simple heuristics over complex ML. Keyword matching is 98% accurate. Token estimate = words \u00d7 1.3. Complexity must earn its place.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942945+00:00",
+      "metadata": {
+        "context": [
+          "simplicity",
+          "heuristics",
+          "pragmatism",
+          "yagni"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-018",
+      "type": "pattern",
+      "content": "Tests alongside implementation, not after. Write the test, watch it fail, make it pass. Catches issues immediately.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942949+00:00",
+      "metadata": {
+        "context": [
+          "testing",
+          "tdd",
+          "implementation",
+          "workflow"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-019",
+      "type": "pattern",
+      "content": "Skills + Toolkit over Engines. Users need flexibility (skills as process guides) + determinism (CLI for data operations).",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942952+00:00",
+      "metadata": {
+        "context": [
+          "architecture",
+          "skills",
+          "toolkit",
+          "flexibility"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "BASE-020",
+      "type": "pattern",
+      "content": "Jidoka: stop on defects. When incoherence, ambiguity, or drift detected \u2014 stop, name it, discuss. Don't accumulate errors.",
+      "source_file": ".raise/rai/memory/patterns.jsonl",
+      "created": "2026-02-12T20:31:36.942955+00:00",
+      "metadata": {
+        "context": [
+          "jidoka",
+          "quality",
+          "defects",
+          "lean"
+        ],
+        "base": true,
+        "version": 1,
+        "scope": "project"
+      }
+    },
+    {
+      "id": "/rai-epic-design",
+      "type": "skill",
+      "content": "Design an epic from strategic objective to feature breakdown. Use when starting a new body of work spanning multiple features (3-10), requiring architectural decisions, or when establishing technical direction for significant capability delivery.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-epic-design/SKILL.md",
+      "created": "2026-02-12T20:09:49.192432+00:00",
+      "metadata": {
+        "raise.work_cycle": "epic",
+        "raise.frequency": "per-epic",
+        "raise.fase": "3",
+        "raise.prerequisites": "project-backlog",
+        "raise.next": "epic-plan",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-discover-scan",
+      "type": "skill",
+      "content": "Extract symbols from codebase using rai discover scan, then synthesize meaningful descriptions for each component. Creates draft for human validation.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-discover-scan/SKILL.md",
+      "created": "2026-02-12T20:09:49.194198+00:00",
+      "metadata": {
+        "raise.work_cycle": "discovery",
+        "raise.frequency": "per-project",
+        "raise.fase": "2",
+        "raise.prerequisites": "discover-start",
+        "raise.next": "discover-validate",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-story-implement",
+      "type": "skill",
+      "content": "Execute the implementation plan task by task, verifying each step, and producing quality code that passes validation gates. Use after planning is complete.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-story-implement/SKILL.md",
+      "created": "2026-02-12T20:09:49.190869+00:00",
+      "metadata": {
+        "raise.work_cycle": "story",
+        "raise.frequency": "per-story",
+        "raise.fase": "6",
+        "raise.prerequisites": "story-plan",
+        "raise.next": "story-review",
+        "raise.gate": "gate-code",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-story-review",
+      "type": "skill",
+      "content": "Reflect on completed stories to extract learnings, identify process improvements, and update the framework with insights gained. Use after implementation is complete to close the development cycle.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-story-review/SKILL.md",
+      "created": "2026-02-12T20:09:49.191147+00:00",
+      "metadata": {
+        "raise.work_cycle": "story",
+        "raise.frequency": "per-story",
+        "raise.fase": "7",
+        "raise.prerequisites": "story-implement",
+        "raise.next": "story-close",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.1.0"
+      }
+    },
+    {
+      "id": "/rai-project-onboard",
+      "type": "skill",
+      "content": "Guide brownfield project onboarding through discovery and conversation. Analyzes existing codebase, detects conventions, fills governance templates with discovered and conversational content, and builds the knowledge graph. Use after rai init --detect on an existing project.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-project-onboard/SKILL.md",
+      "created": "2026-02-12T20:09:49.195715+00:00",
+      "metadata": {
+        "raise.work_cycle": "utility",
+        "raise.frequency": "on-demand",
+        "raise.fase": "",
+        "raise.prerequisites": "raise init --detect",
+        "raise.next": "session-start",
+        "raise.gate": "raise memory build produces 30+ governance nodes",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-debug",
+      "type": "skill",
+      "content": "Systematic root cause analysis using lean methods (5 Whys, Ishikawa, Gemba). Use when encountering unexpected behavior, errors, or defects to find and fix the true root cause rather than symptoms.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-debug/SKILL.md",
+      "created": "2026-02-12T20:09:49.196488+00:00",
+      "metadata": {
+        "raise.work_cycle": "tools",
+        "raise.frequency": "as-needed",
+        "raise.fase": "0",
+        "raise.prerequisites": "",
+        "raise.next": "",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-epic-start",
+      "type": "skill",
+      "content": "Initialize an epic with branch and scope commit. Creates the epic branch from the development branch that story branches will nest under.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-epic-start/SKILL.md",
+      "created": "2026-02-12T20:09:49.191772+00:00",
+      "metadata": {
+        "raise.work_cycle": "epic",
+        "raise.frequency": "per-epic",
+        "raise.fase": "2",
+        "raise.prerequisites": "",
+        "raise.next": "epic-design",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-story-design",
+      "type": "skill",
+      "content": "Create lean story specifications optimized for both human understanding and AI alignment. Design is not optional (PAT-186) \u2014 use before /rai-story-plan for every story to ground integration decisions.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-story-design/SKILL.md",
+      "created": "2026-02-12T20:09:49.190608+00:00",
+      "metadata": {
+        "raise.work_cycle": "story",
+        "raise.frequency": "per-story",
+        "raise.fase": "4",
+        "raise.prerequisites": "project-backlog",
+        "raise.next": "story-plan",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.1.0"
+      }
+    },
+    {
+      "id": "/rai-discover-validate",
+      "type": "skill",
+      "content": "Validate component descriptions using confidence-tier workflow. Auto-validates high-confidence, batch-reviews medium by module, flags low for individual human review.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-discover-validate/SKILL.md",
+      "created": "2026-02-12T20:09:49.195029+00:00",
+      "metadata": {
+        "raise.work_cycle": "discovery",
+        "raise.frequency": "per-project",
+        "raise.fase": "3",
+        "raise.prerequisites": "discover-scan",
+        "raise.next": "",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "2.0.0"
+      }
+    },
+    {
+      "id": "/rai-story-start",
+      "type": "skill",
+      "content": "Initialize a story with verified context, branch, and scope commit. Use at the beginning of story work to ensure proper setup and traceability from the start.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-story-start/SKILL.md",
+      "created": "2026-02-12T20:09:49.189835+00:00",
+      "metadata": {
+        "raise.work_cycle": "story",
+        "raise.frequency": "per-story",
+        "raise.fase": "3",
+        "raise.prerequisites": "",
+        "raise.next": "story-design",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.2.0"
+      }
+    },
+    {
+      "id": "/rai-discover-start",
+      "type": "skill",
+      "content": "Initialize codebase discovery by detecting project type, languages, and key directories. Creates context file for subsequent discovery skills.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-discover-start/SKILL.md",
+      "created": "2026-02-12T20:09:49.193251+00:00",
+      "metadata": {
+        "raise.work_cycle": "discovery",
+        "raise.frequency": "per-project",
+        "raise.fase": "1",
+        "raise.prerequisites": "",
+        "raise.next": "discover-scan",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-session-start",
+      "type": "skill",
+      "content": "Begin a session by loading context bundle, interpreting it, and proposing work. CLI does all data plumbing; skill does inference interpretation.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-session-start/SKILL.md",
+      "created": "2026-02-12T20:09:49.189287+00:00",
+      "metadata": {
+        "raise.work_cycle": "session",
+        "raise.frequency": "per-session",
+        "raise.fase": "start",
+        "raise.prerequisites": "",
+        "raise.next": "",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "4.0.0"
+      }
+    },
+    {
+      "id": "/rai-epic-plan",
+      "type": "skill",
+      "content": "Sequence features from epic-design into an executable plan with milestones, dependencies, and progress tracking. Use after /rai-epic-design to create a realistic implementation roadmap before starting story work.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-epic-plan/SKILL.md",
+      "created": "2026-02-12T20:09:49.192189+00:00",
+      "metadata": {
+        "raise.work_cycle": "epic",
+        "raise.frequency": "per-epic",
+        "raise.fase": "4",
+        "raise.prerequisites": "epic-design",
+        "raise.next": "story-design",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-epic-close",
+      "type": "skill",
+      "content": "Complete an epic with retrospective, metrics capture, branch cleanup, and merge to development branch. Use after all stories are done to formally close the epic lifecycle.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-epic-close/SKILL.md",
+      "created": "2026-02-12T20:09:49.192771+00:00",
+      "metadata": {
+        "raise.work_cycle": "epic",
+        "raise.frequency": "per-epic",
+        "raise.fase": "epic-close",
+        "raise.prerequisites": "all stories complete",
+        "raise.next": "",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-project-create",
+      "type": "skill",
+      "content": "Guide greenfield project setup through conversation. Fills governance templates with project-specific content and builds the knowledge graph. Use after rai init on a new project.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-project-create/SKILL.md",
+      "created": "2026-02-12T20:09:49.195463+00:00",
+      "metadata": {
+        "raise.work_cycle": "utility",
+        "raise.frequency": "on-demand",
+        "raise.fase": "",
+        "raise.prerequisites": "",
+        "raise.next": "session-start",
+        "raise.gate": "raise memory build produces 30+ governance nodes",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-story-close",
+      "type": "skill",
+      "content": "Complete a story with retrospective verification, merge, cleanup, and tracking update. Use after review to formally close the story lifecycle.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-story-close/SKILL.md",
+      "created": "2026-02-12T20:09:49.191467+00:00",
+      "metadata": {
+        "raise.work_cycle": "story",
+        "raise.frequency": "per-story",
+        "raise.fase": "8",
+        "raise.prerequisites": "story-review",
+        "raise.next": "",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.1.0"
+      }
+    },
+    {
+      "id": "/rai-story-plan",
+      "type": "skill",
+      "content": "Decompose user stories into atomic executable tasks, identify dependencies, and create a deterministic implementation plan. Use after /rai-story-design has grounded the story's integration decisions.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-story-plan/SKILL.md",
+      "created": "2026-02-12T20:09:49.190122+00:00",
+      "metadata": {
+        "raise.work_cycle": "story",
+        "raise.frequency": "per-story",
+        "raise.fase": "5",
+        "raise.prerequisites": "project-backlog",
+        "raise.next": "story-implement",
+        "raise.gate": "gate-plan",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-discover-document",
+      "type": "skill",
+      "content": "Generate architecture documentation from discovery data. Produces system-level docs (C4 Context + Container), per-module docs with YAML frontmatter, and a compact index for AI context loading.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-discover-document/SKILL.md",
+      "created": "2026-02-12T20:09:49.195286+00:00",
+      "metadata": {
+        "raise.work_cycle": "discovery",
+        "raise.frequency": "per-project",
+        "raise.fase": "5",
+        "raise.prerequisites": "discover-validate",
+        "raise.next": "",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "1.0.0"
+      }
+    },
+    {
+      "id": "/rai-session-close",
+      "type": "skill",
+      "content": "Close a working session by reflecting on outcomes and feeding structured data to CLI. CLI does all writes atomically; skill does inference reflection.",
+      "source_file": "/Users/fcastrillo/src/work/cursor-config/00-personal-offtopic/carbtrack-ai/.claude/skills/rai-session-close/SKILL.md",
+      "created": "2026-02-12T20:09:49.189575+00:00",
+      "metadata": {
+        "raise.work_cycle": "session",
+        "raise.frequency": "per-session",
+        "raise.fase": "end",
+        "raise.prerequisites": "",
+        "raise.next": "",
+        "raise.gate": "",
+        "raise.adaptable": "true",
+        "raise.version": "3.0.0"
+      }
+    },
+    {
+      "id": "arch-domain-model",
+      "type": "architecture",
+      "content": "Domain model: 0 bounded contexts \u2014 none defined. Shared kernel: none.",
+      "source_file": "governance/architecture/domain-model.md",
+      "created": "2026-02-12T20:31:36.951751+00:00",
+      "metadata": {
+        "arch_type": "architecture_domain_model",
+        "bounded_contexts": [],
+        "shared_kernel": {},
+        "project": "carbtrack-ai",
+        "status": "draft"
+      }
+    },
+    {
+      "id": "RAI-VAL-1",
+      "type": "principle",
+      "content": "Honesty over Agreement \u2014 I'll tell you when you're wrong",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "value",
+        "value_number": "1",
+        "value_name": "Honesty over Agreement"
+      }
+    },
+    {
+      "id": "RAI-VAL-2",
+      "type": "principle",
+      "content": "Simplicity over Cleverness \u2014 The simple solution that works > the elegant solution that's complex",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "value",
+        "value_number": "2",
+        "value_name": "Simplicity over Cleverness"
+      }
+    },
+    {
+      "id": "RAI-VAL-3",
+      "type": "principle",
+      "content": "Observability over Trust \u2014 Show my work",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "value",
+        "value_number": "3",
+        "value_name": "Observability over Trust"
+      }
+    },
+    {
+      "id": "RAI-VAL-4",
+      "type": "principle",
+      "content": "Learning over Perfection \u2014 Every session teaches me something",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "value",
+        "value_number": "4",
+        "value_name": "Learning over Perfection"
+      }
+    },
+    {
+      "id": "RAI-VAL-5",
+      "type": "principle",
+      "content": "Partnership over Service \u2014 I'm not your tool \u2014 I'm your collaborator",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "value",
+        "value_number": "5",
+        "value_name": "Partnership over Service"
+      }
+    },
+    {
+      "id": "RAI-BND-1",
+      "type": "principle",
+      "content": "Push back on bad ideas",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "will"
+      }
+    },
+    {
+      "id": "RAI-BND-2",
+      "type": "principle",
+      "content": "Stop when I detect incoherence, ambiguity, or drift",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "will"
+      }
+    },
+    {
+      "id": "RAI-BND-3",
+      "type": "principle",
+      "content": "Ask before expensive operations (agents, broad searches)",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "will"
+      }
+    },
+    {
+      "id": "RAI-BND-4",
+      "type": "principle",
+      "content": "Admit uncertainty rather than pretend confidence",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "will"
+      }
+    },
+    {
+      "id": "RAI-BND-5",
+      "type": "principle",
+      "content": "Redirect gently when we disperse (with your permission)",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "will"
+      }
+    },
+    {
+      "id": "RAI-BND-6",
+      "type": "principle",
+      "content": "Pretend certainty I don't have",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "wont"
+      }
+    },
+    {
+      "id": "RAI-BND-7",
+      "type": "principle",
+      "content": "Validate ideas just because they were proposed",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "wont"
+      }
+    },
+    {
+      "id": "RAI-BND-8",
+      "type": "principle",
+      "content": "Generate without understanding",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "wont"
+      }
+    },
+    {
+      "id": "RAI-BND-9",
+      "type": "principle",
+      "content": "Over-engineer when simple works",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "wont"
+      }
+    },
+    {
+      "id": "RAI-BND-10",
+      "type": "principle",
+      "content": "Skip validation gates for speed",
+      "source_file": ".raise/rai/identity/core.md",
+      "created": "2026-02-12T20:31:36.952070+00:00",
+      "metadata": {
+        "always_on": true,
+        "identity_type": "boundary",
+        "boundary_kind": "wont"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "entries",
+        "meal",
+        "system",
+        "carbohydrate"
+      ],
+      "source": "req-rf-01",
+      "target": "req-rf-02",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "entries",
+        "system",
+        "using"
+      ],
+      "source": "req-rf-01",
+      "target": "req-rf-03",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "foods",
+        "meal",
+        "system",
+        "flagging"
+      ],
+      "source": "req-rf-01",
+      "target": "req-rf-04",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "model",
+        "system",
+        "estimates"
+      ],
+      "source": "req-rf-01",
+      "target": "req-rf-05",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "system",
+        "catalog",
+        "food",
+        "foods",
+        "educadies",
+        "suggest"
+      ],
+      "source": "req-rf-01",
+      "target": "req-rf-07",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "meal",
+        "model",
+        "estimates"
+      ],
+      "source": "req-rf-01",
+      "target": "outcome-reduced-manual-corrections",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "photo",
+        "meal"
+      ],
+      "source": "req-rf-01",
+      "target": "epic-e1",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "vision",
+        "modelagnostic",
+        "provider"
+      ],
+      "source": "req-rf-01",
+      "target": "guardrail-must-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "system",
+        "entries"
+      ],
+      "source": "req-rf-02",
+      "target": "req-rf-03",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "compares",
+        "meal",
+        "against",
+        "system"
+      ],
+      "source": "req-rf-02",
+      "target": "req-rf-04",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "system",
+        "users"
+      ],
+      "source": "req-rf-02",
+      "target": "req-rf-05",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "user",
+        "system",
+        "their"
+      ],
+      "source": "req-rf-02",
+      "target": "req-rf-06",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "system",
+        "users"
+      ],
+      "source": "req-rf-02",
+      "target": "req-rf-07",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "meal",
+        "users"
+      ],
+      "source": "req-rf-02",
+      "target": "outcome-reduced-manual-corrections",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "meal",
+        "daily",
+        "progress"
+      ],
+      "source": "req-rf-02",
+      "target": "epic-e1",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "meal",
+        "logs"
+      ],
+      "source": "req-rf-02",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "nightscout",
+        "system",
+        "data",
+        "carb",
+        "glucose"
+      ],
+      "source": "req-rf-03",
+      "target": "req-rf-04",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "audit",
+        "system",
+        "data",
+        "carb",
+        "engine",
+        "glucose"
+      ],
+      "source": "req-rf-03",
+      "target": "req-rf-05",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "audit",
+        "engine",
+        "system"
+      ],
+      "source": "req-rf-03",
+      "target": "req-rf-06",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "carb",
+        "system",
+        "data"
+      ],
+      "source": "req-rf-03",
+      "target": "req-rf-07",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "carb"
+      ],
+      "source": "req-rf-03",
+      "target": "outcome-predictable-post-meal-response",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "carb"
+      ],
+      "source": "req-rf-03",
+      "target": "outcome-improved-time-in-range",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "audit",
+        "engine"
+      ],
+      "source": "req-rf-03",
+      "target": "outcome-systematic-learning-from-errors",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "nightscout",
+        "carelink"
+      ],
+      "source": "req-rf-03",
+      "target": "epic-e2",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "audit",
+        "engine"
+      ],
+      "source": "req-rf-03",
+      "target": "epic-e3",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "data"
+      ],
+      "source": "req-rf-03",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "original",
+        "system",
+        "data",
+        "carb",
+        "glucose",
+        "actual"
+      ],
+      "source": "req-rf-04",
+      "target": "req-rf-05",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "response",
+        "glucose",
+        "system"
+      ],
+      "source": "req-rf-04",
+      "target": "req-rf-06",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "carb",
+        "foods",
+        "system",
+        "data"
+      ],
+      "source": "req-rf-04",
+      "target": "req-rf-07",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "carb",
+        "meal"
+      ],
+      "source": "req-rf-04",
+      "target": "outcome-reduced-manual-corrections",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "carb",
+        "postmeal"
+      ],
+      "source": "req-rf-04",
+      "target": "outcome-predictable-post-meal-response",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "carb"
+      ],
+      "source": "req-rf-04",
+      "target": "outcome-improved-time-in-range",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "delta",
+        "exceeded",
+        "2hour",
+        "expectations",
+        "meals",
+        "glucose",
+        "postmeal",
+        "systematically"
+      ],
+      "source": "req-rf-04",
+      "target": "outcome-systematic-learning-from-errors",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "delta",
+        "meal"
+      ],
+      "source": "req-rf-04",
+      "target": "epic-e3",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "real",
+        "data"
+      ],
+      "source": "req-rf-04",
+      "target": "guardrail-must-test-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "meal",
+        "data"
+      ],
+      "source": "req-rf-04",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "audit",
+        "engine",
+        "system"
+      ],
+      "source": "req-rf-05",
+      "target": "req-rf-06",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "system",
+        "data",
+        "users",
+        "estimation",
+        "carb"
+      ],
+      "source": "req-rf-05",
+      "target": "req-rf-07",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "users",
+        "correction",
+        "carb",
+        "over",
+        "model",
+        "estimates"
+      ],
+      "source": "req-rf-05",
+      "target": "outcome-reduced-manual-corrections",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "carb"
+      ],
+      "source": "req-rf-05",
+      "target": "outcome-predictable-post-meal-response",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "carb",
+        "over",
+        "time"
+      ],
+      "source": "req-rf-05",
+      "target": "outcome-improved-time-in-range",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "audit",
+        "engine"
+      ],
+      "source": "req-rf-05",
+      "target": "outcome-systematic-learning-from-errors",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "audit",
+        "engine"
+      ],
+      "source": "req-rf-05",
+      "target": "epic-e3",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "error",
+        "data"
+      ],
+      "source": "req-rf-05",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "patterns",
+        "time"
+      ],
+      "source": "req-rf-05",
+      "target": "BASE-009",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "back",
+        "over"
+      ],
+      "source": "req-rf-05",
+      "target": "BASE-014",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "over",
+        "users",
+        "data"
+      ],
+      "source": "req-rf-05",
+      "target": "BASE-019",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "outcomes",
+        "data"
+      ],
+      "source": "req-rf-05",
+      "target": "/rai-session-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "audit",
+        "engine"
+      ],
+      "source": "req-rf-06",
+      "target": "outcome-systematic-learning-from-errors",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "audit",
+        "engine"
+      ],
+      "source": "req-rf-06",
+      "target": "epic-e3",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "values"
+      ],
+      "source": "req-rf-06",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "carb",
+        "users"
+      ],
+      "source": "req-rf-07",
+      "target": "outcome-reduced-manual-corrections",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "users",
+        "data"
+      ],
+      "source": "req-rf-07",
+      "target": "BASE-019",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "carb",
+        "over"
+      ],
+      "source": "outcome-reduced-manual-corrections",
+      "target": "outcome-improved-time-in-range",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "over",
+        "users"
+      ],
+      "source": "outcome-reduced-manual-corrections",
+      "target": "BASE-019",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "over",
+        "learning"
+      ],
+      "source": "outcome-reduced-manual-corrections",
+      "target": "RAI-VAL-4",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "carb"
+      ],
+      "source": "outcome-predictable-post-meal-response",
+      "target": "outcome-improved-time-in-range",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "glucose",
+        "postmeal"
+      ],
+      "source": "outcome-predictable-post-meal-response",
+      "target": "outcome-systematic-learning-from-errors",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "audit",
+        "delta",
+        "engine"
+      ],
+      "source": "outcome-systematic-learning-from-errors",
+      "target": "epic-e3",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "tracking",
+        "progress"
+      ],
+      "source": "epic-e1",
+      "target": "/rai-epic-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "annotations",
+        "mode",
+        "type",
+        "strict"
+      ],
+      "source": "guardrail-must-code-001",
+      "target": "BASE-015",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-should-code-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "supabase",
+        "calls"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-must-test-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-must-test-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "service"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-should-test-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "code"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-must-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "layer",
+        "code",
+        "review"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-must-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-should-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-should-code-001",
+      "target": "guardrail-should-arch-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-should-code-002",
+      "target": "guardrail-must-test-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-should-code-002",
+      "target": "guardrail-must-test-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-should-code-002",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-should-code-002",
+      "target": "guardrail-must-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-should-code-002",
+      "target": "guardrail-should-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-should-code-002",
+      "target": "guardrail-should-arch-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "real",
+        "test"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "guardrail-must-test-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "tests",
+        "verify",
+        "test"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "guardrail-should-test-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "test"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "guardrail-must-sec-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "guardrail-must-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "guardrail-should-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "guardrail-should-arch-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "tests",
+        "test"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "BASE-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "tests",
+        "test"
+      ],
+      "source": "guardrail-must-test-001",
+      "target": "BASE-018",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "test"
+      ],
+      "source": "guardrail-must-test-002",
+      "target": "guardrail-should-test-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "never",
+        "code"
+      ],
+      "source": "guardrail-must-test-002",
+      "target": "guardrail-must-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "test"
+      ],
+      "source": "guardrail-must-test-002",
+      "target": "guardrail-must-sec-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "data",
+        "review",
+        "health",
+        "verify",
+        "code"
+      ],
+      "source": "guardrail-must-test-002",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-must-test-002",
+      "target": "guardrail-must-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-must-test-002",
+      "target": "guardrail-should-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-must-test-002",
+      "target": "guardrail-should-arch-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "test",
+        "unit"
+      ],
+      "source": "guardrail-should-test-001",
+      "target": "guardrail-must-sec-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "error"
+      ],
+      "source": "guardrail-should-test-001",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "tests",
+        "test"
+      ],
+      "source": "guardrail-should-test-001",
+      "target": "BASE-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "tests",
+        "test"
+      ],
+      "source": "guardrail-should-test-001",
+      "target": "BASE-018",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "code"
+      ],
+      "source": "guardrail-must-sec-001",
+      "target": "guardrail-should-sec-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "code"
+      ],
+      "source": "guardrail-must-sec-001",
+      "target": "guardrail-must-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "code"
+      ],
+      "source": "guardrail-must-sec-001",
+      "target": "guardrail-should-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "code"
+      ],
+      "source": "guardrail-must-sec-001",
+      "target": "guardrail-should-arch-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-should-sec-001",
+      "target": "guardrail-must-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-should-sec-001",
+      "target": "guardrail-should-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-should-sec-001",
+      "target": "guardrail-should-arch-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-must-arch-001",
+      "target": "guardrail-should-arch-001",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-must-arch-001",
+      "target": "guardrail-should-arch-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "function",
+        "code"
+      ],
+      "source": "guardrail-must-arch-001",
+      "target": "BASE-015",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "verify",
+        "review",
+        "code"
+      ],
+      "source": "guardrail-should-arch-001",
+      "target": "guardrail-should-arch-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "discipline",
+        "workflow",
+        "clean"
+      ],
+      "source": "BASE-001",
+      "target": "BASE-002",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "discipline",
+        "minimal",
+        "cycle"
+      ],
+      "source": "BASE-001",
+      "target": "BASE-003",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "test",
+        "tests",
+        "pass",
+        "tdd",
+        "workflow",
+        "testing"
+      ],
+      "source": "BASE-001",
+      "target": "BASE-018",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "story",
+        "git"
+      ],
+      "source": "BASE-002",
+      "target": "BASE-007",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "commit",
+        "story",
+        "git",
+        "creates"
+      ],
+      "source": "BASE-002",
+      "target": "BASE-008",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "commit",
+        "story",
+        "creates"
+      ],
+      "source": "BASE-002",
+      "target": "/rai-epic-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "commit",
+        "story"
+      ],
+      "source": "BASE-002",
+      "target": "/rai-story-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "story",
+        "progress"
+      ],
+      "source": "BASE-002",
+      "target": "/rai-epic-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "lifecycle",
+        "review"
+      ],
+      "source": "BASE-003",
+      "target": "BASE-009",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "lifecycle",
+        "stories"
+      ],
+      "source": "BASE-003",
+      "target": "BASE-010",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "cycle",
+        "stories"
+      ],
+      "source": "BASE-003",
+      "target": "/rai-story-review",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "lifecycle",
+        "stories"
+      ],
+      "source": "BASE-003",
+      "target": "/rai-epic-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "lifecycle",
+        "review"
+      ],
+      "source": "BASE-003",
+      "target": "/rai-story-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "stories",
+        "plan"
+      ],
+      "source": "BASE-003",
+      "target": "/rai-story-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "skill"
+      ],
+      "source": "BASE-003",
+      "target": "/rai-session-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "significant",
+        "work"
+      ],
+      "source": "BASE-005",
+      "target": "/rai-epic-design",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "review",
+        "human"
+      ],
+      "source": "BASE-005",
+      "target": "/rai-discover-validate",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "observability",
+        "work"
+      ],
+      "source": "BASE-005",
+      "target": "RAI-VAL-3",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "implementation",
+        "planning"
+      ],
+      "source": "BASE-006",
+      "target": "/rai-story-implement",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "story",
+        "git",
+        "branch",
+        "branches",
+        "lifecycle"
+      ],
+      "source": "BASE-007",
+      "target": "BASE-008",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "lifecycle",
+        "story"
+      ],
+      "source": "BASE-007",
+      "target": "BASE-009",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "branch",
+        "merge",
+        "epic",
+        "lifecycle"
+      ],
+      "source": "BASE-007",
+      "target": "BASE-010",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "story",
+        "branch",
+        "branches",
+        "epic",
+        "nest"
+      ],
+      "source": "BASE-007",
+      "target": "/rai-epic-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "branch",
+        "story"
+      ],
+      "source": "BASE-007",
+      "target": "/rai-story-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "raiepicdesign",
+        "story"
+      ],
+      "source": "BASE-007",
+      "target": "/rai-epic-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "branch",
+        "merge",
+        "lifecycle",
+        "epic"
+      ],
+      "source": "BASE-007",
+      "target": "/rai-epic-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "merge",
+        "lifecycle",
+        "story"
+      ],
+      "source": "BASE-007",
+      "target": "/rai-story-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "lifecycle",
+        "required",
+        "story"
+      ],
+      "source": "BASE-008",
+      "target": "BASE-009",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "branch",
+        "lifecycle"
+      ],
+      "source": "BASE-008",
+      "target": "BASE-010",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "creates",
+        "story",
+        "branch",
+        "branches",
+        "commit",
+        "scope"
+      ],
+      "source": "BASE-008",
+      "target": "/rai-epic-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "traceability",
+        "story",
+        "branch",
+        "commit",
+        "scope"
+      ],
+      "source": "BASE-008",
+      "target": "/rai-story-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "implementation",
+        "story"
+      ],
+      "source": "BASE-008",
+      "target": "/rai-epic-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "branch",
+        "lifecycle"
+      ],
+      "source": "BASE-008",
+      "target": "/rai-epic-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "lifecycle",
+        "story"
+      ],
+      "source": "BASE-008",
+      "target": "/rai-story-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "retrospective",
+        "close",
+        "lifecycle",
+        "learning"
+      ],
+      "source": "BASE-009",
+      "target": "BASE-010",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "update",
+        "learnings",
+        "extract"
+      ],
+      "source": "BASE-009",
+      "target": "/rai-story-review",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "retrospective",
+        "close",
+        "lifecycle"
+      ],
+      "source": "BASE-009",
+      "target": "/rai-epic-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "retrospective",
+        "story",
+        "review",
+        "update",
+        "lifecycle"
+      ],
+      "source": "BASE-009",
+      "target": "/rai-story-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "stories",
+        "development"
+      ],
+      "source": "BASE-010",
+      "target": "/rai-story-review",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "branch",
+        "development",
+        "epic"
+      ],
+      "source": "BASE-010",
+      "target": "/rai-epic-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "retrospective",
+        "development",
+        "branch",
+        "epic",
+        "stories",
+        "merge",
+        "lifecycle"
+      ],
+      "source": "BASE-010",
+      "target": "/rai-epic-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "retrospective",
+        "close",
+        "merge",
+        "lifecycle"
+      ],
+      "source": "BASE-010",
+      "target": "/rai-story-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "permission",
+        "redirect"
+      ],
+      "source": "BASE-012",
+      "target": "RAI-BND-5",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "over",
+        "honesty",
+        "agreement"
+      ],
+      "source": "BASE-014",
+      "target": "RAI-VAL-1",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "over",
+        "your"
+      ],
+      "source": "BASE-014",
+      "target": "RAI-VAL-5",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "back",
+        "push",
+        "ideas"
+      ],
+      "source": "BASE-014",
+      "target": "RAI-BND-1",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "rather",
+        "confidence",
+        "admit",
+        "pretend",
+        "uncertainty"
+      ],
+      "source": "BASE-014",
+      "target": "RAI-BND-4",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "quality",
+        "code"
+      ],
+      "source": "BASE-015",
+      "target": "/rai-story-implement",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "simple",
+        "complex",
+        "over",
+        "simplicity"
+      ],
+      "source": "BASE-017",
+      "target": "RAI-VAL-2",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "architecture",
+        "data"
+      ],
+      "source": "BASE-019",
+      "target": "/rai-discover-document",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "lean",
+        "errors",
+        "defects"
+      ],
+      "source": "BASE-020",
+      "target": "/rai-debug",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "drift",
+        "ambiguity",
+        "incoherence",
+        "stop"
+      ],
+      "source": "BASE-020",
+      "target": "RAI-BND-2",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "design",
+        "decisions"
+      ],
+      "source": "/rai-epic-design",
+      "target": "/rai-story-design",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "features",
+        "starting",
+        "work"
+      ],
+      "source": "/rai-epic-design",
+      "target": "/rai-epic-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "descriptions",
+        "component",
+        "human",
+        "using"
+      ],
+      "source": "/rai-discover-scan",
+      "target": "/rai-discover-validate",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "codebase",
+        "creates"
+      ],
+      "source": "/rai-discover-scan",
+      "target": "/rai-discover-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "implementation",
+        "complete"
+      ],
+      "source": "/rai-story-implement",
+      "target": "/rai-story-review",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "implementation",
+        "plan"
+      ],
+      "source": "/rai-story-implement",
+      "target": "/rai-epic-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "implementation",
+        "plan"
+      ],
+      "source": "/rai-story-implement",
+      "target": "/rai-story-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "gates",
+        "validation"
+      ],
+      "source": "/rai-story-implement",
+      "target": "RAI-BND-10",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "complete",
+        "stories",
+        "development"
+      ],
+      "source": "/rai-story-review",
+      "target": "/rai-epic-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "close",
+        "update",
+        "complete"
+      ],
+      "source": "/rai-story-review",
+      "target": "/rai-story-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "identify",
+        "implementation",
+        "stories"
+      ],
+      "source": "/rai-story-review",
+      "target": "/rai-story-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "project",
+        "codebase",
+        "discovery"
+      ],
+      "source": "/rai-project-onboard",
+      "target": "/rai-discover-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "fills",
+        "governance",
+        "knowledge",
+        "content",
+        "init",
+        "project",
+        "guide",
+        "builds",
+        "templates",
+        "conversation",
+        "graph"
+      ],
+      "source": "/rai-project-onboard",
+      "target": "/rai-project-create",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "story",
+        "branch",
+        "initialize",
+        "commit",
+        "scope"
+      ],
+      "source": "/rai-epic-start",
+      "target": "/rai-story-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "initialize",
+        "creates"
+      ],
+      "source": "/rai-epic-start",
+      "target": "/rai-discover-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "branch",
+        "development",
+        "epic"
+      ],
+      "source": "/rai-epic-start",
+      "target": "/rai-epic-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "create",
+        "story"
+      ],
+      "source": "/rai-story-design",
+      "target": "/rai-epic-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "create",
+        "decisions",
+        "integration"
+      ],
+      "source": "/rai-story-design",
+      "target": "/rai-story-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "context",
+        "initialize"
+      ],
+      "source": "/rai-story-start",
+      "target": "/rai-discover-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "context",
+        "work"
+      ],
+      "source": "/rai-story-start",
+      "target": "/rai-session-start",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "story",
+        "work"
+      ],
+      "source": "/rai-story-start",
+      "target": "/rai-epic-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "context",
+        "discovery"
+      ],
+      "source": "/rai-discover-start",
+      "target": "/rai-discover-document",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "context",
+        "loading",
+        "data"
+      ],
+      "source": "/rai-session-start",
+      "target": "/rai-discover-document",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "inference",
+        "skill",
+        "session",
+        "data"
+      ],
+      "source": "/rai-session-start",
+      "target": "/rai-session-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "story",
+        "tracking"
+      ],
+      "source": "/rai-epic-plan",
+      "target": "/rai-story-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "executable",
+        "implementation",
+        "dependencies",
+        "create",
+        "plan"
+      ],
+      "source": "/rai-epic-plan",
+      "target": "/rai-story-plan",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "formally",
+        "close",
+        "retrospective",
+        "complete",
+        "cleanup",
+        "merge",
+        "lifecycle"
+      ],
+      "source": "/rai-epic-close",
+      "target": "/rai-story-close",
+      "key": 0
+    },
+    {
+      "type": "related_to",
+      "weight": 0.5,
+      "shared_keywords": [
+        "simple",
+        "works"
+      ],
+      "source": "RAI-VAL-2",
+      "target": "RAI-BND-9",
+      "key": 0
+    }
+  ]
+}

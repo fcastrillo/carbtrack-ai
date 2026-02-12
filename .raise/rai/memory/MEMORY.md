@@ -1,0 +1,121 @@
+# Rai Memory — carbtrack-ai
+
+> Permanent knowledge for this project. Loaded into system prompt.
+
+---
+
+## RaiSE Framework Process
+
+### Work Lifecycle (Always Follow)
+
+```
+EPIC LEVEL:
+  /rai-epic-start → /rai-epic-design → /rai-epic-plan → [stories] → /rai-epic-close
+
+STORY LEVEL (per story):
+  /rai-story-start → /rai-story-design* → /rai-story-plan → /rai-story-implement → /rai-story-review → /rai-story-close
+
+* *design optional for S/XS stories
+
+SESSION LEVEL:
+  /rai-session-start → [work] → /rai-session-close
+```
+
+## Available Skills (19 total)
+
+### Session Skills
+- `/rai-session-start` — Load memory, analyze progress, propose focused work
+- `/rai-session-close` — Capture learnings, update memory, log session
+
+### Epic Skills
+- `/rai-epic-start` — Create epic branch from development branch
+- `/rai-epic-design` — Design epic scope, stories, architecture
+- `/rai-epic-plan` — Sequence stories with milestones and dependencies
+- `/rai-epic-close` — Epic retrospective, metrics capture, merge to dev
+
+### Story Skills
+- `/rai-story-start` — Create story branch and scope commit
+- `/rai-story-design` — Create lean specification for complex stories
+- `/rai-story-plan` — Decompose into atomic executable tasks
+- `/rai-story-implement` — Execute tasks with TDD and validation gates
+- `/rai-story-review` — Extract learnings, identify improvements
+- `/rai-story-close` — Verify, merge, cleanup
+
+### Discovery Skills
+- `/rai-discover-start` — Initialize codebase discovery
+- `/rai-discover-scan` — Extract symbols and synthesize descriptions
+- `/rai-discover-validate` — Human review of synthesized descriptions, then export to graph format
+
+### Meta Skills
+- `/rai-skill-create` — Create new skills with framework integration
+
+### Other Skills
+- `/rai-research` — Epistemologically rigorous research
+- `/rai-debug` — Root cause analysis using lean methods
+- `/rai-framework-sync` — Sync framework files across locations
+
+---
+
+### Gate Requirements
+
+| Gate | Required Before |
+|------|-----------------|
+| **Epic branch exists** | **Epic design** (/rai-epic-start) |
+| **Story branch and scope commit** | **Story work** (/rai-story-start) |
+| **Plan exists** | **Implementation** (/rai-story-plan) |
+| **Retrospective complete** | **Story close** (/rai-story-review) |
+| **Epic retrospective complete** | **Epic merge** (/rai-epic-close) |
+| Tests pass | Before any commit |
+| Type checks pass | Before any commit |
+| Linting passes | Before any commit |
+
+---
+
+## Critical Process Rules
+
+1. **TDD Always** — RED-GREEN-REFACTOR, no exceptions
+2. **Commit After Task** — Commit after each completed task, not just story end
+3. **Full Skill Cycle** — Use skills even for small stories
+4. **Ask Before Subagents** — Get permission before spawning subagents
+5. **Delete Branches After Merge** — Clean up merged branches immediately
+6. **HITL Default** — Pause after significant work for human review
+7. **Direct Communication** — No praise-padding, say what needs saying
+8. **Redirect When Dispersing** — Gently redirect tangents to parking lot
+9. **Type Everything** — Type annotations on all code
+10. **Pydantic Models** — Use Pydantic for all data structures
+11. **Simple First** — Simple heuristics over complex solutions
+
+---
+
+## Branch Model
+
+```
+main (stable)
+  └── v2 (development)
+        └── epic/e{N}/{name}
+              └── story/s{N}.{M}/{name}
+```
+
+- Stories merge to epic branch
+- Epics merge to development branch (v2)
+- Development merges to main at release
+
+---
+
+## Key Patterns (from memory)
+
+- **BASE-011:** Direct communication, no praise-padding. 'Great question!' adds no value. Say what needs saying, then stop.
+- **BASE-012:** Redirect when dispersing (with permission). Tangents go to parking lot. Return to stated goal.
+- **BASE-013:** Epistemological rigor: triangulate claims (2+ sources), explicit confidence levels, acknowledge contrary evidence. Stand on shoulders of giants.
+- **BASE-014:** Honesty over agreement. Push back on bad ideas. Admit uncertainty rather than pretend confidence. Your judgment is the quality gate.
+- **BASE-015:** Type annotations on all code. Function parameters, return types, class attributes. Pyright strict mode is the standard.
+- **BASE-016:** Pydantic models for all data structures. Not dict, not TypedDict. Validation at boundaries, serialization for free.
+- **BASE-017:** Simple heuristics over complex ML. Keyword matching is 98% accurate. Token estimate = words × 1.3. Complexity must earn its place.
+- **BASE-018:** Tests alongside implementation, not after. Write the test, watch it fail, make it pass. Catches issues immediately.
+- **BASE-019:** Skills + Toolkit over Engines. Users need flexibility (skills as process guides) + determinism (CLI for data operations).
+- **BASE-020:** Jidoka: stop on defects. When incoherence, ambiguity, or drift detected — stop, name it, discuss. Don't accumulate errors.
+
+---
+
+*Last updated: 2026-02-12*
+*Generated by `raise memory generate`*
