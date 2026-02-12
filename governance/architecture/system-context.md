@@ -1,3 +1,25 @@
+---
+type: architecture_context
+project: carbtrack-ai
+status: current
+tech_stack:
+  frontend: "React 19, Vite, TypeScript, Tailwind CSS 4"
+  backend: "Supabase Edge Functions (Deno)"
+  database: "PostgreSQL (Supabase)"
+  storage: "Supabase Storage"
+  ai: "OpenAI GPT-4o Vision (planned)"
+external_dependencies:
+  - Supabase (DB, Storage, Edge Functions)
+  - Nightscout (CGM glucose data)
+  - OpenAI GPT-4o Vision (meal analysis)
+  - CareLink CSV (manual pump export)
+users:
+  - T1D patient (single user, PWA)
+governed_by:
+  - ".specify/memory/constitution.md"
+  - "governance/guardrails.md"
+---
+
 # System Context: carbtrack-ai
 
 > C4 Level 1 — System Context diagram and description

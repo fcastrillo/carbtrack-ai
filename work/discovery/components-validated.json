@@ -1,0 +1,851 @@
+{
+  "generated_at": "2026-02-12T20:40:00Z",
+  "source_file": "work/discovery/components-draft.yaml",
+  "component_count": 42,
+  "components": [
+    {
+      "id": "comp-supabase-supabase",
+      "type": "component",
+      "content": "Singleton Supabase client instance initialized from VITE env vars. Used by all services for DB, Storage, and Edge Function calls.",
+      "source_file": "frontend/src/lib/supabase.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "supabase",
+        "kind": "constant",
+        "line": 10,
+        "signature": "const supabase",
+        "category": "service",
+        "depends_on": [
+          "@supabase/supabase-js.createClient"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-analyzeitem",
+      "type": "component",
+      "content": "Represents a single food item returned by the analyze-meal Edge Function, including name, carb grams, measure, and source (educadies or vision_only).",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "AnalyzeItem",
+        "kind": "type_alias",
+        "line": 7,
+        "signature": "type AnalyzeItem",
+        "category": "model",
+        "depends_on": [],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-analyzeresponse",
+      "type": "component",
+      "content": "Response shape from analyze-meal Edge Function containing detected food items, total carbs, and optional error.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "AnalyzeResponse",
+        "kind": "type_alias",
+        "line": 14,
+        "signature": "type AnalyzeResponse",
+        "category": "model",
+        "depends_on": [
+          "AnalyzeItem"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-mealrecord",
+      "type": "component",
+      "content": "Write payload for inserting a meal into meal_history table (image_url, ai_analysis, confirmed carbs, timestamp).",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "MealRecord",
+        "kind": "type_alias",
+        "line": 20,
+        "signature": "type MealRecord",
+        "category": "model",
+        "depends_on": [],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-validateimagefile",
+      "type": "component",
+      "content": "Guard function that validates image file type (JPEG/PNG/WebP) and size (max 5MB) before upload to Storage.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "validateImageFile",
+        "kind": "function",
+        "line": 28,
+        "signature": "function validateImageFile(file: File): { ok: true } | { ok: false; message: string }",
+        "category": "utility",
+        "depends_on": [],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-uploadimage",
+      "type": "component",
+      "content": "Uploads a meal photo to the meal-images Storage bucket with a UUID filename and returns the public URL.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "uploadImage",
+        "kind": "function",
+        "line": 39,
+        "signature": "function uploadImage(file: File): Promise<{ url: string; path: string }>",
+        "category": "service",
+        "depends_on": [
+          "supabase.storage"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-analyzemeal",
+      "type": "component",
+      "content": "Invokes the analyze-meal Edge Function with an image URL and returns AI-detected food items with carb estimates.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "analyzeMeal",
+        "kind": "function",
+        "line": 51,
+        "signature": "function analyzeMeal(imageUrl: string): Promise<AnalyzeResponse>",
+        "category": "service",
+        "depends_on": [
+          "supabase.functions",
+          "AnalyzeResponse"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-uploadandanalyze",
+      "type": "component",
+      "content": "Orchestrates the full meal capture flow: validates, uploads image to Storage, then calls AI analysis. Primary entry point for CaptureMeal component.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "uploadAndAnalyze",
+        "kind": "function",
+        "line": 69,
+        "signature": "function uploadAndAnalyze(file: File): Promise<{ response: AnalyzeResponse; imageUrl: string }>",
+        "category": "service",
+        "depends_on": [
+          "validateImageFile",
+          "uploadImage",
+          "analyzeMeal"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-savemeal",
+      "type": "component",
+      "content": "Persists a confirmed meal record to the meal_history table in Supabase.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "saveMeal",
+        "kind": "function",
+        "line": 78,
+        "signature": "function saveMeal(record: MealRecord): Promise<{ id: string }>",
+        "category": "service",
+        "depends_on": [
+          "supabase",
+          "MealRecord"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-mealentry",
+      "type": "component",
+      "content": "Read model for meal_history rows used in HoyPage and BitacoraPage displays.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "MealEntry",
+        "kind": "type_alias",
+        "line": 94,
+        "signature": "type MealEntry",
+        "category": "model",
+        "depends_on": [
+          "AnalyzeItem"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-gettodaymeals",
+      "type": "component",
+      "content": "Fetches today's meals from meal_history for the HoyPage daily carb total display.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "getTodayMeals",
+        "kind": "function",
+        "line": 103,
+        "signature": "function getTodayMeals(): Promise<MealEntry[]>",
+        "category": "service",
+        "depends_on": [
+          "getMealsByRange",
+          "MealEntry"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealservice-getmealsbyrange",
+      "type": "component",
+      "content": "Queries meal_history by date range, ordered by timestamp descending. Core data access for Bitacora and Laboratorio pages.",
+      "source_file": "frontend/src/services/mealService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "getMealsByRange",
+        "kind": "function",
+        "line": 111,
+        "signature": "function getMealsByRange(start: Date, end: Date): Promise<MealEntry[]>",
+        "category": "service",
+        "depends_on": [
+          "supabase",
+          "MealEntry"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-csvuploadservice-importcsvresult",
+      "type": "component",
+      "content": "Response shape from import-carelink-csv Edge Function with entry/treatment counts and success status.",
+      "source_file": "frontend/src/services/csvUploadService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "ImportCsvResult",
+        "kind": "type_alias",
+        "line": 3,
+        "signature": "type ImportCsvResult",
+        "category": "model",
+        "depends_on": [],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-csvuploadservice-uploadcarelinkcsv",
+      "type": "component",
+      "content": "Sends CareLink CSV content to the import-carelink-csv Edge Function for Nightscout synchronization.",
+      "source_file": "frontend/src/services/csvUploadService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "uploadCareLinkCsv",
+        "kind": "function",
+        "line": 12,
+        "signature": "function uploadCareLinkCsv(csvContent: string): Promise<ImportCsvResult>",
+        "category": "service",
+        "depends_on": [
+          "supabase.functions",
+          "ImportCsvResult"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-catalogservice-addtocatalogpayload",
+      "type": "component",
+      "content": "Write payload for inserting a user-suggested food item into master_food_list (Educadies catalog).",
+      "source_file": "frontend/src/services/catalogService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "AddToCatalogPayload",
+        "kind": "type_alias",
+        "line": 3,
+        "signature": "type AddToCatalogPayload",
+        "category": "model",
+        "depends_on": [],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-catalogservice-addtocatalog",
+      "type": "component",
+      "content": "Inserts a user-suggested food into the Educadies master_food_list so it can be matched in future AI analyses.",
+      "source_file": "frontend/src/services/catalogService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "addToCatalog",
+        "kind": "function",
+        "line": 11,
+        "signature": "function addToCatalog(payload: AddToCatalogPayload): Promise<{ id: string }>",
+        "category": "service",
+        "depends_on": [
+          "supabase",
+          "AddToCatalogPayload"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-profileservice-pumpprofile",
+      "type": "component",
+      "content": "Read model for pump_profile table row containing ISF and I:C ratio values.",
+      "source_file": "frontend/src/services/profileService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "PumpProfile",
+        "kind": "type_alias",
+        "line": 3,
+        "signature": "type PumpProfile",
+        "category": "model",
+        "depends_on": [],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-profileservice-getprofile",
+      "type": "component",
+      "content": "Fetches the single pump profile row containing ISF and I:C ratio for the implicit MVP user.",
+      "source_file": "frontend/src/services/profileService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "getProfile",
+        "kind": "function",
+        "line": 11,
+        "signature": "function getProfile(): Promise<PumpProfile | null>",
+        "category": "service",
+        "depends_on": [
+          "supabase",
+          "PumpProfile"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-profileservice-saveprofile",
+      "type": "component",
+      "content": "Upserts pump profile ISF and I:C ratio values. Creates new row if none exists, updates existing otherwise.",
+      "source_file": "frontend/src/services/profileService.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "saveProfile",
+        "kind": "function",
+        "line": 22,
+        "signature": "function saveProfile(isf: number, ratio_ic: number): Promise<void>",
+        "category": "service",
+        "depends_on": [
+          "supabase",
+          "getProfile"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-app-app",
+      "type": "component",
+      "content": "Root application component. Sets up React Router with 5 page routes and the persistent BottomNav navigation bar.",
+      "source_file": "frontend/src/App.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "App",
+        "kind": "function",
+        "line": 9,
+        "signature": "function App()",
+        "category": "handler",
+        "depends_on": [
+          "react-router-dom.BrowserRouter",
+          "BottomNav",
+          "HoyPage",
+          "BitacoraPage",
+          "LaboratorioPage",
+          "CargaDatosPage",
+          "PerfilPage"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-bottomnav-bottomnav",
+      "type": "component",
+      "content": "Fixed bottom navigation bar with 5 tabs (Hoy, Bitacora, Laboratorio, Carga de Datos, Perfil) using NavLink for active state.",
+      "source_file": "frontend/src/components/BottomNav.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "BottomNav",
+        "kind": "function",
+        "line": 12,
+        "signature": "function BottomNav()",
+        "category": "component",
+        "depends_on": [
+          "react-router-dom.NavLink",
+          "lucide-react"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealcard-props",
+      "type": "component",
+      "content": "Props type for MealCard component, accepting a MealEntry.",
+      "source_file": "frontend/src/components/MealCard.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "Props",
+        "kind": "type_alias",
+        "line": 3,
+        "signature": "type Props",
+        "category": "model",
+        "depends_on": [
+          "MealEntry"
+        ],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mealcard-mealcard",
+      "type": "component",
+      "content": "Displays a meal entry as a card with photo thumbnail, AI-detected food summary, and confirmed carb count.",
+      "source_file": "frontend/src/components/MealCard.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "MealCard",
+        "kind": "function",
+        "line": 6,
+        "signature": "function MealCard({ meal }: Props)",
+        "category": "component",
+        "depends_on": [
+          "MealEntry"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-filterbar-bitacorafilter",
+      "type": "component",
+      "content": "Union type for Bitacora time filter options: all, today, week, month, custom.",
+      "source_file": "frontend/src/components/FilterBar.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "BitacoraFilter",
+        "kind": "type_alias",
+        "line": 1,
+        "signature": "type BitacoraFilter",
+        "category": "model",
+        "depends_on": [],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-filterbar-props",
+      "type": "component",
+      "content": "Props type for FilterBar component including current filter value, change handler, and custom date range callbacks.",
+      "source_file": "frontend/src/components/FilterBar.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "Props",
+        "kind": "type_alias",
+        "line": 3,
+        "signature": "type Props",
+        "category": "model",
+        "depends_on": [
+          "BitacoraFilter"
+        ],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-filterbar-filterbar",
+      "type": "component",
+      "content": "Time filter chip bar for Bitacora page with preset ranges (Todas, Hoy, Semana, Mes) and custom date range inputs.",
+      "source_file": "frontend/src/components/FilterBar.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "FilterBar",
+        "kind": "function",
+        "line": 20,
+        "signature": "function FilterBar({ value, onChange, customStart, customEnd, onCustomStartChange, onCustomEndChange }: Props)",
+        "category": "component",
+        "depends_on": [
+          "BitacoraFilter"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-capturemeal-step",
+      "type": "component",
+      "content": "State machine type for meal capture flow: select -> analyzing -> confirm -> saved | error.",
+      "source_file": "frontend/src/components/CaptureMeal.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "Step",
+        "kind": "type_alias",
+        "line": 10,
+        "signature": "type Step",
+        "category": "model",
+        "depends_on": [],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-capturemeal-capturemeal",
+      "type": "component",
+      "content": "Multi-step meal capture wizard: photo upload, AI analysis display, carb confirmation/edit, save to DB, and add-to-catalog for vision_only items.",
+      "source_file": "frontend/src/components/CaptureMeal.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "CaptureMeal",
+        "kind": "function",
+        "line": 12,
+        "signature": "function CaptureMeal()",
+        "category": "component",
+        "depends_on": [
+          "uploadAndAnalyze",
+          "saveMeal",
+          "addToCatalog",
+          "AnalyzeItem",
+          "AnalyzeResponse"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-hoypage-hoypage",
+      "type": "component",
+      "content": "Today's dashboard page showing daily carb total, list of today's meals via MealCard, and FAB to open CaptureMeal.",
+      "source_file": "frontend/src/pages/HoyPage.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "HoyPage",
+        "kind": "function",
+        "line": 7,
+        "signature": "function HoyPage()",
+        "category": "handler",
+        "depends_on": [
+          "getTodayMeals",
+          "CaptureMeal",
+          "MealCard",
+          "MealEntry"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-bitacorapage-getrangeforfilter",
+      "type": "component",
+      "content": "Converts a BitacoraFilter selection into a concrete Date range for querying meal_history.",
+      "source_file": "frontend/src/pages/BitacoraPage.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "getRangeForFilter",
+        "kind": "function",
+        "line": 8,
+        "signature": "function getRangeForFilter(filter: BitacoraFilter, customStart: string, customEnd: string): { start: Date; end: Date }",
+        "category": "utility",
+        "depends_on": [
+          "BitacoraFilter"
+        ],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-bitacorapage-bitacorapage",
+      "type": "component",
+      "content": "Meal history page with time-based FilterBar and MealCard list. Shows empty state when no meals match the selected filter.",
+      "source_file": "frontend/src/pages/BitacoraPage.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "BitacoraPage",
+        "kind": "function",
+        "line": 45,
+        "signature": "function BitacoraPage()",
+        "category": "handler",
+        "depends_on": [
+          "FilterBar",
+          "MealCard",
+          "getMealsByRange",
+          "BitacoraFilter"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-laboratoriopage-laboratoriopage",
+      "type": "component",
+      "content": "Recommendations page showing weekly meal count and placeholder for CareLink glucose cross-analysis (future feature).",
+      "source_file": "frontend/src/pages/LaboratorioPage.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "LaboratorioPage",
+        "kind": "function",
+        "line": 6,
+        "signature": "function LaboratorioPage()",
+        "category": "handler",
+        "depends_on": [
+          "getMealsByRange"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-cargadatospage-cargadatospage",
+      "type": "component",
+      "content": "CareLink CSV upload page. Reads CSV file, sends to import-carelink-csv Edge Function, and displays entry/treatment counts.",
+      "source_file": "frontend/src/pages/CargaDatosPage.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "CargaDatosPage",
+        "kind": "function",
+        "line": 5,
+        "signature": "function CargaDatosPage()",
+        "category": "handler",
+        "depends_on": [
+          "uploadCareLinkCsv"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-perfilpage-perfilpage",
+      "type": "component",
+      "content": "Profile page for manual ISF and I:C ratio entry. Loads existing pump_profile and allows save/update.",
+      "source_file": "frontend/src/pages/PerfilPage.tsx",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "PerfilPage",
+        "kind": "function",
+        "line": 6,
+        "signature": "function PerfilPage()",
+        "category": "handler",
+        "depends_on": [
+          "getProfile",
+          "saveProfile"
+        ],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-mocksupabase-mocksupabase",
+      "type": "component",
+      "content": "Test double for the Supabase client. Stubs from(), storage, and functions.invoke() with deterministic responses.",
+      "source_file": "frontend/src/test-utils/mockSupabase.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "mockSupabase",
+        "kind": "constant",
+        "line": 2,
+        "signature": "const mockSupabase",
+        "category": "test",
+        "depends_on": [],
+        "internal": false,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-import-carelink-csv-findblocks",
+      "type": "component",
+      "content": "Locates the one or two 'Index,Date,Time,...' header rows in a CareLink CSV to identify data block boundaries.",
+      "source_file": "supabase/functions/import-carelink-csv/index.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "findBlocks",
+        "kind": "function",
+        "line": 13,
+        "signature": "function findBlocks(lines: string[]): [number, number | null] | null",
+        "category": "parser",
+        "depends_on": [],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-import-carelink-csv-isdatarow",
+      "type": "component",
+      "content": "Checks if a CSV line is a data row (starts with a digit) vs. a blank or header line.",
+      "source_file": "supabase/functions/import-carelink-csv/index.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "isDataRow",
+        "kind": "function",
+        "line": 23,
+        "signature": "function isDataRow(line: string): boolean",
+        "category": "utility",
+        "depends_on": [],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-import-carelink-csv-parsedatetime",
+      "type": "component",
+      "content": "Parses CareLink date/time format (YYYY/MM/DD HH:MM:SS) into a JavaScript Date object.",
+      "source_file": "supabase/functions/import-carelink-csv/index.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "parseDateTime",
+        "kind": "function",
+        "line": 30,
+        "signature": "function parseDateTime(dateStr: string, timeStr: string): Date | null",
+        "category": "parser",
+        "depends_on": [],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-import-carelink-csv-parsecsv",
+      "type": "component",
+      "content": "Splits CSV header and data lines into an array of key-value row objects.",
+      "source_file": "supabase/functions/import-carelink-csv/index.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "parseCSV",
+        "kind": "function",
+        "line": 42,
+        "signature": "function parseCSV(header: string, dataLines: string[]): Record<string, string>[]",
+        "category": "parser",
+        "depends_on": [],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-import-carelink-csv-processtreatments",
+      "type": "component",
+      "content": "Extracts Nightscout treatment entries (Meal Bolus with BWZ Carb Input) from the first CareLink CSV data block.",
+      "source_file": "supabase/functions/import-carelink-csv/index.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "processTreatments",
+        "kind": "function",
+        "line": 54,
+        "signature": "function processTreatments(lines: string[], headerIdx: number, dataEndIdx: number): object[]",
+        "category": "parser",
+        "depends_on": [
+          "parseCSV",
+          "parseDateTime",
+          "isDataRow"
+        ],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-import-carelink-csv-processentries",
+      "type": "component",
+      "content": "Extracts Nightscout SGV entries (Sensor Glucose values) from the second CareLink CSV data block.",
+      "source_file": "supabase/functions/import-carelink-csv/index.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "processEntries",
+        "kind": "function",
+        "line": 75,
+        "signature": "function processEntries(lines: string[], headerIdx: number): object[]",
+        "category": "parser",
+        "depends_on": [
+          "parseCSV",
+          "parseDateTime",
+          "isDataRow"
+        ],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    },
+    {
+      "id": "comp-import-carelink-csv-posttonightscout",
+      "type": "component",
+      "content": "Sends a batch of entries or treatments to the Nightscout API with SHA-1 authenticated API-SECRET header.",
+      "source_file": "supabase/functions/import-carelink-csv/index.ts",
+      "created": "2026-02-12T20:40:00Z",
+      "metadata": {
+        "name": "postToNightscout",
+        "kind": "function",
+        "line": 103,
+        "signature": "function postToNightscout(baseUrl: string, apiSecretHash: string, endpoint: \"entries\" | \"treatments\", batch: object[]): Promise<{ status: number; ok: boolean }>",
+        "category": "service",
+        "depends_on": [],
+        "internal": true,
+        "validated_by": "human",
+        "validated_at": "2026-02-12T20:40:00Z"
+      }
+    }
+  ]
+}

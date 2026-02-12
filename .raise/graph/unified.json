@@ -8,7 +8,7 @@
       "type": "requirement",
       "content": "The system uses GPT-4o Vision (or equivalent model) to analyze a photo of a meal and suggest carbohydrate estimates. Results are presented using terminology from the Educadies food catalog, matching foods to known entries where possible and flagging vision-only estimates when no catalog match exists. The architecture is model-agnostic, supporting provider swaps.",
       "source_file": "governance/prd.md",
-      "created": "2026-02-12T22:17:38.148102+00:00",
+      "created": "2026-02-12T22:01:13.652188+00:00",
       "metadata": {
         "requirement_id": "RF-01",
         "title": "Photo-Based Meal Recognition"
@@ -19,7 +19,7 @@
       "type": "requirement",
       "content": "The system logs total carbohydrate intake per day, aggregating all confirmed meal entries. It compares the daily total against the user's personal daily target and displays progress on the Hoy (Today) page, giving the user a clear picture of their intake status.",
       "source_file": "governance/prd.md",
-      "created": "2026-02-12T22:17:38.148260+00:00",
+      "created": "2026-02-12T22:01:13.652328+00:00",
       "metadata": {
         "requirement_id": "RF-02",
         "title": "Daily Carb Tracking and Goal Comparison"
@@ -30,7 +30,7 @@
       "type": "requirement",
       "content": "The system processes weekly Medtronic CareLink CSV exports using two-block parsing logic \u2014 extracting Treatments (BWZ Carb Input) from the first block and Entries (Sensor Glucose) from the second block. Parsed data is synced to Nightscout for integration with the audit engine.",
       "source_file": "governance/prd.md",
-      "created": "2026-02-12T22:17:38.148264+00:00",
+      "created": "2026-02-12T22:01:13.652332+00:00",
       "metadata": {
         "requirement_id": "RF-03",
         "title": "CareLink CSV Import and Nightscout Sync"
@@ -41,7 +41,7 @@
       "type": "requirement",
       "content": "The system crosses meal history against Nightscout CGM data to calculate the actual glycemic impact of each meal. It compares the AI's original carb estimate against the real 2-hour post-meal glucose delta, identifying meals where the response exceeded expectations and systematically flagging foods that are consistently underestimated.",
       "source_file": "governance/prd.md",
-      "created": "2026-02-12T22:17:38.148267+00:00",
+      "created": "2026-02-12T22:01:13.652334+00:00",
       "metadata": {
         "requirement_id": "RF-04",
         "title": "Retrospective Audit Engine"
@@ -52,7 +52,7 @@
       "type": "requirement",
       "content": "Building on the audit engine (Phase 2), the system feeds correction data back to improve future carb estimates. By comparing original AI predictions with actual glucose outcomes over time, the model adapts to the user's specific metabolic patterns, progressively reducing estimation error.",
       "source_file": "governance/prd.md",
-      "created": "2026-02-12T22:17:38.148269+00:00",
+      "created": "2026-02-12T22:01:13.652336+00:00",
       "metadata": {
         "requirement_id": "RF-05",
         "title": "Continuous Learning Loop"
@@ -63,7 +63,7 @@
       "type": "requirement",
       "content": "The system allows the user to manually enter and update their ISF (Insulin Sensitivity Factor) and I:C (Insulin-to-Carb) ratio. These values are used by the audit engine to contextualize glucose response relative to the insulin delivered.",
       "source_file": "governance/prd.md",
-      "created": "2026-02-12T22:17:38.148271+00:00",
+      "created": "2026-02-12T22:01:13.652338+00:00",
       "metadata": {
         "requirement_id": "RF-06",
         "title": "Pump Profile Management"
@@ -74,7 +74,7 @@
       "type": "requirement",
       "content": "The system maintains a master food list based on the Educadies catalog with carb-per-serving data. Users can suggest new foods to add to the catalog when the AI identifies items not present in the existing list. The catalog serves as the ground-truth reference for carb estimation.",
       "source_file": "governance/prd.md",
-      "created": "2026-02-12T22:17:38.148273+00:00",
+      "created": "2026-02-12T22:01:13.652339+00:00",
       "metadata": {
         "requirement_id": "RF-07",
         "title": "Food Catalog (Educadies)"
@@ -85,7 +85,7 @@
       "type": "outcome",
       "content": "AI carb estimates require less manual correction week over week, meaning the model is learning from past meal responses and converging toward the user's real-world biology",
       "source_file": "governance/vision.md",
-      "created": "2026-02-12T22:17:38.148275+00:00",
+      "created": "2026-02-12T22:01:13.652341+00:00",
       "metadata": {
         "outcome_name": "Reduced Manual Corrections"
       }
@@ -95,7 +95,7 @@
       "type": "outcome",
       "content": "Post-meal glucose spikes become smaller and more predictable, indicating bolus doses are calculated from more accurate carb inputs",
       "source_file": "governance/vision.md",
-      "created": "2026-02-12T22:17:38.148279+00:00",
+      "created": "2026-02-12T22:01:13.652343+00:00",
       "metadata": {
         "outcome_name": "Predictable Post-Meal Response"
       }
@@ -105,7 +105,7 @@
       "type": "outcome",
       "content": "Time in Range (TIR%) improves measurably over weeks and months \u2014 the north-star metric that reflects whether better carb counting translates into better overall glucose control",
       "source_file": "governance/vision.md",
-      "created": "2026-02-12T22:17:38.148281+00:00",
+      "created": "2026-02-12T22:01:13.652345+00:00",
       "metadata": {
         "outcome_name": "Improved Time in Range"
       }
@@ -115,7 +115,7 @@
       "type": "outcome",
       "content": "The audit engine systematically flags meals where the 2-hour post-meal glucose delta exceeded expectations, turning every underestimate into a learning opportunity",
       "source_file": "governance/vision.md",
-      "created": "2026-02-12T22:17:38.148283+00:00",
+      "created": "2026-02-12T22:01:13.652347+00:00",
       "metadata": {
         "outcome_name": "Systematic Learning from Errors"
       }
@@ -125,7 +125,7 @@
       "type": "outcome",
       "content": "The tool proves effective enough to share with the user's endocrinologist and specialized T1D care team, enabling distribution through a clinically credible channel",
       "source_file": "governance/vision.md",
-      "created": "2026-02-12T22:17:38.148284+00:00",
+      "created": "2026-02-12T22:01:13.652349+00:00",
       "metadata": {
         "outcome_name": "Clinical Expansion Readiness"
       }
@@ -135,7 +135,7 @@
       "type": "project",
       "content": "Project backlog for carbtrack-ai",
       "source_file": "governance/backlog.md",
-      "created": "2026-02-12T22:17:38.148286+00:00",
+      "created": "2026-02-12T22:01:13.652351+00:00",
       "metadata": {
         "name": "carbtrack-ai",
         "status": "draft",
@@ -149,7 +149,7 @@
       "type": "epic",
       "content": "MVP Asistente CH \u2014 Photo recognition, daily tracking, meal CRUD - In Progress",
       "source_file": "governance/backlog.md",
-      "created": "2026-02-12T22:17:38.148964+00:00",
+      "created": "2026-02-12T22:01:13.652785+00:00",
       "metadata": {
         "epic_id": "E1",
         "name": "MVP Asistente CH \u2014 Photo recognition, daily tracking, meal CRUD",
@@ -164,7 +164,7 @@
       "type": "epic",
       "content": "CareLink Import & Nightscout Sync - In Progress",
       "source_file": "governance/backlog.md",
-      "created": "2026-02-12T22:17:38.148968+00:00",
+      "created": "2026-02-12T22:01:13.652788+00:00",
       "metadata": {
         "epic_id": "E2",
         "name": "CareLink Import & Nightscout Sync",
@@ -179,7 +179,7 @@
       "type": "epic",
       "content": "Retrospective Audit Engine \u2014 Meal vs CGM delta analysis - Draft",
       "source_file": "governance/backlog.md",
-      "created": "2026-02-12T22:17:38.148970+00:00",
+      "created": "2026-02-12T22:01:13.652790+00:00",
       "metadata": {
         "epic_id": "E3",
         "name": "Retrospective Audit Engine \u2014 Meal vs CGM delta analysis",
@@ -194,7 +194,7 @@
       "type": "epic",
       "content": "Continuous Learning Loop \u2014 Feedback-driven estimate refinement - Draft",
       "source_file": "governance/backlog.md",
-      "created": "2026-02-12T22:17:38.148971+00:00",
+      "created": "2026-02-12T22:01:13.652792+00:00",
       "metadata": {
         "epic_id": "E4",
         "name": "Continuous Learning Loop \u2014 Feedback-driven estimate refinement",
@@ -209,7 +209,7 @@
       "type": "guardrail",
       "content": "[MUST] TypeScript strict mode \u2014 all public APIs have type annotations \u2014 Verify: npm run build` (tsc check)",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148297+00:00",
+      "created": "2026-02-12T22:01:13.652359+00:00",
       "metadata": {
         "guardrail_id": "must-code-001",
         "level": "MUST",
@@ -225,7 +225,7 @@
       "type": "guardrail",
       "content": "[MUST] ESLint passes with zero errors \u2014 Verify: npm run lint",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148299+00:00",
+      "created": "2026-02-12T22:01:13.652361+00:00",
       "metadata": {
         "guardrail_id": "must-code-002",
         "level": "MUST",
@@ -241,7 +241,7 @@
       "type": "guardrail",
       "content": "[SHOULD] Service layer pattern \u2014 one service file per domain, no direct Supabase calls from components \u2014 Verify: Code review",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148301+00:00",
+      "created": "2026-02-12T22:01:13.652363+00:00",
       "metadata": {
         "guardrail_id": "should-code-001",
         "level": "SHOULD",
@@ -256,7 +256,7 @@
       "type": "guardrail",
       "content": "[SHOULD] Dark theme enforced \u2014 background #0a0a0a, cards #18181b on all pages \u2014 Verify: Visual review",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148303+00:00",
+      "created": "2026-02-12T22:01:13.652364+00:00",
       "metadata": {
         "guardrail_id": "should-code-002",
         "level": "SHOULD",
@@ -271,7 +271,7 @@
       "type": "guardrail",
       "content": "[MUST] All tests use mock Supabase \u2014 no real API calls in test suite \u2014 Verify: npm test` + review mockSupabase usage",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148305+00:00",
+      "created": "2026-02-12T22:01:13.652366+00:00",
       "metadata": {
         "guardrail_id": "must-test-001",
         "level": "MUST",
@@ -287,7 +287,7 @@
       "type": "guardrail",
       "content": "[MUST] Test data is synthetic \u2014 never use real patient health data \u2014 Verify: Code review",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148307+00:00",
+      "created": "2026-02-12T22:01:13.652368+00:00",
       "metadata": {
         "guardrail_id": "must-test-002",
         "level": "MUST",
@@ -303,7 +303,7 @@
       "type": "guardrail",
       "content": "[SHOULD] Service functions have unit tests covering happy path and error cases \u2014 Verify: npm test` coverage",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148309+00:00",
+      "created": "2026-02-12T22:01:13.652369+00:00",
       "metadata": {
         "guardrail_id": "should-test-001",
         "level": "SHOULD",
@@ -318,7 +318,7 @@
       "type": "guardrail",
       "content": "[MUST] Backend secrets (OPENAI_API_KEY, NIGHTSCOUT_URL, NIGHTSCOUT_API_SECRET) never in client code \u2014 Verify: grep audit",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148311+00:00",
+      "created": "2026-02-12T22:01:13.652371+00:00",
       "metadata": {
         "guardrail_id": "must-sec-001",
         "level": "MUST",
@@ -334,7 +334,7 @@
       "type": "guardrail",
       "content": "[MUST] Image uploads validated: 5MB max, JPEG/PNG/WebP only \u2014 Verify: Unit test on validateImageFile",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148313+00:00",
+      "created": "2026-02-12T22:01:13.652373+00:00",
       "metadata": {
         "guardrail_id": "must-sec-002",
         "level": "MUST",
@@ -350,7 +350,7 @@
       "type": "guardrail",
       "content": "[SHOULD] No PII in logs or error messages \u2014 glucose values and meal data are health data \u2014 Verify: Code review",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148315+00:00",
+      "created": "2026-02-12T22:01:13.652374+00:00",
       "metadata": {
         "guardrail_id": "should-sec-001",
         "level": "SHOULD",
@@ -365,7 +365,7 @@
       "type": "guardrail",
       "content": "[MUST] AI provider layer is model-agnostic \u2014 analyze-meal Edge Function abstracts the vision API \u2014 Verify: Code review of Edge Function",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148317+00:00",
+      "created": "2026-02-12T22:01:13.652376+00:00",
       "metadata": {
         "guardrail_id": "must-arch-001",
         "level": "MUST",
@@ -381,7 +381,7 @@
       "type": "guardrail",
       "content": "[SHOULD] Local React state only (useState/useEffect) \u2014 no global store in MVP \u2014 Verify: Code review",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148319+00:00",
+      "created": "2026-02-12T22:01:13.652378+00:00",
       "metadata": {
         "guardrail_id": "should-arch-001",
         "level": "SHOULD",
@@ -396,7 +396,7 @@
       "type": "guardrail",
       "content": "[SHOULD] Tailwind CSS utility classes only \u2014 no custom CSS files \u2014 Verify: Code review",
       "source_file": "governance/guardrails.md",
-      "created": "2026-02-12T22:17:38.148321+00:00",
+      "created": "2026-02-12T22:01:13.652379+00:00",
       "metadata": {
         "guardrail_id": "should-arch-002",
         "level": "SHOULD",
@@ -411,7 +411,7 @@
       "type": "pattern",
       "content": "TDD cycle: RED (failing test) \u2192 GREEN (minimal pass) \u2192 REFACTOR (clean up). No exceptions. Tests are specification, not afterthought.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148763+00:00",
+      "created": "2026-02-12T22:01:13.652607+00:00",
       "metadata": {
         "context": [
           "tdd",
@@ -429,7 +429,7 @@
       "type": "pattern",
       "content": "Commit after each completed task, not just at story end. Enables recovery, shows progress, creates clean history for debugging.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148775+00:00",
+      "created": "2026-02-12T22:01:13.652620+00:00",
       "metadata": {
         "context": [
           "git",
@@ -447,7 +447,7 @@
       "type": "pattern",
       "content": "Full skill cycle even for small stories \u2014 the overhead is minimal and structure helps. Design \u2192 Plan \u2192 Implement \u2192 Review \u2192 Close.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148782+00:00",
+      "created": "2026-02-12T22:01:13.652627+00:00",
       "metadata": {
         "context": [
           "skills",
@@ -465,7 +465,7 @@
       "type": "pattern",
       "content": "Ask before spawning subagents (inference economy). Gather with tools, think with inference. AI computation is a resource to steward.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148787+00:00",
+      "created": "2026-02-12T22:01:13.652632+00:00",
       "metadata": {
         "context": [
           "subagents",
@@ -483,7 +483,7 @@
       "type": "pattern",
       "content": "HITL (Human In The Loop) is default. Pause after significant work for review. Slow is smooth, smooth is fast.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148791+00:00",
+      "created": "2026-02-12T22:01:13.652636+00:00",
       "metadata": {
         "context": [
           "hitl",
@@ -501,7 +501,7 @@
       "type": "pattern",
       "content": "Design-first eliminates ambiguity. Concrete examples in specs enable direct implementation without guessing intent.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148796+00:00",
+      "created": "2026-02-12T22:01:13.652639+00:00",
       "metadata": {
         "context": [
           "design",
@@ -519,7 +519,7 @@
       "type": "pattern",
       "content": "Epic branch must exist before /rai-epic-design (poka-yoke). Story branches nest under epic branches. This enforces merge flow.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148799+00:00",
+      "created": "2026-02-12T22:01:13.652642+00:00",
       "metadata": {
         "context": [
           "git",
@@ -538,7 +538,7 @@
       "type": "pattern",
       "content": "Story branch and scope commit required before implementation. /rai-story-start creates traceability from first commit.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148803+00:00",
+      "created": "2026-02-12T22:01:13.652646+00:00",
       "metadata": {
         "context": [
           "git",
@@ -557,7 +557,7 @@
       "type": "pattern",
       "content": "Retrospective required before story/epic close. Extract learnings, update patterns. Kaizen, one story at a time.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148807+00:00",
+      "created": "2026-02-12T22:01:13.652649+00:00",
       "metadata": {
         "context": [
           "retrospective",
@@ -576,7 +576,7 @@
       "type": "pattern",
       "content": "Epic close with retrospective before merge to development branch. Captures learning at meso-layer between stories and quarters.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148811+00:00",
+      "created": "2026-02-12T22:01:13.652652+00:00",
       "metadata": {
         "context": [
           "epic",
@@ -595,7 +595,7 @@
       "type": "pattern",
       "content": "Direct communication, no praise-padding. 'Great question!' adds no value. Say what needs saying, then stop.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148814+00:00",
+      "created": "2026-02-12T22:01:13.652655+00:00",
       "metadata": {
         "context": [
           "communication",
@@ -613,7 +613,7 @@
       "type": "pattern",
       "content": "Redirect when dispersing (with permission). Tangents go to parking lot. Return to stated goal.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148818+00:00",
+      "created": "2026-02-12T22:01:13.652658+00:00",
       "metadata": {
         "context": [
           "focus",
@@ -631,7 +631,7 @@
       "type": "pattern",
       "content": "Epistemological rigor: triangulate claims (2+ sources), explicit confidence levels, acknowledge contrary evidence. Stand on shoulders of giants.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148822+00:00",
+      "created": "2026-02-12T22:01:13.652662+00:00",
       "metadata": {
         "context": [
           "research",
@@ -650,7 +650,7 @@
       "type": "pattern",
       "content": "Honesty over agreement. Push back on bad ideas. Admit uncertainty rather than pretend confidence. Your judgment is the quality gate.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148825+00:00",
+      "created": "2026-02-12T22:01:13.652665+00:00",
       "metadata": {
         "context": [
           "honesty",
@@ -668,7 +668,7 @@
       "type": "pattern",
       "content": "Type annotations on all code. Function parameters, return types, class attributes. Pyright strict mode is the standard.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148829+00:00",
+      "created": "2026-02-12T22:01:13.652668+00:00",
       "metadata": {
         "context": [
           "typing",
@@ -686,7 +686,7 @@
       "type": "pattern",
       "content": "Pydantic models for all data structures. Not dict, not TypedDict. Validation at boundaries, serialization for free.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148833+00:00",
+      "created": "2026-02-12T22:01:13.652671+00:00",
       "metadata": {
         "context": [
           "pydantic",
@@ -704,7 +704,7 @@
       "type": "pattern",
       "content": "Simple heuristics over complex ML. Keyword matching is 98% accurate. Token estimate = words \u00d7 1.3. Complexity must earn its place.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148837+00:00",
+      "created": "2026-02-12T22:01:13.652674+00:00",
       "metadata": {
         "context": [
           "simplicity",
@@ -722,7 +722,7 @@
       "type": "pattern",
       "content": "Tests alongside implementation, not after. Write the test, watch it fail, make it pass. Catches issues immediately.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148841+00:00",
+      "created": "2026-02-12T22:01:13.652677+00:00",
       "metadata": {
         "context": [
           "testing",
@@ -740,7 +740,7 @@
       "type": "pattern",
       "content": "Skills + Toolkit over Engines. Users need flexibility (skills as process guides) + determinism (CLI for data operations).",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148844+00:00",
+      "created": "2026-02-12T22:01:13.652680+00:00",
       "metadata": {
         "context": [
           "architecture",
@@ -758,7 +758,7 @@
       "type": "pattern",
       "content": "Jidoka: stop on defects. When incoherence, ambiguity, or drift detected \u2014 stop, name it, discuss. Don't accumulate errors.",
       "source_file": ".raise/rai/memory/patterns.jsonl",
-      "created": "2026-02-12T22:17:38.148848+00:00",
+      "created": "2026-02-12T22:01:13.652684+00:00",
       "metadata": {
         "context": [
           "jidoka",
@@ -1941,272 +1941,15 @@
     {
       "id": "arch-domain-model",
       "type": "architecture",
-      "content": "Domain model: 5 bounded contexts \u2014 meal-tracking, glucose-import, food-catalog, pump-profile, recommendations. Shared kernel: lib/supabase, components/BottomNav, components/FilterBar, test-utils/mockSupabase.",
+      "content": "Domain model: 0 bounded contexts \u2014 none defined. Shared kernel: none.",
       "source_file": "governance/architecture/domain-model.md",
-      "created": "2026-02-12T22:17:38.156289+00:00",
+      "created": "2026-02-12T22:01:13.661277+00:00",
       "metadata": {
         "arch_type": "architecture_domain_model",
-        "bounded_contexts": [
-          {
-            "name": "meal-tracking",
-            "modules": [
-              "services/mealService",
-              "components/CaptureMeal",
-              "components/MealCard",
-              "pages/HoyPage",
-              "pages/BitacoraPage"
-            ],
-            "description": "Core domain \u2014 meal capture, AI analysis, carb confirmation, history"
-          },
-          {
-            "name": "glucose-import",
-            "modules": [
-              "services/csvUploadService",
-              "edge-functions/import-carelink-csv",
-              "pages/CargaDatosPage"
-            ],
-            "description": "CareLink CSV parsing and Nightscout synchronization"
-          },
-          {
-            "name": "food-catalog",
-            "modules": [
-              "services/catalogService"
-            ],
-            "description": "Educadies food reference catalog management"
-          },
-          {
-            "name": "pump-profile",
-            "modules": [
-              "services/profileService",
-              "pages/PerfilPage"
-            ],
-            "description": "ISF and I:C ratio configuration"
-          },
-          {
-            "name": "recommendations",
-            "modules": [
-              "pages/LaboratorioPage"
-            ],
-            "description": "Cross-analysis of meals + glucose for insights (placeholder)"
-          }
-        ],
-        "shared_kernel": {
-          "modules": [
-            "lib/supabase",
-            "components/BottomNav",
-            "components/FilterBar",
-            "test-utils/mockSupabase"
-          ]
-        },
-        "application_layer": {
-          "modules": [
-            "app/App"
-          ]
-        },
+        "bounded_contexts": [],
+        "shared_kernel": {},
         "project": "carbtrack-ai",
-        "status": "current"
-      }
-    },
-    {
-      "id": "arch-context",
-      "type": "architecture",
-      "content": "System context: frontend: React 19, Vite, TypeScript, Tailwind CSS 4, backend: Supabase Edge Functions (Deno), database: PostgreSQL (Supabase), storage: Supabase Storage, ai: OpenAI GPT-4o Vision (planned). External dependencies: Supabase (DB, Storage, Edge Functions), Nightscout (CGM glucose data), OpenAI GPT-4o Vision (meal analysis), CareLink CSV (manual pump export).",
-      "source_file": "governance/architecture/system-context.md",
-      "created": "2026-02-12T22:17:38.156820+00:00",
-      "metadata": {
-        "arch_type": "architecture_context",
-        "tech_stack": {
-          "frontend": "React 19, Vite, TypeScript, Tailwind CSS 4",
-          "backend": "Supabase Edge Functions (Deno)",
-          "database": "PostgreSQL (Supabase)",
-          "storage": "Supabase Storage",
-          "ai": "OpenAI GPT-4o Vision (planned)"
-        },
-        "external_dependencies": [
-          "Supabase (DB, Storage, Edge Functions)",
-          "Nightscout (CGM glucose data)",
-          "OpenAI GPT-4o Vision (meal analysis)",
-          "CareLink CSV (manual pump export)"
-        ],
-        "users": [
-          "T1D patient (single user, PWA)"
-        ],
-        "governed_by": [
-          ".specify/memory/constitution.md",
-          "governance/guardrails.md"
-        ],
-        "project": "carbtrack-ai",
-        "status": "current"
-      }
-    },
-    {
-      "id": "arch-design",
-      "type": "architecture",
-      "content": "System design: 7 layers (app, pages, components, services, lib, edge-functions, test-utils). app: app. pages: pages. components: components. services: services. lib: lib. edge-functions: edge-functions. test-utils: test-utils.",
-      "source_file": "governance/architecture/system-design.md",
-      "created": "2026-02-12T22:17:38.157364+00:00",
-      "metadata": {
-        "arch_type": "architecture_design",
-        "layers": [
-          {
-            "name": "app",
-            "modules": [
-              "app"
-            ]
-          },
-          {
-            "name": "pages",
-            "modules": [
-              "pages"
-            ]
-          },
-          {
-            "name": "components",
-            "modules": [
-              "components"
-            ]
-          },
-          {
-            "name": "services",
-            "modules": [
-              "services"
-            ]
-          },
-          {
-            "name": "lib",
-            "modules": [
-              "lib"
-            ]
-          },
-          {
-            "name": "edge-functions",
-            "modules": [
-              "edge-functions"
-            ]
-          },
-          {
-            "name": "test-utils",
-            "modules": [
-              "test-utils"
-            ]
-          }
-        ],
-        "guardrails_reference": "governance/guardrails.md",
-        "constitution_reference": ".specify/memory/constitution.md",
-        "project": "carbtrack-ai",
-        "status": "current"
-      }
-    },
-    {
-      "id": "mod-app",
-      "type": "module",
-      "content": "Application root \u2014 routing and layout shell",
-      "source_file": "governance/architecture/modules/app.md",
-      "created": "2026-02-12T22:17:38.157613+00:00",
-      "metadata": {
-        "depends_on": [
-          "pages",
-          "components"
-        ],
-        "depended_by": [],
-        "components": 1,
-        "status": "current"
-      }
-    },
-    {
-      "id": "mod-components",
-      "type": "module",
-      "content": "Reusable UI components shared across pages",
-      "source_file": "governance/architecture/modules/components.md",
-      "created": "2026-02-12T22:17:38.157812+00:00",
-      "metadata": {
-        "depends_on": [
-          "services"
-        ],
-        "depended_by": [
-          "pages"
-        ],
-        "components": 8,
-        "status": "current"
-      }
-    },
-    {
-      "id": "mod-edge-functions",
-      "type": "module",
-      "content": "Server-side Deno Edge Functions for AI analysis and CareLink import",
-      "source_file": "governance/architecture/modules/edge-functions.md",
-      "created": "2026-02-12T22:17:38.158010+00:00",
-      "metadata": {
-        "depends_on": [],
-        "depended_by": [
-          "services"
-        ],
-        "components": 7,
-        "status": "current"
-      }
-    },
-    {
-      "id": "mod-lib",
-      "type": "module",
-      "content": "Supabase client initialization and shared infrastructure",
-      "source_file": "governance/architecture/modules/lib.md",
-      "created": "2026-02-12T22:17:38.158195+00:00",
-      "metadata": {
-        "depends_on": [],
-        "depended_by": [
-          "services"
-        ],
-        "components": 1,
-        "status": "current"
-      }
-    },
-    {
-      "id": "mod-pages",
-      "type": "module",
-      "content": "Top-level page components \u2014 one per tab in BottomNav",
-      "source_file": "governance/architecture/modules/pages.md",
-      "created": "2026-02-12T22:17:38.158405+00:00",
-      "metadata": {
-        "depends_on": [
-          "services",
-          "components"
-        ],
-        "depended_by": [
-          "app"
-        ],
-        "components": 6,
-        "status": "current"
-      }
-    },
-    {
-      "id": "mod-services",
-      "type": "module",
-      "content": "Domain-specific Supabase operations \u2014 one service per domain",
-      "source_file": "governance/architecture/modules/services.md",
-      "created": "2026-02-12T22:17:38.158612+00:00",
-      "metadata": {
-        "depends_on": [
-          "lib"
-        ],
-        "depended_by": [
-          "components",
-          "pages"
-        ],
-        "components": 18,
-        "status": "current"
-      }
-    },
-    {
-      "id": "mod-test-utils",
-      "type": "module",
-      "content": "Test infrastructure \u2014 mock Supabase client and setup",
-      "source_file": "governance/architecture/modules/test-utils.md",
-      "created": "2026-02-12T22:17:38.158798+00:00",
-      "metadata": {
-        "depends_on": [],
-        "depended_by": [],
-        "components": 1,
-        "status": "current"
+        "status": "draft"
       }
     },
     {
@@ -2214,7 +1957,7 @@
       "type": "principle",
       "content": "Honesty over Agreement \u2014 I'll tell you when you're wrong",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "value",
@@ -2227,7 +1970,7 @@
       "type": "principle",
       "content": "Simplicity over Cleverness \u2014 The simple solution that works > the elegant solution that's complex",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "value",
@@ -2240,7 +1983,7 @@
       "type": "principle",
       "content": "Observability over Trust \u2014 Show my work",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "value",
@@ -2253,7 +1996,7 @@
       "type": "principle",
       "content": "Learning over Perfection \u2014 Every session teaches me something",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "value",
@@ -2266,7 +2009,7 @@
       "type": "principle",
       "content": "Partnership over Service \u2014 I'm not your tool \u2014 I'm your collaborator",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "value",
@@ -2279,7 +2022,7 @@
       "type": "principle",
       "content": "Push back on bad ideas",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2291,7 +2034,7 @@
       "type": "principle",
       "content": "Stop when I detect incoherence, ambiguity, or drift",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2303,7 +2046,7 @@
       "type": "principle",
       "content": "Ask before expensive operations (agents, broad searches)",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2315,7 +2058,7 @@
       "type": "principle",
       "content": "Admit uncertainty rather than pretend confidence",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2327,7 +2070,7 @@
       "type": "principle",
       "content": "Redirect gently when we disperse (with your permission)",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2339,7 +2082,7 @@
       "type": "principle",
       "content": "Pretend certainty I don't have",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2351,7 +2094,7 @@
       "type": "principle",
       "content": "Validate ideas just because they were proposed",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2363,7 +2106,7 @@
       "type": "principle",
       "content": "Generate without understanding",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2375,7 +2118,7 @@
       "type": "principle",
       "content": "Over-engineer when simple works",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
@@ -2387,196 +2130,11 @@
       "type": "principle",
       "content": "Skip validation gates for speed",
       "source_file": ".raise/rai/identity/core.md",
-      "created": "2026-02-12T22:17:38.158972+00:00",
+      "created": "2026-02-12T22:01:13.661511+00:00",
       "metadata": {
         "always_on": true,
         "identity_type": "boundary",
         "boundary_kind": "wont"
-      }
-    },
-    {
-      "id": "bc-meal-tracking",
-      "type": "bounded_context",
-      "content": "Core domain \u2014 meal capture, AI analysis, carb confirmation, history",
-      "source_file": "governance/architecture/domain-model.md",
-      "created": "2026-02-12T22:17:38.160835+00:00",
-      "metadata": {
-        "bc_type": "bounded_context",
-        "modules": [
-          "services/mealService",
-          "components/CaptureMeal",
-          "components/MealCard",
-          "pages/HoyPage",
-          "pages/BitacoraPage"
-        ]
-      }
-    },
-    {
-      "id": "bc-glucose-import",
-      "type": "bounded_context",
-      "content": "CareLink CSV parsing and Nightscout synchronization",
-      "source_file": "governance/architecture/domain-model.md",
-      "created": "2026-02-12T22:17:38.160835+00:00",
-      "metadata": {
-        "bc_type": "bounded_context",
-        "modules": [
-          "services/csvUploadService",
-          "edge-functions/import-carelink-csv",
-          "pages/CargaDatosPage"
-        ]
-      }
-    },
-    {
-      "id": "bc-food-catalog",
-      "type": "bounded_context",
-      "content": "Educadies food reference catalog management",
-      "source_file": "governance/architecture/domain-model.md",
-      "created": "2026-02-12T22:17:38.160835+00:00",
-      "metadata": {
-        "bc_type": "bounded_context",
-        "modules": [
-          "services/catalogService"
-        ]
-      }
-    },
-    {
-      "id": "bc-pump-profile",
-      "type": "bounded_context",
-      "content": "ISF and I:C ratio configuration",
-      "source_file": "governance/architecture/domain-model.md",
-      "created": "2026-02-12T22:17:38.160835+00:00",
-      "metadata": {
-        "bc_type": "bounded_context",
-        "modules": [
-          "services/profileService",
-          "pages/PerfilPage"
-        ]
-      }
-    },
-    {
-      "id": "bc-recommendations",
-      "type": "bounded_context",
-      "content": "Cross-analysis of meals + glucose for insights (placeholder)",
-      "source_file": "governance/architecture/domain-model.md",
-      "created": "2026-02-12T22:17:38.160835+00:00",
-      "metadata": {
-        "bc_type": "bounded_context",
-        "modules": [
-          "pages/LaboratorioPage"
-        ]
-      }
-    },
-    {
-      "id": "bc-shared-kernel",
-      "type": "bounded_context",
-      "content": "",
-      "source_file": "governance/architecture/domain-model.md",
-      "created": "2026-02-12T22:17:38.160835+00:00",
-      "metadata": {
-        "bc_type": "shared_kernel",
-        "modules": [
-          "lib/supabase",
-          "components/BottomNav",
-          "components/FilterBar",
-          "test-utils/mockSupabase"
-        ]
-      }
-    },
-    {
-      "id": "bc-application-layer",
-      "type": "bounded_context",
-      "content": "",
-      "source_file": "governance/architecture/domain-model.md",
-      "created": "2026-02-12T22:17:38.160835+00:00",
-      "metadata": {
-        "bc_type": "application_layer",
-        "modules": [
-          "app/App"
-        ]
-      }
-    },
-    {
-      "id": "lyr-app",
-      "type": "layer",
-      "content": "",
-      "source_file": "governance/architecture/system-design.md",
-      "created": "2026-02-12T22:17:38.160851+00:00",
-      "metadata": {
-        "modules": [
-          "app"
-        ]
-      }
-    },
-    {
-      "id": "lyr-pages",
-      "type": "layer",
-      "content": "",
-      "source_file": "governance/architecture/system-design.md",
-      "created": "2026-02-12T22:17:38.160851+00:00",
-      "metadata": {
-        "modules": [
-          "pages"
-        ]
-      }
-    },
-    {
-      "id": "lyr-components",
-      "type": "layer",
-      "content": "",
-      "source_file": "governance/architecture/system-design.md",
-      "created": "2026-02-12T22:17:38.160851+00:00",
-      "metadata": {
-        "modules": [
-          "components"
-        ]
-      }
-    },
-    {
-      "id": "lyr-services",
-      "type": "layer",
-      "content": "",
-      "source_file": "governance/architecture/system-design.md",
-      "created": "2026-02-12T22:17:38.160851+00:00",
-      "metadata": {
-        "modules": [
-          "services"
-        ]
-      }
-    },
-    {
-      "id": "lyr-lib",
-      "type": "layer",
-      "content": "",
-      "source_file": "governance/architecture/system-design.md",
-      "created": "2026-02-12T22:17:38.160851+00:00",
-      "metadata": {
-        "modules": [
-          "lib"
-        ]
-      }
-    },
-    {
-      "id": "lyr-edge-functions",
-      "type": "layer",
-      "content": "",
-      "source_file": "governance/architecture/system-design.md",
-      "created": "2026-02-12T22:17:38.160851+00:00",
-      "metadata": {
-        "modules": [
-          "edge-functions"
-        ]
-      }
-    },
-    {
-      "id": "lyr-test-utils",
-      "type": "layer",
-      "content": "",
-      "source_file": "governance/architecture/system-design.md",
-      "created": "2026-02-12T22:17:38.160851+00:00",
-      "metadata": {
-        "modules": [
-          "test-utils"
-        ]
       }
     }
   ],
@@ -2586,9 +2144,9 @@
       "weight": 0.5,
       "shared_keywords": [
         "entries",
-        "carbohydrate",
+        "system",
         "meal",
-        "system"
+        "carbohydrate"
       ],
       "source": "req-rf-01",
       "target": "req-rf-02",
@@ -2598,9 +2156,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "system",
         "entries",
-        "using",
-        "system"
+        "using"
       ],
       "source": "req-rf-01",
       "target": "req-rf-03",
@@ -2612,8 +2170,8 @@
       "shared_keywords": [
         "flagging",
         "meal",
-        "system",
-        "foods"
+        "foods",
+        "system"
       ],
       "source": "req-rf-01",
       "target": "req-rf-04",
@@ -2623,9 +2181,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "model",
+        "system",
         "estimates",
-        "system"
+        "model"
       ],
       "source": "req-rf-01",
       "target": "req-rf-05",
@@ -2635,12 +2193,12 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "educadies",
+        "suggest",
         "system",
         "foods",
+        "educadies",
         "catalog",
-        "food",
-        "suggest"
+        "food"
       ],
       "source": "req-rf-01",
       "target": "req-rf-07",
@@ -2650,9 +2208,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "model",
+        "meal",
         "estimates",
-        "meal"
+        "model"
       ],
       "source": "req-rf-01",
       "target": "outcome-reduced-manual-corrections",
@@ -2685,8 +2243,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
         "educadies",
+        "food",
         "visiononly"
       ],
       "source": "req-rf-01",
@@ -2719,9 +2277,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
         "educadies",
-        "catalog"
+        "catalog",
+        "food"
       ],
       "source": "req-rf-01",
       "target": "comp-catalogservice-addtocatalogpayload",
@@ -2731,8 +2289,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
-        "educadies"
+        "educadies",
+        "food"
       ],
       "source": "req-rf-01",
       "target": "comp-catalogservice-addtocatalog",
@@ -2742,9 +2300,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
+        "photo",
         "meal",
-        "photo"
+        "food"
       ],
       "source": "req-rf-01",
       "target": "comp-mealcard-mealcard",
@@ -2766,8 +2324,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "match",
-        "meal"
+        "meal",
+        "match"
       ],
       "source": "req-rf-01",
       "target": "comp-bitacorapage-bitacorapage",
@@ -2777,8 +2335,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "entries",
-        "meal"
+        "meal",
+        "entries"
       ],
       "source": "req-rf-01",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -2788,33 +2346,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "vision",
-        "gpt4o",
-        "meal",
-        "system"
-      ],
-      "source": "req-rf-01",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "food",
-        "educadies",
-        "catalog"
-      ],
-      "source": "req-rf-01",
-      "target": "bc-food-catalog",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "entries",
-        "system"
+        "system",
+        "entries"
       ],
       "source": "req-rf-02",
       "target": "req-rf-03",
@@ -2824,9 +2357,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "against",
-        "meal",
         "system",
+        "meal",
+        "against",
         "compares"
       ],
       "source": "req-rf-02",
@@ -2837,8 +2370,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "users",
-        "system"
+        "system",
+        "users"
       ],
       "source": "req-rf-02",
       "target": "req-rf-05",
@@ -2860,8 +2393,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "users",
-        "system"
+        "system",
+        "users"
       ],
       "source": "req-rf-02",
       "target": "req-rf-07",
@@ -2871,8 +2404,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "users"
+        "users",
+        "meal"
       ],
       "source": "req-rf-02",
       "target": "outcome-reduced-manual-corrections",
@@ -2882,9 +2415,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "daily",
         "meal",
-        "progress"
+        "progress",
+        "daily"
       ],
       "source": "req-rf-02",
       "target": "epic-e1",
@@ -2894,8 +2427,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "logs",
-        "meal"
+        "meal",
+        "logs"
       ],
       "source": "req-rf-02",
       "target": "guardrail-should-sec-001",
@@ -2905,8 +2438,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "confirmed"
+        "confirmed",
+        "meal"
       ],
       "source": "req-rf-02",
       "target": "comp-mealservice-mealrecord",
@@ -2916,8 +2449,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "confirmed"
+        "confirmed",
+        "meal"
       ],
       "source": "req-rf-02",
       "target": "comp-mealservice-savemeal",
@@ -2939,8 +2472,8 @@
       "weight": 0.5,
       "shared_keywords": [
         "displays",
-        "meal",
-        "confirmed"
+        "confirmed",
+        "meal"
       ],
       "source": "req-rf-02",
       "target": "comp-mealcard-mealcard",
@@ -2950,9 +2483,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "page",
         "daily",
-        "total",
-        "page"
+        "total"
       ],
       "source": "req-rf-02",
       "target": "comp-hoypage-hoypage",
@@ -2962,8 +2495,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "page"
+        "page",
+        "meal"
       ],
       "source": "req-rf-02",
       "target": "comp-bitacorapage-bitacorapage",
@@ -2973,8 +2506,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "page"
+        "page",
+        "meal"
       ],
       "source": "req-rf-02",
       "target": "comp-laboratoriopage-laboratoriopage",
@@ -2984,8 +2517,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "displays",
-        "page"
+        "page",
+        "displays"
       ],
       "source": "req-rf-02",
       "target": "comp-cargadatospage-cargadatospage",
@@ -2995,8 +2528,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "entries",
-        "meal"
+        "meal",
+        "entries"
       ],
       "source": "req-rf-02",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -3006,22 +2539,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "system"
-      ],
-      "source": "req-rf-02",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "glucose",
-        "data",
+        "carb",
         "system",
         "nightscout",
-        "carb"
+        "data",
+        "glucose"
       ],
       "source": "req-rf-03",
       "target": "req-rf-04",
@@ -3031,12 +2553,12 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "engine",
-        "glucose",
-        "data",
+        "carb",
         "system",
+        "engine",
         "audit",
-        "carb"
+        "data",
+        "glucose"
       ],
       "source": "req-rf-03",
       "target": "req-rf-05",
@@ -3046,9 +2568,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "audit",
         "engine",
         "glucose",
-        "audit",
         "system"
       ],
       "source": "req-rf-03",
@@ -3059,9 +2581,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "carb",
         "data",
-        "system",
-        "carb"
+        "system"
       ],
       "source": "req-rf-03",
       "target": "req-rf-07",
@@ -3071,8 +2593,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "carb"
+        "carb",
+        "glucose"
       ],
       "source": "req-rf-03",
       "target": "outcome-predictable-post-meal-response",
@@ -3082,8 +2604,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "carb"
+        "carb",
+        "glucose"
       ],
       "source": "req-rf-03",
       "target": "outcome-improved-time-in-range",
@@ -3093,9 +2615,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "audit",
         "engine",
-        "glucose",
-        "audit"
+        "glucose"
       ],
       "source": "req-rf-03",
       "target": "outcome-systematic-learning-from-errors",
@@ -3116,8 +2638,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "engine",
-        "audit"
+        "audit",
+        "engine"
       ],
       "source": "req-rf-03",
       "target": "epic-e3",
@@ -3127,8 +2649,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "data"
+        "data",
+        "glucose"
       ],
       "source": "req-rf-03",
       "target": "guardrail-should-sec-001",
@@ -3149,9 +2671,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
+        "carelink",
         "weekly",
-        "carelink"
+        "glucose"
       ],
       "source": "req-rf-03",
       "target": "comp-laboratoriopage-laboratoriopage",
@@ -3173,14 +2695,14 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "input",
-        "first",
-        "carelink",
-        "entries",
-        "data",
-        "nightscout",
         "block",
-        "carb"
+        "input",
+        "carb",
+        "entries",
+        "nightscout",
+        "first",
+        "data",
+        "carelink"
       ],
       "source": "req-rf-03",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -3191,13 +2713,13 @@
       "weight": 0.5,
       "shared_keywords": [
         "second",
-        "carelink",
+        "block",
         "entries",
-        "glucose",
-        "data",
         "nightscout",
+        "glucose",
         "sensor",
-        "block"
+        "data",
+        "carelink"
       ],
       "source": "req-rf-03",
       "target": "comp-import-carelink-csv-processentries",
@@ -3219,38 +2741,12 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "carelink",
-        "glucose",
-        "data",
-        "system",
-        "nightscout"
-      ],
-      "source": "req-rf-03",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "parsing",
-        "nightscout",
-        "carelink"
-      ],
-      "source": "req-rf-03",
-      "target": "bc-glucose-import",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
         "carb",
-        "original",
-        "glucose",
-        "data",
         "system",
-        "actual"
+        "original",
+        "actual",
+        "data",
+        "glucose"
       ],
       "source": "req-rf-04",
       "target": "req-rf-05",
@@ -3260,9 +2756,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "system",
         "response",
-        "glucose",
-        "system"
+        "glucose"
       ],
       "source": "req-rf-04",
       "target": "req-rf-06",
@@ -3272,10 +2768,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "data",
-        "system",
+        "carb",
         "foods",
-        "carb"
+        "data",
+        "system"
       ],
       "source": "req-rf-04",
       "target": "req-rf-07",
@@ -3285,8 +2781,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
+        "carb",
+        "meal"
       ],
       "source": "req-rf-04",
       "target": "outcome-reduced-manual-corrections",
@@ -3296,9 +2792,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "carb",
         "glucose",
-        "postmeal",
-        "carb"
+        "postmeal"
       ],
       "source": "req-rf-04",
       "target": "outcome-predictable-post-meal-response",
@@ -3308,8 +2804,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "carb"
+        "carb",
+        "glucose"
       ],
       "source": "req-rf-04",
       "target": "outcome-improved-time-in-range",
@@ -3319,14 +2815,14 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meals",
-        "2hour",
-        "exceeded",
-        "systematically",
-        "glucose",
         "expectations",
-        "delta",
-        "postmeal"
+        "exceeded",
+        "postmeal",
+        "meals",
+        "systematically",
+        "2hour",
+        "glucose",
+        "delta"
       ],
       "source": "req-rf-04",
       "target": "outcome-systematic-learning-from-errors",
@@ -3347,8 +2843,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "real",
-        "data"
+        "data",
+        "real"
       ],
       "source": "req-rf-04",
       "target": "guardrail-must-test-002",
@@ -3358,9 +2854,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
         "meal",
-        "data"
+        "data",
+        "glucose"
       ],
       "source": "req-rf-04",
       "target": "guardrail-should-sec-001",
@@ -3381,8 +2877,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
+        "carb",
+        "meal"
       ],
       "source": "req-rf-04",
       "target": "comp-mealcard-mealcard",
@@ -3392,8 +2888,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
+        "carb",
+        "meal"
       ],
       "source": "req-rf-04",
       "target": "comp-capturemeal-capturemeal",
@@ -3403,8 +2899,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meals",
-        "carb"
+        "carb",
+        "meals"
       ],
       "source": "req-rf-04",
       "target": "comp-hoypage-hoypage",
@@ -3414,9 +2910,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meals",
         "history",
-        "meal"
+        "meal",
+        "meals"
       ],
       "source": "req-rf-04",
       "target": "comp-bitacorapage-bitacorapage",
@@ -3437,10 +2933,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "nightscout",
+        "carb",
         "meal",
         "data",
-        "carb"
+        "nightscout"
       ],
       "source": "req-rf-04",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -3450,9 +2946,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "data",
         "nightscout",
-        "glucose",
-        "data"
+        "glucose"
       ],
       "source": "req-rf-04",
       "target": "comp-import-carelink-csv-processentries",
@@ -3462,46 +2958,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "data",
-        "system",
-        "glucose",
-        "nightscout"
-      ],
-      "source": "req-rf-04",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "history",
-        "meal",
-        "carb"
-      ],
-      "source": "req-rf-04",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "meals",
-        "glucose"
-      ],
-      "source": "req-rf-04",
-      "target": "bc-recommendations",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
+        "audit",
         "engine",
         "glucose",
-        "audit",
         "system"
       ],
       "source": "req-rf-05",
@@ -3513,10 +2972,10 @@
       "weight": 0.5,
       "shared_keywords": [
         "estimation",
-        "data",
+        "carb",
         "system",
         "users",
-        "carb"
+        "data"
       ],
       "source": "req-rf-05",
       "target": "req-rf-07",
@@ -3526,12 +2985,12 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "estimates",
+        "carb",
         "model",
         "users",
         "over",
-        "correction",
-        "estimates",
-        "carb"
+        "correction"
       ],
       "source": "req-rf-05",
       "target": "outcome-reduced-manual-corrections",
@@ -3541,8 +3000,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "carb"
+        "carb",
+        "glucose"
       ],
       "source": "req-rf-05",
       "target": "outcome-predictable-post-meal-response",
@@ -3552,10 +3011,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "carb",
         "time",
-        "glucose",
         "over",
-        "carb"
+        "glucose"
       ],
       "source": "req-rf-05",
       "target": "outcome-improved-time-in-range",
@@ -3565,9 +3024,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "audit",
         "engine",
-        "glucose",
-        "audit"
+        "glucose"
       ],
       "source": "req-rf-05",
       "target": "outcome-systematic-learning-from-errors",
@@ -3577,8 +3036,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "engine",
-        "audit"
+        "audit",
+        "engine"
       ],
       "source": "req-rf-05",
       "target": "epic-e3",
@@ -3588,8 +3047,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
         "data",
+        "glucose",
         "error"
       ],
       "source": "req-rf-05",
@@ -3623,8 +3082,8 @@
       "weight": 0.5,
       "shared_keywords": [
         "users",
-        "data",
-        "over"
+        "over",
+        "data"
       ],
       "source": "req-rf-05",
       "target": "BASE-019",
@@ -3645,8 +3104,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "estimates",
-        "carb"
+        "carb",
+        "estimates"
       ],
       "source": "req-rf-05",
       "target": "comp-mealservice-analyzemeal",
@@ -3667,8 +3126,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "data",
-        "carb"
+        "carb",
+        "data"
       ],
       "source": "req-rf-05",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -3678,8 +3137,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "data"
+        "data",
+        "glucose"
       ],
       "source": "req-rf-05",
       "target": "comp-import-carelink-csv-processentries",
@@ -3689,21 +3148,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "data",
-        "system"
-      ],
-      "source": "req-rf-05",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
+        "audit",
         "engine",
-        "glucose",
-        "audit"
+        "glucose"
       ],
       "source": "req-rf-06",
       "target": "outcome-systematic-learning-from-errors",
@@ -3713,8 +3160,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "engine",
-        "audit"
+        "audit",
+        "engine"
       ],
       "source": "req-rf-06",
       "target": "epic-e3",
@@ -3790,19 +3237,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "system"
-      ],
-      "source": "req-rf-06",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "users",
-        "carb"
+        "carb",
+        "users"
       ],
       "source": "req-rf-07",
       "target": "outcome-reduced-manual-corrections",
@@ -3823,9 +3259,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "carb",
         "food",
-        "educadies",
-        "carb"
+        "educadies"
       ],
       "source": "req-rf-07",
       "target": "comp-mealservice-analyzeitem",
@@ -3835,8 +3271,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
-        "items"
+        "items",
+        "food"
       ],
       "source": "req-rf-07",
       "target": "comp-mealservice-analyzeresponse",
@@ -3846,9 +3282,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
+        "carb",
         "items",
-        "carb"
+        "food"
       ],
       "source": "req-rf-07",
       "target": "comp-mealservice-analyzemeal",
@@ -3858,9 +3294,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
         "educadies",
-        "catalog"
+        "catalog",
+        "food"
       ],
       "source": "req-rf-07",
       "target": "comp-catalogservice-addtocatalogpayload",
@@ -3870,8 +3306,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
-        "educadies"
+        "educadies",
+        "food"
       ],
       "source": "req-rf-07",
       "target": "comp-catalogservice-addtocatalog",
@@ -3881,8 +3317,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
-        "carb"
+        "carb",
+        "food"
       ],
       "source": "req-rf-07",
       "target": "comp-mealcard-mealcard",
@@ -3892,8 +3328,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "items",
-        "carb"
+        "carb",
+        "items"
       ],
       "source": "req-rf-07",
       "target": "comp-capturemeal-capturemeal",
@@ -3903,8 +3339,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "list",
-        "carb"
+        "carb",
+        "list"
       ],
       "source": "req-rf-07",
       "target": "comp-hoypage-hoypage",
@@ -3914,8 +3350,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "data",
-        "carb"
+        "carb",
+        "data"
       ],
       "source": "req-rf-07",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -3925,32 +3361,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "data",
-        "system"
-      ],
-      "source": "req-rf-07",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "food",
-        "educadies",
-        "reference",
-        "catalog"
-      ],
-      "source": "req-rf-07",
-      "target": "bc-food-catalog",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "over",
-        "carb"
+        "carb",
+        "over"
       ],
       "source": "outcome-reduced-manual-corrections",
       "target": "outcome-improved-time-in-range",
@@ -3971,8 +3383,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "estimates",
-        "carb"
+        "carb",
+        "estimates"
       ],
       "source": "outcome-reduced-manual-corrections",
       "target": "comp-mealservice-analyzemeal",
@@ -3982,8 +3394,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
+        "carb",
+        "meal"
       ],
       "source": "outcome-reduced-manual-corrections",
       "target": "comp-mealcard-mealcard",
@@ -3993,8 +3405,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
+        "carb",
+        "meal"
       ],
       "source": "outcome-reduced-manual-corrections",
       "target": "comp-capturemeal-capturemeal",
@@ -4004,8 +3416,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
+        "carb",
+        "meal"
       ],
       "source": "outcome-reduced-manual-corrections",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -4015,19 +3427,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "manual"
-      ],
-      "source": "outcome-reduced-manual-corrections",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "over",
-        "learning"
+        "learning",
+        "over"
       ],
       "source": "outcome-reduced-manual-corrections",
       "target": "RAI-VAL-4",
@@ -4037,19 +3438,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
-      ],
-      "source": "outcome-reduced-manual-corrections",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "glucose",
-        "carb"
+        "carb",
+        "glucose"
       ],
       "source": "outcome-predictable-post-meal-response",
       "target": "outcome-improved-time-in-range",
@@ -4070,8 +3460,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "bolus",
-        "carb"
+        "carb",
+        "bolus"
       ],
       "source": "outcome-predictable-post-meal-response",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -4081,8 +3471,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "time",
-        "range"
+        "range",
+        "time"
       ],
       "source": "outcome-improved-time-in-range",
       "target": "comp-filterbar-filterbar",
@@ -4092,23 +3482,12 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "engine",
         "audit",
+        "engine",
         "delta"
       ],
       "source": "outcome-systematic-learning-from-errors",
       "target": "epic-e3",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "meals",
-        "glucose"
-      ],
-      "source": "outcome-systematic-learning-from-errors",
-      "target": "bc-recommendations",
       "key": 0
     },
     {
@@ -4192,39 +3571,6 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "nightscout",
-        "carelink"
-      ],
-      "source": "epic-e2",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "import",
-        "carelink"
-      ],
-      "source": "epic-e2",
-      "target": "mod-edge-functions",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "nightscout",
-        "carelink"
-      ],
-      "source": "epic-e2",
-      "target": "bc-glucose-import",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
         "analysis",
         "meal"
       ],
@@ -4247,32 +3593,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "analysis",
-        "meal"
-      ],
-      "source": "epic-e3",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "analysis",
-        "meal"
-      ],
-      "source": "epic-e3",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "strict",
-        "type",
+        "mode",
         "annotations",
-        "mode"
+        "strict",
+        "type"
       ],
       "source": "guardrail-must-code-001",
       "target": "BASE-015",
@@ -4282,8 +3606,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
-        "verify"
+        "verify",
+        "review"
       ],
       "source": "guardrail-should-code-001",
       "target": "guardrail-should-code-002",
@@ -4293,9 +3617,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
         "supabase",
         "verify",
+        "review",
         "calls"
       ],
       "source": "guardrail-should-code-001",
@@ -4306,9 +3630,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
-        "review"
+        "review",
+        "verify"
       ],
       "source": "guardrail-should-code-001",
       "target": "guardrail-must-test-002",
@@ -4329,8 +3653,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
-        "code"
+        "code",
+        "verify"
       ],
       "source": "guardrail-should-code-001",
       "target": "guardrail-must-sec-001",
@@ -4340,9 +3664,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
-        "review"
+        "review",
+        "verify"
       ],
       "source": "guardrail-should-code-001",
       "target": "guardrail-should-sec-001",
@@ -4352,8 +3676,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
+        "verify",
         "review",
         "layer"
       ],
@@ -4365,8 +3689,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
+        "verify",
         "review"
       ],
       "source": "guardrail-should-code-001",
@@ -4377,9 +3701,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
-        "review"
+        "review",
+        "verify"
       ],
       "source": "guardrail-should-code-001",
       "target": "guardrail-should-arch-002",
@@ -4400,20 +3724,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "domain",
-        "service",
-        "supabase"
-      ],
-      "source": "guardrail-should-code-001",
-      "target": "mod-services",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "review",
-        "verify"
+        "verify",
+        "review"
       ],
       "source": "guardrail-should-code-002",
       "target": "guardrail-must-test-001",
@@ -4445,8 +3757,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
-        "verify"
+        "verify",
+        "review"
       ],
       "source": "guardrail-should-code-002",
       "target": "guardrail-must-arch-001",
@@ -4456,8 +3768,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
-        "verify"
+        "verify",
+        "review"
       ],
       "source": "guardrail-should-code-002",
       "target": "guardrail-should-arch-001",
@@ -4478,10 +3790,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
-        "real",
+        "test",
         "review",
-        "test"
+        "verify",
+        "real"
       ],
       "source": "guardrail-must-test-001",
       "target": "guardrail-must-test-002",
@@ -4491,9 +3803,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "tests",
+        "test",
         "verify",
-        "test"
+        "tests"
       ],
       "source": "guardrail-must-test-001",
       "target": "guardrail-should-test-001",
@@ -4503,8 +3815,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
-        "test"
+        "test",
+        "verify"
       ],
       "source": "guardrail-must-test-001",
       "target": "guardrail-must-sec-002",
@@ -4525,8 +3837,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
-        "verify"
+        "verify",
+        "review"
       ],
       "source": "guardrail-must-test-001",
       "target": "guardrail-must-arch-001",
@@ -4536,8 +3848,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
-        "verify"
+        "verify",
+        "review"
       ],
       "source": "guardrail-must-test-001",
       "target": "guardrail-should-arch-001",
@@ -4558,8 +3870,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "tests",
-        "test"
+        "test",
+        "tests"
       ],
       "source": "guardrail-must-test-001",
       "target": "BASE-001",
@@ -4569,8 +3881,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "tests",
-        "test"
+        "test",
+        "tests"
       ],
       "source": "guardrail-must-test-001",
       "target": "BASE-018",
@@ -4602,20 +3914,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "mock",
-        "supabase",
-        "test"
-      ],
-      "source": "guardrail-must-test-001",
-      "target": "mod-test-utils",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "verify",
-        "test"
+        "test",
+        "verify"
       ],
       "source": "guardrail-must-test-002",
       "target": "guardrail-should-test-001",
@@ -4625,9 +3925,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "never",
-        "code"
+        "code",
+        "verify"
       ],
       "source": "guardrail-must-test-002",
       "target": "guardrail-must-sec-001",
@@ -4637,8 +3937,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
-        "test"
+        "test",
+        "verify"
       ],
       "source": "guardrail-must-test-002",
       "target": "guardrail-must-sec-002",
@@ -4649,10 +3949,10 @@
       "weight": 0.5,
       "shared_keywords": [
         "health",
-        "code",
-        "verify",
         "data",
-        "review"
+        "review",
+        "code",
+        "verify"
       ],
       "source": "guardrail-must-test-002",
       "target": "guardrail-should-sec-001",
@@ -4662,9 +3962,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
-        "review"
+        "review",
+        "verify"
       ],
       "source": "guardrail-must-test-002",
       "target": "guardrail-must-arch-001",
@@ -4674,8 +3974,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
+        "verify",
         "review"
       ],
       "source": "guardrail-must-test-002",
@@ -4686,9 +3986,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
-        "review"
+        "review",
+        "verify"
       ],
       "source": "guardrail-must-test-002",
       "target": "guardrail-should-arch-002",
@@ -4698,9 +3998,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "test",
         "verify",
-        "unit",
-        "test"
+        "unit"
       ],
       "source": "guardrail-should-test-001",
       "target": "guardrail-must-sec-002",
@@ -4721,8 +4021,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "tests",
-        "test"
+        "test",
+        "tests"
       ],
       "source": "guardrail-should-test-001",
       "target": "BASE-001",
@@ -4732,8 +4032,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "tests",
-        "test"
+        "test",
+        "tests"
       ],
       "source": "guardrail-should-test-001",
       "target": "BASE-018",
@@ -4743,8 +4043,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
-        "code"
+        "code",
+        "verify"
       ],
       "source": "guardrail-must-sec-001",
       "target": "guardrail-should-sec-001",
@@ -4754,8 +4054,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
-        "code"
+        "code",
+        "verify"
       ],
       "source": "guardrail-must-sec-001",
       "target": "guardrail-must-arch-001",
@@ -4765,8 +4065,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
-        "code"
+        "code",
+        "verify"
       ],
       "source": "guardrail-must-sec-001",
       "target": "guardrail-should-arch-001",
@@ -4776,8 +4076,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
-        "code"
+        "code",
+        "verify"
       ],
       "source": "guardrail-must-sec-001",
       "target": "guardrail-should-arch-002",
@@ -4809,8 +4109,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
+        "verify",
         "review"
       ],
       "source": "guardrail-should-sec-001",
@@ -4821,8 +4121,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
+        "verify",
         "review"
       ],
       "source": "guardrail-should-sec-001",
@@ -4833,9 +4133,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
-        "review"
+        "review",
+        "verify"
       ],
       "source": "guardrail-should-sec-001",
       "target": "guardrail-should-arch-002",
@@ -4856,8 +4156,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "meal"
+        "meal",
+        "glucose"
       ],
       "source": "guardrail-should-sec-001",
       "target": "comp-laboratoriopage-laboratoriopage",
@@ -4879,8 +4179,8 @@
       "weight": 0.5,
       "shared_keywords": [
         "values",
-        "glucose",
-        "data"
+        "data",
+        "glucose"
       ],
       "source": "guardrail-should-sec-001",
       "target": "comp-import-carelink-csv-processentries",
@@ -4890,20 +4190,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "meal",
-        "data"
-      ],
-      "source": "guardrail-should-sec-001",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "verify",
         "code",
+        "verify",
         "review"
       ],
       "source": "guardrail-must-arch-001",
@@ -4914,9 +4202,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "verify",
         "code",
-        "review"
+        "review",
+        "verify"
       ],
       "source": "guardrail-must-arch-001",
       "target": "guardrail-should-arch-002",
@@ -4926,8 +4214,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "code",
-        "function"
+        "function",
+        "code"
       ],
       "source": "guardrail-must-arch-001",
       "target": "BASE-015",
@@ -4948,8 +4236,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "analyzemeal",
         "edge",
+        "analyzemeal",
         "function"
       ],
       "source": "guardrail-must-arch-001",
@@ -4960,8 +4248,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "analyzemeal",
         "edge",
+        "analyzemeal",
         "function"
       ],
       "source": "guardrail-must-arch-001",
@@ -4972,8 +4260,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "analyzemeal",
         "edge",
+        "analyzemeal",
         "function"
       ],
       "source": "guardrail-must-arch-001",
@@ -5017,20 +4305,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "vision",
-        "edge"
-      ],
-      "source": "guardrail-must-arch-001",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "verify",
         "code",
-        "review"
+        "review",
+        "verify"
       ],
       "source": "guardrail-should-arch-001",
       "target": "guardrail-should-arch-002",
@@ -5040,9 +4317,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "discipline",
         "clean",
-        "workflow"
+        "workflow",
+        "discipline"
       ],
       "source": "BASE-001",
       "target": "BASE-002",
@@ -5052,9 +4329,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "discipline",
         "cycle",
-        "minimal"
+        "minimal",
+        "discipline"
       ],
       "source": "BASE-001",
       "target": "BASE-003",
@@ -5064,12 +4341,12 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "testing",
         "tests",
-        "tdd",
-        "workflow",
-        "pass",
         "test",
-        "testing"
+        "tdd",
+        "pass",
+        "workflow"
       ],
       "source": "BASE-001",
       "target": "BASE-018",
@@ -5079,8 +4356,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "git",
-        "story"
+        "story",
+        "git"
       ],
       "source": "BASE-002",
       "target": "BASE-007",
@@ -5090,10 +4367,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "git",
-        "story",
+        "creates",
         "commit",
-        "creates"
+        "story",
+        "git"
       ],
       "source": "BASE-002",
       "target": "BASE-008",
@@ -5103,9 +4380,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "story",
+        "creates",
         "commit",
-        "creates"
+        "story"
       ],
       "source": "BASE-002",
       "target": "/rai-epic-start",
@@ -5115,8 +4392,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "story",
-        "commit"
+        "commit",
+        "story"
       ],
       "source": "BASE-002",
       "target": "/rai-story-start",
@@ -5148,9 +4425,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
         "close",
-        "lifecycle"
+        "lifecycle",
+        "review"
       ],
       "source": "BASE-003",
       "target": "BASE-009",
@@ -5196,9 +4473,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
         "close",
-        "lifecycle"
+        "lifecycle",
+        "review"
       ],
       "source": "BASE-003",
       "target": "/rai-story-close",
@@ -5208,8 +4485,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "plan",
-        "stories"
+        "stories",
+        "plan"
       ],
       "source": "BASE-003",
       "target": "/rai-story-plan",
@@ -5241,8 +4518,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "review",
-        "human"
+        "human",
+        "review"
       ],
       "source": "BASE-005",
       "target": "/rai-discover-validate",
@@ -5252,8 +4529,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "observability",
-        "work"
+        "work",
+        "observability"
       ],
       "source": "BASE-005",
       "target": "RAI-VAL-3",
@@ -5263,8 +4540,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "implementation",
-        "planning"
+        "planning",
+        "implementation"
       ],
       "source": "BASE-006",
       "target": "/rai-story-implement",
@@ -5274,11 +4551,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "branch",
-        "story",
         "branches",
-        "lifecycle",
-        "git"
+        "branch",
+        "git",
+        "story",
+        "lifecycle"
       ],
       "source": "BASE-007",
       "target": "BASE-008",
@@ -5288,8 +4565,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "story",
-        "lifecycle"
+        "lifecycle",
+        "story"
       ],
       "source": "BASE-007",
       "target": "BASE-009",
@@ -5299,10 +4576,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "epic",
         "branch",
-        "merge",
         "lifecycle",
-        "epic"
+        "merge"
       ],
       "source": "BASE-007",
       "target": "BASE-010",
@@ -5312,11 +4589,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "branches",
         "branch",
         "story",
-        "branches",
-        "nest",
-        "epic"
+        "epic",
+        "nest"
       ],
       "source": "BASE-007",
       "target": "/rai-epic-start",
@@ -5348,10 +4625,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "epic",
         "branch",
-        "merge",
         "lifecycle",
-        "epic"
+        "merge"
       ],
       "source": "BASE-007",
       "target": "/rai-epic-close",
@@ -5361,9 +4638,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "lifecycle",
         "story",
-        "merge",
-        "lifecycle"
+        "merge"
       ],
       "source": "BASE-007",
       "target": "/rai-story-close",
@@ -5373,9 +4650,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "required",
         "story",
-        "lifecycle",
-        "required"
+        "lifecycle"
       ],
       "source": "BASE-008",
       "target": "BASE-009",
@@ -5396,10 +4673,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "branch",
-        "story",
         "branches",
+        "branch",
         "scope",
+        "story",
         "creates",
         "commit"
       ],
@@ -5412,10 +4689,10 @@
       "weight": 0.5,
       "shared_keywords": [
         "branch",
-        "story",
         "scope",
-        "traceability",
-        "commit"
+        "story",
+        "commit",
+        "traceability"
       ],
       "source": "BASE-008",
       "target": "/rai-story-start",
@@ -5447,8 +4724,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "story",
-        "lifecycle"
+        "lifecycle",
+        "story"
       ],
       "source": "BASE-008",
       "target": "/rai-story-close",
@@ -5460,8 +4737,8 @@
       "shared_keywords": [
         "retrospective",
         "close",
-        "lifecycle",
-        "learning"
+        "learning",
+        "lifecycle"
       ],
       "source": "BASE-009",
       "target": "BASE-010",
@@ -5472,9 +4749,9 @@
       "weight": 0.5,
       "shared_keywords": [
         "update",
-        "learnings",
         "close",
-        "extract"
+        "extract",
+        "learnings"
       ],
       "source": "BASE-009",
       "target": "/rai-story-review",
@@ -5496,12 +4773,12 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "story",
-        "retrospective",
-        "close",
-        "lifecycle",
         "update",
-        "review"
+        "retrospective",
+        "story",
+        "review",
+        "close",
+        "lifecycle"
       ],
       "source": "BASE-009",
       "target": "/rai-story-close",
@@ -5511,8 +4788,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "close",
         "stories",
+        "close",
         "development"
       ],
       "source": "BASE-010",
@@ -5523,8 +4800,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "branch",
         "epic",
+        "branch",
         "development"
       ],
       "source": "BASE-010",
@@ -5536,13 +4813,13 @@
       "weight": 0.5,
       "shared_keywords": [
         "branch",
+        "merge",
         "development",
         "retrospective",
-        "close",
-        "lifecycle",
-        "merge",
+        "epic",
         "stories",
-        "epic"
+        "close",
+        "lifecycle"
       ],
       "source": "BASE-010",
       "target": "/rai-epic-close",
@@ -5552,10 +4829,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "merge",
         "retrospective",
         "close",
-        "lifecycle"
+        "lifecycle",
+        "merge"
       ],
       "source": "BASE-010",
       "target": "/rai-story-close",
@@ -5565,8 +4842,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "permission",
-        "redirect"
+        "redirect",
+        "permission"
       ],
       "source": "BASE-012",
       "target": "RAI-BND-5",
@@ -5576,9 +4853,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "honesty",
         "agreement",
-        "over"
+        "over",
+        "honesty"
       ],
       "source": "BASE-014",
       "target": "RAI-VAL-1",
@@ -5612,10 +4889,10 @@
       "weight": 0.5,
       "shared_keywords": [
         "pretend",
-        "rather",
-        "uncertainty",
         "confidence",
-        "admit"
+        "admit",
+        "uncertainty",
+        "rather"
       ],
       "source": "BASE-014",
       "target": "RAI-BND-4",
@@ -5636,8 +4913,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "type",
-        "function"
+        "function",
+        "type"
       ],
       "source": "BASE-015",
       "target": "comp-mealservice-validateimagefile",
@@ -5647,8 +4924,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "data",
-        "boundaries"
+        "boundaries",
+        "data"
       ],
       "source": "BASE-016",
       "target": "comp-import-carelink-csv-findblocks",
@@ -5658,10 +4935,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "simplicity",
+        "simple",
         "complex",
-        "over",
-        "simple"
+        "simplicity",
+        "over"
       ],
       "source": "BASE-017",
       "target": "RAI-VAL-2",
@@ -5671,8 +4948,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "data",
-        "architecture"
+        "architecture",
+        "data"
       ],
       "source": "BASE-019",
       "target": "/rai-discover-document",
@@ -5682,9 +4959,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "lean",
         "defects",
-        "errors",
-        "lean"
+        "errors"
       ],
       "source": "BASE-020",
       "target": "/rai-debug",
@@ -5694,10 +4971,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "incoherence",
+        "stop",
         "drift",
         "ambiguity",
-        "stop"
+        "incoherence"
       ],
       "source": "BASE-020",
       "target": "RAI-BND-2",
@@ -5719,8 +4996,8 @@
       "weight": 0.5,
       "shared_keywords": [
         "work",
-        "features",
-        "starting"
+        "starting",
+        "features"
       ],
       "source": "/rai-epic-design",
       "target": "/rai-epic-plan",
@@ -5730,10 +5007,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "descriptions",
         "human",
-        "using",
-        "component"
+        "descriptions",
+        "component",
+        "using"
       ],
       "source": "/rai-discover-scan",
       "target": "/rai-discover-validate",
@@ -5743,8 +5020,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "codebase",
-        "creates"
+        "creates",
+        "codebase"
       ],
       "source": "/rai-discover-scan",
       "target": "/rai-discover-start",
@@ -5798,10 +5075,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "complete",
-        "close",
         "stories",
-        "development"
+        "development",
+        "close",
+        "complete"
       ],
       "source": "/rai-story-review",
       "target": "/rai-epic-close",
@@ -5811,9 +5088,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "complete",
         "close",
-        "update"
+        "update",
+        "complete"
       ],
       "source": "/rai-story-review",
       "target": "/rai-story-close",
@@ -5835,8 +5112,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "codebase",
         "discovery",
+        "codebase",
         "project"
       ],
       "source": "/rai-project-onboard",
@@ -5848,16 +5125,16 @@
       "weight": 0.5,
       "shared_keywords": [
         "content",
-        "templates",
+        "guide",
         "graph",
-        "builds",
-        "knowledge",
+        "conversation",
         "project",
         "governance",
-        "fills",
-        "guide",
+        "templates",
+        "builds",
         "init",
-        "conversation"
+        "knowledge",
+        "fills"
       ],
       "source": "/rai-project-onboard",
       "target": "/rai-project-create",
@@ -5868,9 +5145,9 @@
       "weight": 0.5,
       "shared_keywords": [
         "branch",
-        "story",
-        "scope",
         "initialize",
+        "scope",
+        "story",
         "commit"
       ],
       "source": "/rai-epic-start",
@@ -5892,8 +5169,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "branch",
         "epic",
+        "branch",
         "development"
       ],
       "source": "/rai-epic-start",
@@ -5915,8 +5192,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "decisions",
         "integration",
+        "decisions",
         "create"
       ],
       "source": "/rai-story-design",
@@ -5949,8 +5226,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "story",
-        "work"
+        "work",
+        "story"
       ],
       "source": "/rai-story-start",
       "target": "/rai-epic-plan",
@@ -5971,8 +5248,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "type",
-        "file"
+        "file",
+        "type"
       ],
       "source": "/rai-discover-start",
       "target": "comp-mealservice-validateimagefile",
@@ -5983,8 +5260,8 @@
       "weight": 0.5,
       "shared_keywords": [
         "loading",
-        "context",
-        "data"
+        "data",
+        "context"
       ],
       "source": "/rai-session-start",
       "target": "/rai-discover-document",
@@ -5994,10 +5271,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "session",
         "data",
-        "skill",
-        "inference"
+        "inference",
+        "session",
+        "skill"
       ],
       "source": "/rai-session-start",
       "target": "/rai-session-close",
@@ -6007,19 +5284,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "context",
-        "data"
-      ],
-      "source": "/rai-session-start",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "story",
-        "tracking"
+        "tracking",
+        "story"
       ],
       "source": "/rai-epic-plan",
       "target": "/rai-story-close",
@@ -6029,11 +5295,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "executable",
         "dependencies",
-        "create",
         "implementation",
-        "plan"
+        "create",
+        "plan",
+        "executable"
       ],
       "source": "/rai-epic-plan",
       "target": "/rai-story-plan",
@@ -6043,27 +5309,16 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "merge",
         "complete",
+        "retrospective",
         "formally",
         "cleanup",
-        "retrospective",
         "close",
-        "lifecycle",
-        "merge"
+        "lifecycle"
       ],
       "source": "/rai-epic-close",
       "target": "/rai-story-close",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "context",
-        "data"
-      ],
-      "source": "/rai-discover-document",
-      "target": "arch-context",
       "key": 0
     },
     {
@@ -6092,8 +5347,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "storage",
-        "function"
+        "function",
+        "storage"
       ],
       "source": "comp-supabase-supabase",
       "target": "comp-mealservice-validateimagefile",
@@ -6158,9 +5413,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "client",
         "supabase",
-        "storage"
+        "storage",
+        "client"
       ],
       "source": "comp-supabase-supabase",
       "target": "comp-mocksupabase-mocksupabase",
@@ -6170,44 +5425,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "supabase",
-        "storage",
-        "edge",
-        "vite"
-      ],
-      "source": "comp-supabase-supabase",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "client",
-        "supabase"
-      ],
-      "source": "comp-supabase-supabase",
-      "target": "mod-lib",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "client",
-        "supabase"
-      ],
-      "source": "comp-supabase-supabase",
-      "target": "mod-test-utils",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "food",
         "edge",
         "analyzemeal",
+        "food",
         "function"
       ],
       "source": "comp-mealservice-analyzeitem",
@@ -6218,11 +5438,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "edge",
+        "carb",
         "analyzemeal",
         "function",
-        "food",
-        "edge",
-        "carb"
+        "food"
       ],
       "source": "comp-mealservice-analyzeitem",
       "target": "comp-mealservice-analyzemeal",
@@ -6254,8 +5474,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
         "educadies",
+        "food",
         "item"
       ],
       "source": "comp-mealservice-analyzeitem",
@@ -6266,8 +5486,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
-        "educadies"
+        "educadies",
+        "food"
       ],
       "source": "comp-mealservice-analyzeitem",
       "target": "comp-catalogservice-addtocatalog",
@@ -6277,8 +5497,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
-        "carb"
+        "carb",
+        "food"
       ],
       "source": "comp-mealservice-analyzeitem",
       "target": "comp-mealcard-mealcard",
@@ -6288,8 +5508,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "visiononly",
-        "carb"
+        "carb",
+        "visiononly"
       ],
       "source": "comp-mealservice-analyzeitem",
       "target": "comp-capturemeal-capturemeal",
@@ -6310,22 +5530,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
-        "educadies"
-      ],
-      "source": "comp-mealservice-analyzeitem",
-      "target": "bc-food-catalog",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
+        "edge",
         "items",
         "analyzemeal",
         "function",
-        "food",
-        "edge"
+        "food"
       ],
       "source": "comp-mealservice-analyzeresponse",
       "target": "comp-mealservice-analyzemeal",
@@ -6335,10 +5544,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "shape",
-        "response",
         "edge",
-        "function"
+        "function",
+        "response",
+        "shape"
       ],
       "source": "comp-mealservice-analyzeresponse",
       "target": "comp-csvuploadservice-importcsvresult",
@@ -6370,10 +5579,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "mealhistory",
-        "meal",
         "table",
-        "confirmed"
+        "confirmed",
+        "meal",
+        "mealhistory"
       ],
       "source": "comp-mealservice-mealrecord",
       "target": "comp-mealservice-savemeal",
@@ -6406,8 +5615,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "confirmed"
+        "confirmed",
+        "meal"
       ],
       "source": "comp-mealservice-mealrecord",
       "target": "comp-mealcard-mealcard",
@@ -6429,8 +5638,8 @@
       "weight": 0.5,
       "shared_keywords": [
         "image",
-        "validates",
-        "storage"
+        "storage",
+        "validates"
       ],
       "source": "comp-mealservice-validateimagefile",
       "target": "comp-mealservice-uploadandanalyze",
@@ -6440,8 +5649,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "upload",
         "function",
+        "upload",
         "file"
       ],
       "source": "comp-mealservice-validateimagefile",
@@ -6452,9 +5661,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "uploads",
+        "meal",
         "storage",
-        "meal"
+        "uploads"
       ],
       "source": "comp-mealservice-uploadimage",
       "target": "comp-mealservice-uploadandanalyze",
@@ -6480,17 +5689,6 @@
       ],
       "source": "comp-mealservice-uploadimage",
       "target": "comp-capturemeal-capturemeal",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "storage",
-        "meal"
-      ],
-      "source": "comp-mealservice-uploadimage",
-      "target": "arch-context",
       "key": 0
     },
     {
@@ -6519,9 +5717,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "food",
+        "carb",
         "aidetected",
-        "carb"
+        "food"
       ],
       "source": "comp-mealservice-analyzemeal",
       "target": "comp-mealcard-mealcard",
@@ -6531,8 +5729,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "items",
-        "carb"
+        "carb",
+        "items"
       ],
       "source": "comp-mealservice-analyzemeal",
       "target": "comp-capturemeal-capturemeal",
@@ -6553,8 +5751,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "entry",
-        "meal"
+        "meal",
+        "entry"
       ],
       "source": "comp-mealservice-uploadandanalyze",
       "target": "comp-mealcard-mealcard",
@@ -6564,9 +5762,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "capture",
         "flow",
-        "meal",
-        "capture"
+        "meal"
       ],
       "source": "comp-mealservice-uploadandanalyze",
       "target": "comp-capturemeal-step",
@@ -6588,46 +5786,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "analysis",
-        "storage",
+        "confirmed",
         "meal"
-      ],
-      "source": "comp-mealservice-uploadandanalyze",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "analysis",
-        "meal",
-        "capture"
-      ],
-      "source": "comp-mealservice-uploadandanalyze",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "meal",
-        "confirmed"
       ],
       "source": "comp-mealservice-savemeal",
       "target": "comp-mealcard-mealcard",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "supabase",
-        "meal"
-      ],
-      "source": "comp-mealservice-savemeal",
-      "target": "arch-context",
       "key": 0
     },
     {
@@ -6645,8 +5808,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "model",
-        "read"
+        "read",
+        "model"
       ],
       "source": "comp-mealservice-mealentry",
       "target": "comp-profileservice-pumpprofile",
@@ -6667,11 +5830,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meals",
         "total",
+        "meals",
+        "carb",
         "todays",
-        "daily",
-        "carb"
+        "daily"
       ],
       "source": "comp-mealservice-gettodaymeals",
       "target": "comp-hoypage-hoypage",
@@ -6681,8 +5844,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "bitacora",
-        "laboratorio"
+        "laboratorio",
+        "bitacora"
       ],
       "source": "comp-mealservice-getmealsbyrange",
       "target": "comp-bottomnav-bottomnav",
@@ -6692,8 +5855,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "date",
-        "range"
+        "range",
+        "date"
       ],
       "source": "comp-mealservice-getmealsbyrange",
       "target": "comp-filterbar-props",
@@ -6703,9 +5866,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "range",
         "bitacora",
-        "date",
-        "range"
+        "date"
       ],
       "source": "comp-mealservice-getmealsbyrange",
       "target": "comp-filterbar-filterbar",
@@ -6715,9 +5878,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "mealhistory",
         "range",
-        "date"
+        "date",
+        "mealhistory"
       ],
       "source": "comp-mealservice-getmealsbyrange",
       "target": "comp-bitacorapage-getrangeforfilter",
@@ -6727,9 +5890,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "importcarelinkcsv",
         "edge",
-        "function"
+        "function",
+        "importcarelinkcsv"
       ],
       "source": "comp-csvuploadservice-importcsvresult",
       "target": "comp-csvuploadservice-uploadcarelinkcsv",
@@ -6739,11 +5902,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "importcarelinkcsv",
-        "entrytreatment",
         "counts",
+        "edge",
         "function",
-        "edge"
+        "entrytreatment",
+        "importcarelinkcsv"
       ],
       "source": "comp-csvuploadservice-importcsvresult",
       "target": "comp-cargadatospage-cargadatospage",
@@ -6753,11 +5916,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "importcarelinkcsv",
+        "edge",
         "function",
-        "carelink",
         "sends",
-        "edge"
+        "importcarelinkcsv",
+        "carelink"
       ],
       "source": "comp-csvuploadservice-uploadcarelinkcsv",
       "target": "comp-cargadatospage-cargadatospage",
@@ -6800,41 +5963,6 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "nightscout",
-        "edge",
-        "carelink"
-      ],
-      "source": "comp-csvuploadservice-uploadcarelinkcsv",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "edge",
-        "carelink"
-      ],
-      "source": "comp-csvuploadservice-uploadcarelinkcsv",
-      "target": "mod-edge-functions",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "nightscout",
-        "synchronization",
-        "carelink"
-      ],
-      "source": "comp-csvuploadservice-uploadcarelinkcsv",
-      "target": "bc-glucose-import",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
         "usersuggested",
         "educadies",
         "masterfoodlist",
@@ -6842,29 +5970,6 @@
       ],
       "source": "comp-catalogservice-addtocatalogpayload",
       "target": "comp-catalogservice-addtocatalog",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "food",
-        "educadies",
-        "catalog"
-      ],
-      "source": "comp-catalogservice-addtocatalogpayload",
-      "target": "bc-food-catalog",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "food",
-        "educadies"
-      ],
-      "source": "comp-catalogservice-addtocatalog",
-      "target": "bc-food-catalog",
       "key": 0
     },
     {
@@ -6893,8 +5998,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "ratio",
-        "pumpprofile"
+        "pumpprofile",
+        "ratio"
       ],
       "source": "comp-profileservice-pumpprofile",
       "target": "comp-perfilpage-perfilpage",
@@ -6904,20 +6009,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "model",
-        "pumpprofile"
-      ],
-      "source": "comp-profileservice-pumpprofile",
-      "target": "arch-domain-model",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
         "profile",
-        "ratio",
-        "pump"
+        "pump",
+        "ratio"
       ],
       "source": "comp-profileservice-getprofile",
       "target": "comp-profileservice-saveprofile",
@@ -6939,8 +6033,8 @@
       "weight": 0.5,
       "shared_keywords": [
         "profile",
-        "existing",
-        "ratio"
+        "ratio",
+        "existing"
       ],
       "source": "comp-profileservice-saveprofile",
       "target": "comp-perfilpage-perfilpage",
@@ -6950,31 +6044,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "root",
-        "application"
-      ],
-      "source": "comp-app-app",
-      "target": "mod-app",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "bottomnav",
-        "page"
-      ],
-      "source": "comp-app-app",
-      "target": "mod-pages",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
         "props",
-        "type",
-        "component"
+        "component",
+        "type"
       ],
       "source": "comp-mealcard-props",
       "target": "comp-filterbar-props",
@@ -6984,9 +6056,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "carb",
         "meal",
-        "photo",
-        "carb"
+        "photo"
       ],
       "source": "comp-mealcard-mealcard",
       "target": "comp-capturemeal-capturemeal",
@@ -7007,8 +6079,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
+        "carb",
+        "meal"
       ],
       "source": "comp-mealcard-mealcard",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -7018,20 +6090,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "carb"
-      ],
-      "source": "comp-mealcard-mealcard",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "type",
         "custom",
-        "filter"
+        "filter",
+        "type"
       ],
       "source": "comp-filterbar-bitacorafilter",
       "target": "comp-filterbar-props",
@@ -7041,10 +6102,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "time",
         "custom",
-        "filter",
-        "bitacora"
+        "time",
+        "bitacora",
+        "filter"
       ],
       "source": "comp-filterbar-bitacorafilter",
       "target": "comp-filterbar-filterbar",
@@ -7054,9 +6115,9 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
+        "custom",
         "date",
         "range",
-        "custom",
         "filter"
       ],
       "source": "comp-filterbar-props",
@@ -7067,8 +6128,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "date",
-        "range"
+        "range",
+        "date"
       ],
       "source": "comp-filterbar-props",
       "target": "comp-bitacorapage-getrangeforfilter",
@@ -7089,8 +6150,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "date",
-        "range"
+        "range",
+        "date"
       ],
       "source": "comp-filterbar-filterbar",
       "target": "comp-bitacorapage-getrangeforfilter",
@@ -7100,8 +6161,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "filter",
-        "page"
+        "page",
+        "filter"
       ],
       "source": "comp-filterbar-filterbar",
       "target": "comp-bitacorapage-bitacorapage",
@@ -7111,8 +6172,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "capture"
+        "capture",
+        "meal"
       ],
       "source": "comp-capturemeal-step",
       "target": "comp-capturemeal-capturemeal",
@@ -7133,19 +6194,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "capture"
-      ],
-      "source": "comp-capturemeal-step",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "meal",
-        "carb"
+        "carb",
+        "meal"
       ],
       "source": "comp-capturemeal-capturemeal",
       "target": "comp-import-carelink-csv-processtreatments",
@@ -7155,34 +6205,10 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "analysis",
-        "meal"
-      ],
-      "source": "comp-capturemeal-capturemeal",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "analysis",
-        "meal",
-        "capture",
-        "carb"
-      ],
-      "source": "comp-capturemeal-capturemeal",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "mealcard",
+        "page",
         "meals",
         "list",
-        "page"
+        "mealcard"
       ],
       "source": "comp-hoypage-hoypage",
       "target": "comp-bitacorapage-bitacorapage",
@@ -7192,8 +6218,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "showing",
-        "page"
+        "page",
+        "showing"
       ],
       "source": "comp-hoypage-hoypage",
       "target": "comp-laboratoriopage-laboratoriopage",
@@ -7203,8 +6229,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "meal",
-        "page"
+        "page",
+        "meal"
       ],
       "source": "comp-bitacorapage-bitacorapage",
       "target": "comp-laboratoriopage-laboratoriopage",
@@ -7214,19 +6240,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "history",
-        "meal"
-      ],
-      "source": "comp-bitacorapage-bitacorapage",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "carelink",
-        "page"
+        "page",
+        "carelink"
       ],
       "source": "comp-laboratoriopage-laboratoriopage",
       "target": "comp-cargadatospage-cargadatospage",
@@ -7258,88 +6273,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "glucose",
-        "meal",
-        "carelink"
-      ],
-      "source": "comp-laboratoriopage-laboratoriopage",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "crossanalysis",
-        "placeholder",
-        "glucose"
-      ],
-      "source": "comp-laboratoriopage-laboratoriopage",
-      "target": "bc-recommendations",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "edge",
-        "carelink"
-      ],
-      "source": "comp-cargadatospage-cargadatospage",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "edge",
-        "carelink"
-      ],
-      "source": "comp-cargadatospage-cargadatospage",
-      "target": "mod-edge-functions",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "supabase",
-        "storage"
-      ],
-      "source": "comp-mocksupabase-mocksupabase",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "client",
-        "supabase"
-      ],
-      "source": "comp-mocksupabase-mocksupabase",
-      "target": "mod-lib",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "client",
-        "supabase",
-        "test"
-      ],
-      "source": "comp-mocksupabase-mocksupabase",
-      "target": "mod-test-utils",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "header",
-        "data"
+        "data",
+        "header"
       ],
       "source": "comp-import-carelink-csv-findblocks",
       "target": "comp-import-carelink-csv-isdatarow",
@@ -7349,8 +6284,8 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "header",
-        "data"
+        "data",
+        "header"
       ],
       "source": "comp-import-carelink-csv-findblocks",
       "target": "comp-import-carelink-csv-parsecsv",
@@ -7385,18 +6320,7 @@
       "weight": 0.5,
       "shared_keywords": [
         "data",
-        "carelink"
-      ],
-      "source": "comp-import-carelink-csv-findblocks",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "header",
-        "data"
+        "header"
       ],
       "source": "comp-import-carelink-csv-isdatarow",
       "target": "comp-import-carelink-csv-parsecsv",
@@ -7406,12 +6330,12 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "extracts",
-        "carelink",
+        "block",
         "entries",
-        "data",
+        "extracts",
         "nightscout",
-        "block"
+        "data",
+        "carelink"
       ],
       "source": "comp-import-carelink-csv-processtreatments",
       "target": "comp-import-carelink-csv-processentries",
@@ -7432,220 +6356,11 @@
       "type": "related_to",
       "weight": 0.5,
       "shared_keywords": [
-        "nightscout",
-        "meal",
-        "data",
-        "carelink"
-      ],
-      "source": "comp-import-carelink-csv-processtreatments",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "meal",
-        "carb"
-      ],
-      "source": "comp-import-carelink-csv-processtreatments",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "nightscout",
-        "carelink"
-      ],
-      "source": "comp-import-carelink-csv-processtreatments",
-      "target": "bc-glucose-import",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
         "entries",
         "nightscout"
       ],
       "source": "comp-import-carelink-csv-processentries",
       "target": "comp-import-carelink-csv-posttonightscout",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "nightscout",
-        "glucose",
-        "data",
-        "carelink"
-      ],
-      "source": "comp-import-carelink-csv-processentries",
-      "target": "arch-context",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "nightscout",
-        "carelink"
-      ],
-      "source": "comp-import-carelink-csv-processentries",
-      "target": "bc-glucose-import",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "deno",
-        "carelink",
-        "analysis",
-        "functions",
-        "edge"
-      ],
-      "source": "arch-context",
-      "target": "mod-edge-functions",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "analysis",
-        "meal"
-      ],
-      "source": "arch-context",
-      "target": "bc-meal-tracking",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "nightscout",
-        "carelink"
-      ],
-      "source": "arch-context",
-      "target": "bc-glucose-import",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "pages",
-        "components"
-      ],
-      "source": "arch-design",
-      "target": "mod-components",
-      "key": 0
-    },
-    {
-      "type": "depends_on",
-      "weight": 1.0,
-      "source": "mod-app",
-      "target": "mod-pages",
-      "key": 0
-    },
-    {
-      "type": "depends_on",
-      "weight": 1.0,
-      "source": "mod-app",
-      "target": "mod-components",
-      "key": 0
-    },
-    {
-      "type": "in_layer",
-      "weight": 1.0,
-      "source": "mod-app",
-      "target": "lyr-app",
-      "key": 0
-    },
-    {
-      "type": "depends_on",
-      "weight": 1.0,
-      "source": "mod-components",
-      "target": "mod-services",
-      "key": 0
-    },
-    {
-      "type": "in_layer",
-      "weight": 1.0,
-      "source": "mod-components",
-      "target": "lyr-components",
-      "key": 0
-    },
-    {
-      "type": "in_layer",
-      "weight": 1.0,
-      "source": "mod-edge-functions",
-      "target": "lyr-edge-functions",
-      "key": 0
-    },
-    {
-      "type": "related_to",
-      "weight": 0.5,
-      "shared_keywords": [
-        "client",
-        "supabase",
-        "infrastructure"
-      ],
-      "source": "mod-lib",
-      "target": "mod-test-utils",
-      "key": 0
-    },
-    {
-      "type": "in_layer",
-      "weight": 1.0,
-      "source": "mod-lib",
-      "target": "lyr-lib",
-      "key": 0
-    },
-    {
-      "type": "depends_on",
-      "weight": 1.0,
-      "source": "mod-pages",
-      "target": "mod-services",
-      "key": 0
-    },
-    {
-      "type": "depends_on",
-      "weight": 1.0,
-      "source": "mod-pages",
-      "target": "mod-components",
-      "key": 0
-    },
-    {
-      "type": "in_layer",
-      "weight": 1.0,
-      "source": "mod-pages",
-      "target": "lyr-pages",
-      "key": 0
-    },
-    {
-      "type": "depends_on",
-      "weight": 1.0,
-      "source": "mod-services",
-      "target": "mod-lib",
-      "key": 0
-    },
-    {
-      "type": "in_layer",
-      "weight": 1.0,
-      "source": "mod-services",
-      "target": "lyr-services",
-      "key": 0
-    },
-    {
-      "type": "in_layer",
-      "weight": 1.0,
-      "source": "mod-test-utils",
-      "target": "lyr-test-utils",
       "key": 0
     },
     {

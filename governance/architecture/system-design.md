@@ -1,3 +1,26 @@
+---
+type: architecture_design
+project: carbtrack-ai
+status: current
+layers:
+  - name: app
+    modules: [app]
+  - name: pages
+    modules: [pages]
+  - name: components
+    modules: [components]
+  - name: services
+    modules: [services]
+  - name: lib
+    modules: [lib]
+  - name: edge-functions
+    modules: [edge-functions]
+  - name: test-utils
+    modules: [test-utils]
+guardrails_reference: "governance/guardrails.md"
+constitution_reference: ".specify/memory/constitution.md"
+---
+
 # System Design: carbtrack-ai
 
 > C4 Level 2 — Container/component decomposition

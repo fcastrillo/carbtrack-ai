@@ -1,0 +1,631 @@
+{
+  "node_changes": [
+    {
+      "node_id": "arch-context",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "arch-context",
+        "type": "architecture",
+        "content": "System context: frontend: React 19, Vite, TypeScript, Tailwind CSS 4, backend: Supabase Edge Functions (Deno), database: PostgreSQL (Supabase), storage: Supabase Storage, ai: OpenAI GPT-4o Vision (planned). External dependencies: Supabase (DB, Storage, Edge Functions), Nightscout (CGM glucose data), OpenAI GPT-4o Vision (meal analysis), CareLink CSV (manual pump export).",
+        "source_file": "governance/architecture/system-context.md",
+        "created": "2026-02-12T22:17:38.156820+00:00",
+        "metadata": {
+          "arch_type": "architecture_context",
+          "tech_stack": {
+            "frontend": "React 19, Vite, TypeScript, Tailwind CSS 4",
+            "backend": "Supabase Edge Functions (Deno)",
+            "database": "PostgreSQL (Supabase)",
+            "storage": "Supabase Storage",
+            "ai": "OpenAI GPT-4o Vision (planned)"
+          },
+          "external_dependencies": [
+            "Supabase (DB, Storage, Edge Functions)",
+            "Nightscout (CGM glucose data)",
+            "OpenAI GPT-4o Vision (meal analysis)",
+            "CareLink CSV (manual pump export)"
+          ],
+          "users": [
+            "T1D patient (single user, PWA)"
+          ],
+          "governed_by": [
+            ".specify/memory/constitution.md",
+            "governance/guardrails.md"
+          ],
+          "project": "carbtrack-ai",
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "arch-design",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "arch-design",
+        "type": "architecture",
+        "content": "System design: 7 layers (app, pages, components, services, lib, edge-functions, test-utils). app: app. pages: pages. components: components. services: services. lib: lib. edge-functions: edge-functions. test-utils: test-utils.",
+        "source_file": "governance/architecture/system-design.md",
+        "created": "2026-02-12T22:17:38.157364+00:00",
+        "metadata": {
+          "arch_type": "architecture_design",
+          "layers": [
+            {
+              "name": "app",
+              "modules": [
+                "app"
+              ]
+            },
+            {
+              "name": "pages",
+              "modules": [
+                "pages"
+              ]
+            },
+            {
+              "name": "components",
+              "modules": [
+                "components"
+              ]
+            },
+            {
+              "name": "services",
+              "modules": [
+                "services"
+              ]
+            },
+            {
+              "name": "lib",
+              "modules": [
+                "lib"
+              ]
+            },
+            {
+              "name": "edge-functions",
+              "modules": [
+                "edge-functions"
+              ]
+            },
+            {
+              "name": "test-utils",
+              "modules": [
+                "test-utils"
+              ]
+            }
+          ],
+          "guardrails_reference": "governance/guardrails.md",
+          "constitution_reference": ".specify/memory/constitution.md",
+          "project": "carbtrack-ai",
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "bc-application-layer",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "bc-application-layer",
+        "type": "bounded_context",
+        "content": "",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:17:38.160835+00:00",
+        "metadata": {
+          "bc_type": "application_layer",
+          "modules": [
+            "app/App"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "bc-food-catalog",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "bc-food-catalog",
+        "type": "bounded_context",
+        "content": "Educadies food reference catalog management",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:17:38.160835+00:00",
+        "metadata": {
+          "bc_type": "bounded_context",
+          "modules": [
+            "services/catalogService"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "bc-glucose-import",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "bc-glucose-import",
+        "type": "bounded_context",
+        "content": "CareLink CSV parsing and Nightscout synchronization",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:17:38.160835+00:00",
+        "metadata": {
+          "bc_type": "bounded_context",
+          "modules": [
+            "services/csvUploadService",
+            "edge-functions/import-carelink-csv",
+            "pages/CargaDatosPage"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "bc-meal-tracking",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "bc-meal-tracking",
+        "type": "bounded_context",
+        "content": "Core domain — meal capture, AI analysis, carb confirmation, history",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:17:38.160835+00:00",
+        "metadata": {
+          "bc_type": "bounded_context",
+          "modules": [
+            "services/mealService",
+            "components/CaptureMeal",
+            "components/MealCard",
+            "pages/HoyPage",
+            "pages/BitacoraPage"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "bc-pump-profile",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "bc-pump-profile",
+        "type": "bounded_context",
+        "content": "ISF and I:C ratio configuration",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:17:38.160835+00:00",
+        "metadata": {
+          "bc_type": "bounded_context",
+          "modules": [
+            "services/profileService",
+            "pages/PerfilPage"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "bc-recommendations",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "bc-recommendations",
+        "type": "bounded_context",
+        "content": "Cross-analysis of meals + glucose for insights (placeholder)",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:17:38.160835+00:00",
+        "metadata": {
+          "bc_type": "bounded_context",
+          "modules": [
+            "pages/LaboratorioPage"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "bc-shared-kernel",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "bc-shared-kernel",
+        "type": "bounded_context",
+        "content": "",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:17:38.160835+00:00",
+        "metadata": {
+          "bc_type": "shared_kernel",
+          "modules": [
+            "lib/supabase",
+            "components/BottomNav",
+            "components/FilterBar",
+            "test-utils/mockSupabase"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "lyr-app",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "lyr-app",
+        "type": "layer",
+        "content": "",
+        "source_file": "governance/architecture/system-design.md",
+        "created": "2026-02-12T22:17:38.160851+00:00",
+        "metadata": {
+          "modules": [
+            "app"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "lyr-components",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "lyr-components",
+        "type": "layer",
+        "content": "",
+        "source_file": "governance/architecture/system-design.md",
+        "created": "2026-02-12T22:17:38.160851+00:00",
+        "metadata": {
+          "modules": [
+            "components"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "lyr-edge-functions",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "lyr-edge-functions",
+        "type": "layer",
+        "content": "",
+        "source_file": "governance/architecture/system-design.md",
+        "created": "2026-02-12T22:17:38.160851+00:00",
+        "metadata": {
+          "modules": [
+            "edge-functions"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "lyr-lib",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "lyr-lib",
+        "type": "layer",
+        "content": "",
+        "source_file": "governance/architecture/system-design.md",
+        "created": "2026-02-12T22:17:38.160851+00:00",
+        "metadata": {
+          "modules": [
+            "lib"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "lyr-pages",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "lyr-pages",
+        "type": "layer",
+        "content": "",
+        "source_file": "governance/architecture/system-design.md",
+        "created": "2026-02-12T22:17:38.160851+00:00",
+        "metadata": {
+          "modules": [
+            "pages"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "lyr-services",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "lyr-services",
+        "type": "layer",
+        "content": "",
+        "source_file": "governance/architecture/system-design.md",
+        "created": "2026-02-12T22:17:38.160851+00:00",
+        "metadata": {
+          "modules": [
+            "services"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "lyr-test-utils",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "lyr-test-utils",
+        "type": "layer",
+        "content": "",
+        "source_file": "governance/architecture/system-design.md",
+        "created": "2026-02-12T22:17:38.160851+00:00",
+        "metadata": {
+          "modules": [
+            "test-utils"
+          ]
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "mod-app",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "mod-app",
+        "type": "module",
+        "content": "Application root — routing and layout shell",
+        "source_file": "governance/architecture/modules/app.md",
+        "created": "2026-02-12T22:17:38.157613+00:00",
+        "metadata": {
+          "depends_on": [
+            "pages",
+            "components"
+          ],
+          "depended_by": [],
+          "components": 1,
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "mod-components",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "mod-components",
+        "type": "module",
+        "content": "Reusable UI components shared across pages",
+        "source_file": "governance/architecture/modules/components.md",
+        "created": "2026-02-12T22:17:38.157812+00:00",
+        "metadata": {
+          "depends_on": [
+            "services"
+          ],
+          "depended_by": [
+            "pages"
+          ],
+          "components": 8,
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "mod-edge-functions",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "mod-edge-functions",
+        "type": "module",
+        "content": "Server-side Deno Edge Functions for AI analysis and CareLink import",
+        "source_file": "governance/architecture/modules/edge-functions.md",
+        "created": "2026-02-12T22:17:38.158010+00:00",
+        "metadata": {
+          "depends_on": [],
+          "depended_by": [
+            "services"
+          ],
+          "components": 7,
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "mod-lib",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "mod-lib",
+        "type": "module",
+        "content": "Supabase client initialization and shared infrastructure",
+        "source_file": "governance/architecture/modules/lib.md",
+        "created": "2026-02-12T22:17:38.158195+00:00",
+        "metadata": {
+          "depends_on": [],
+          "depended_by": [
+            "services"
+          ],
+          "components": 1,
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "mod-pages",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "mod-pages",
+        "type": "module",
+        "content": "Top-level page components — one per tab in BottomNav",
+        "source_file": "governance/architecture/modules/pages.md",
+        "created": "2026-02-12T22:17:38.158405+00:00",
+        "metadata": {
+          "depends_on": [
+            "services",
+            "components"
+          ],
+          "depended_by": [
+            "app"
+          ],
+          "components": 6,
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "mod-services",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "mod-services",
+        "type": "module",
+        "content": "Domain-specific Supabase operations — one service per domain",
+        "source_file": "governance/architecture/modules/services.md",
+        "created": "2026-02-12T22:17:38.158612+00:00",
+        "metadata": {
+          "depends_on": [
+            "lib"
+          ],
+          "depended_by": [
+            "components",
+            "pages"
+          ],
+          "components": 18,
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "mod-test-utils",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "mod-test-utils",
+        "type": "module",
+        "content": "Test infrastructure — mock Supabase client and setup",
+        "source_file": "governance/architecture/modules/test-utils.md",
+        "created": "2026-02-12T22:17:38.158798+00:00",
+        "metadata": {
+          "depends_on": [],
+          "depended_by": [],
+          "components": 1,
+          "status": "current"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "arch-domain-model",
+      "change_type": "modified",
+      "old_value": {
+        "id": "arch-domain-model",
+        "type": "architecture",
+        "content": "Domain model: 0 bounded contexts — none defined. Shared kernel: none.",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:01:25.422701+00:00",
+        "metadata": {
+          "arch_type": "architecture_domain_model",
+          "bounded_contexts": [],
+          "shared_kernel": {},
+          "project": "carbtrack-ai",
+          "status": "draft"
+        }
+      },
+      "new_value": {
+        "id": "arch-domain-model",
+        "type": "architecture",
+        "content": "Domain model: 5 bounded contexts — meal-tracking, glucose-import, food-catalog, pump-profile, recommendations. Shared kernel: lib/supabase, components/BottomNav, components/FilterBar, test-utils/mockSupabase.",
+        "source_file": "governance/architecture/domain-model.md",
+        "created": "2026-02-12T22:17:38.156289+00:00",
+        "metadata": {
+          "arch_type": "architecture_domain_model",
+          "bounded_contexts": [
+            {
+              "name": "meal-tracking",
+              "modules": [
+                "services/mealService",
+                "components/CaptureMeal",
+                "components/MealCard",
+                "pages/HoyPage",
+                "pages/BitacoraPage"
+              ],
+              "description": "Core domain — meal capture, AI analysis, carb confirmation, history"
+            },
+            {
+              "name": "glucose-import",
+              "modules": [
+                "services/csvUploadService",
+                "edge-functions/import-carelink-csv",
+                "pages/CargaDatosPage"
+              ],
+              "description": "CareLink CSV parsing and Nightscout synchronization"
+            },
+            {
+              "name": "food-catalog",
+              "modules": [
+                "services/catalogService"
+              ],
+              "description": "Educadies food reference catalog management"
+            },
+            {
+              "name": "pump-profile",
+              "modules": [
+                "services/profileService",
+                "pages/PerfilPage"
+              ],
+              "description": "ISF and I:C ratio configuration"
+            },
+            {
+              "name": "recommendations",
+              "modules": [
+                "pages/LaboratorioPage"
+              ],
+              "description": "Cross-analysis of meals + glucose for insights (placeholder)"
+            }
+          ],
+          "shared_kernel": {
+            "modules": [
+              "lib/supabase",
+              "components/BottomNav",
+              "components/FilterBar",
+              "test-utils/mockSupabase"
+            ]
+          },
+          "application_layer": {
+            "modules": [
+              "app/App"
+            ]
+          },
+          "project": "carbtrack-ai",
+          "status": "current"
+        }
+      },
+      "changed_fields": [
+        "content",
+        "metadata"
+      ]
+    }
+  ],
+  "impact": "architectural",
+  "affected_modules": [
+    "mod-app",
+    "mod-components",
+    "mod-edge-functions",
+    "mod-lib",
+    "mod-pages",
+    "mod-services",
+    "mod-test-utils"
+  ],
+  "summary": "24 nodes changed (23 added, 1 modified), 7 modules affected (mod-app, mod-components, mod-edge-functions, mod-lib, mod-pages, mod-services, mod-test-utils)"
+}
