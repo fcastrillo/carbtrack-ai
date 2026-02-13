@@ -47,3 +47,6 @@
 {"type":"work_lifecycle","timestamp":"2026-02-13T19:58:17.404949Z","work_type":"story","work_id":"F0.4","event":"complete","phase":"plan","blocker":null}
 {"type":"work_lifecycle","timestamp":"2026-02-13T19:59:00.581668Z","work_type":"story","work_id":"F0.4","event":"start","phase":"implement","blocker":null}
 {"type":"work_lifecycle","timestamp":"2026-02-13T20:14:16.815618Z","work_type":"story","work_id":"F0.4","event":"complete","phase":"implement","blocker":null}
+{"type":"work_lifecycle","timestamp":"2026-02-13T20:15:23.619826Z","work_type":"story","work_id":"F0.4","event":"start","phase":"review","blocker":null}
+{"type":"calibration","timestamp":"2026-02-13T20:17:02.019323Z","story_id":"F0.4","story_size":"S","estimated_min":30,"actual_min":25,"velocity":1.2}
+{"type":"work_lifecycle","timestamp":"2026-02-13T20:17:08.221999Z","work_type":"story","work_id":"F0.4","event":"complete","phase":"review","blocker":null}
