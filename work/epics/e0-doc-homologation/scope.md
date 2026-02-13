@@ -25,8 +25,8 @@ Unify the project's documentation architecture so that all design history (spec-
 | F0.2 | Index E1/E2 Design | S | Done | Create `work/epics/e1-mvp-asistente-ch/design.md` indexing all spec-kit artifacts with `_origin: spec-kit` marker |
 | F0.3 | Canonicalize Requirements | XS | Done | Add FR→RF mapping table to `specs/001-mvp-asistente-ch/spec.md`, declare RF-NN canonical in `governance/prd.md` |
 | F0.4 | Document ADRs | S | Done | Create ADR-001 (index vs move), ADR-002 (canonical nomenclature), ADR-003 (RaiSE-native design for E3+) |
-| F0.5 | Go-Forward Convention | S | Pending | Document design convention for future epics: where artifacts live, which skills generate what |
-| F0.6 | Initialize Parking Lot | XS | Pending | Create `dev/parking-lot.md` with deferred items from E0 and known pending items |
+| F0.5 | Go-Forward Convention | S | Done | Document design convention for future epics: where artifacts live, which skills generate what |
+| F0.6 | Initialize Parking Lot | XS | Done | Create `dev/parking-lot.md` with deferred items from E0 and known pending items |
 
 ---
 
@@ -186,14 +186,14 @@ Session 4 (close):
 | F0.2 | S | Done | 18 min | 2.2x | First parallel batch — E1 index created |
 | F0.3 | XS | Done | 15 min | 1.67x | First parallel batch — FR→RF mapping established |
 | F0.4 | S | Done | 25 min | 1.2x | 3 ADRs documented (529 lines total) — 2 patterns captured |
-| F0.5 | S | Pending | - | - | Sequential after F0.4 |
-| F0.6 | XS | Pending | - | - | Flexible (closing task) |
+| F0.5 | S | Done | 34 min | 1.9x | Design + implementation + review (concurrent) |
+| F0.6 | XS | Done | 19 min | 1.42x | Parking lot creation (meta-work) |
 
 **Milestone Progress:**
 - [x] M1: Walking Skeleton (Session 1, ~53 min actual vs ~2h estimated, 2.0x avg velocity)
-- [x] M2: Core MVP (Session 1, ~25 min actual vs ~1h estimated, 2.4x velocity)
-- [ ] M3: Feature Complete (Session 3, ~1h)
-- [ ] M4: Epic Complete (Session 4, ~30min)
+- [x] M2: Core MVP (Session 2, ~25 min actual vs ~1h estimated, 2.4x velocity)
+- [x] M3: Feature Complete (Session 3, ~53 min actual vs ~1h estimated, 1.9x avg velocity) — F0.5 (34 min, 1.9x) + F0.6 (19 min, 1.42x)
+- [ ] M4: Epic Complete (Session 4, ~30min) — Epic retrospective + merge to main
 
 **Total estimated effort:** 4.5-5 hours (execution + retro)
 **Calendar time:** 1 day (with parallel execution)
