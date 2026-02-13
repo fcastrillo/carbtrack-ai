@@ -42,3 +42,6 @@ coverage/
 
 # Supabase CLI local state
 supabase/.temp/
+.claude/settings.local.json
+.raise/rai/personal/telemetry/signals.jsonl
+.raise/rai/personal/session-state.yaml
