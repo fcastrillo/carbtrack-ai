@@ -190,7 +190,7 @@
 **Purpose**: Final validation and consistency
 
 - [x] T046 [P] Ensure no API keys or Nightscout secrets in frontend code or frontend env; only VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in client
-- [ ] T047 Run quickstart validation from `specs/001-mvp-asistente-ch/quickstart.md`: tick off checklist (navigation, capture, Hoy, Bitácora, CSV upload, Laboratorio, Perfil, security)
+- [x] T047 Run quickstart validation from `specs/001-mvp-asistente-ch/quickstart.md`: tick off checklist (navigation, capture, Hoy, Bitácora, CSV upload, Laboratorio, Perfil, security)
 - [x] T048 [P] Add or adjust PWA manifest and meta for installability and mobile use in `frontend/public/`
 - [x] T049 Verify dark mode #0a0a0a / #18181b applied across all pages per docs/screenshots/UI_REFERENCE.md
 
