@@ -1,3 +1,18 @@
+---
+**⚠️ SUPERSEDED — GENESIS ARTIFACT**
+
+This file is the original project genesis document (pre-RaiSE). It has been archived for historical reference.
+
+**Current governance:** See `governance/prd.md` for active project requirements.
+
+**Context:** This project evolved from spec-kit (Epic E1) to RaiSE framework (Epic E0+). Genesis files are preserved but superseded by RaiSE structure.
+
+**Archived:** 2026-02-13 (Epic E0: Documentation Homologation)
+
+---
+
+[ORIGINAL CONTENT BELOW]
+
 # PRD: Asistente de Conteo de Carbohidratos con IA
 
 ## 1. Visión y Alcance (Vision & Scope)
