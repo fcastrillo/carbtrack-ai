@@ -2,6 +2,8 @@
 
 > Product Requirements Document
 
+**Nomenclature:** This document uses **RF-NN** format for functional requirements (e.g., RF-01, RF-02). This is the **canonical nomenclature** for the project. Legacy spec-kit artifacts (Epic E1) use FR-NNN format, which is preserved for historical traceability only. See `specs/001-mvp-asistente-ch/spec.md` for FR→RF mapping table.
+
 ---
 
 ## Problem

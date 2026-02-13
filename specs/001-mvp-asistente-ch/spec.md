@@ -151,6 +151,32 @@ Muestra los datos de configuración de la bomba más relevantes: sensibilidad (I
 - **FR-009**: El sistema MUST aplicar estilo Dark Mode (fondo #0a0a0a, tarjetas #18181b) consistente con `docs/screenshots/`.
 - **FR-010**: El sistema MUST persistir registros de comidas (foto, análisis IA, CH confirmados) en Supabase (tabla meal_history, imágenes en Storage) para alimentar Hoy, Bitácora y futura auditoría; sin requisito de modo offline en el MVP.
 
+### FR→RF Mapping (Canonical Nomenclature)
+
+> **Note:** The project evolved from spec-kit (Epic E1) to RaiSE framework (Epic E0+). Functional requirements use different nomenclatures:
+> - **FR-NNN** (spec-kit, legacy): Implementation-level requirements from E1 design phase
+> - **RF-NN** (RaiSE governance, canonical): Product-level requirements from `governance/prd.md`
+>
+> **Canonical nomenclature:** RF-NN is the authoritative format. FR-NNN is preserved for E1 traceability only.
+
+| Legacy (Spec-Kit) | Canonical (Governance) | Requirement |
+|-------------------|------------------------|-------------|
+| FR-001 | RF-01 | Photo-Based Meal Recognition (camera interface, GPT-4o Vision backend) |
+| FR-002 | RF-07 | Food Catalog (Educadies integration, master_food_list matching) |
+| FR-003 | RF-02 | Daily Carb Tracking ("Hoy" screen, daily total, meal cards) |
+| FR-004 | RF-02 | Daily Carb Tracking ("Bitácora" screen, filters, meal history) |
+| FR-005 | RF-03 | CareLink CSV Import (two-block parsing, Nightscout sync) |
+| FR-006 | RF-04 | Retrospective Audit ("Laboratorio" screen, recommendations) |
+| FR-007 | RF-06 | Pump Profile Management ("Perfil" screen, ISF/I:C entry) |
+| FR-008 | — | UI implementation (bottom navigation, 5 tabs) |
+| FR-009 | — | UI implementation (Dark Mode, #0a0a0a / #18181b) |
+| FR-010 | — | Technical implementation (Supabase persistence, covered by RF-01/RF-02) |
+
+**Unmapped governance requirements:**
+- **RF-05**: Continuous Learning Loop (future, post-MVP)
+
+**For E3+ epics:** Use RF-NN exclusively. FR-NNN is legacy nomenclature for E1 historical reference only.
+
 ### Key Entities
 
 - **master_food_list**: Catálogo Educadies; alimento, ch_por_racion, medida, categoria; usado para cruce con salida de Vision.
