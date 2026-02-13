@@ -34,11 +34,12 @@ function getRangeForFilter(
       const end = customEnd ? new Date(customEnd + 'T23:59:59.999') : new Date()
       return { start, end }
     }
-    default:
+    default: {
       // all: desde hace 10 años hasta ahora
       const start = new Date(now)
       start.setFullYear(start.getFullYear() - 10)
       return { start, end: endOfToday }
+    }
   }
 }
 

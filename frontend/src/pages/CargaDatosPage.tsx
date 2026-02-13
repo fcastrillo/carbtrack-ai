@@ -1,18 +1,15 @@
 import { useState } from 'react'
-import { Upload } from 'lucide-react'
 import { uploadCareLinkCsv } from '../services/csvUploadService'
 
 export function CargaDatosPage() {
   const [status, setStatus] = useState<'idle' | 'uploading' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
-  const [result, setResult] = useState<{ entries: number; treatments: number } | null>(null)
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
     setStatus('uploading')
     setMessage('')
-    setResult(null)
     try {
       const text = await file.text()
       const data = await uploadCareLinkCsv(text)
@@ -27,7 +24,6 @@ export function CargaDatosPage() {
         return
       }
       setStatus('success')
-      setResult({ entries: data.entries_count, treatments: data.treatments_count })
       setMessage(
         data.success
           ? `Enviados: ${data.entries_count} entries (glucosa), ${data.treatments_count} treatments (carbos).`
