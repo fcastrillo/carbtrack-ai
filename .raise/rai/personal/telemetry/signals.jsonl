@@ -41,3 +41,9 @@
 {"type":"work_lifecycle","timestamp":"2026-02-13T19:39:26.437855Z","work_type":"story","work_id":"F0.3","event":"start","phase":"review","blocker":null}
 {"type":"calibration","timestamp":"2026-02-13T19:40:22.181588Z","story_id":"F0.3","story_size":"XS","estimated_min":25,"actual_min":15,"velocity":1.67}
 {"type":"work_lifecycle","timestamp":"2026-02-13T19:40:25.913685Z","work_type":"story","work_id":"F0.3","event":"complete","phase":"review","blocker":null}
+{"type":"work_lifecycle","timestamp":"2026-02-13T19:54:17.382250Z","work_type":"story","work_id":"F0.4","event":"start","phase":"design","blocker":null}
+{"type":"work_lifecycle","timestamp":"2026-02-13T19:56:08.702860Z","work_type":"story","work_id":"F0.4","event":"complete","phase":"design","blocker":null}
+{"type":"work_lifecycle","timestamp":"2026-02-13T19:56:57.298063Z","work_type":"story","work_id":"F0.4","event":"start","phase":"plan","blocker":null}
+{"type":"work_lifecycle","timestamp":"2026-02-13T19:58:17.404949Z","work_type":"story","work_id":"F0.4","event":"complete","phase":"plan","blocker":null}
+{"type":"work_lifecycle","timestamp":"2026-02-13T19:59:00.581668Z","work_type":"story","work_id":"F0.4","event":"start","phase":"implement","blocker":null}
+{"type":"work_lifecycle","timestamp":"2026-02-13T20:14:16.815618Z","work_type":"story","work_id":"F0.4","event":"complete","phase":"implement","blocker":null}
