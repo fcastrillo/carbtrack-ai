@@ -1,631 +1,325 @@
 {
   "node_changes": [
     {
-      "node_id": "arch-context",
+      "node_id": "PAT-F-001",
       "change_type": "added",
       "old_value": null,
       "new_value": {
-        "id": "arch-context",
-        "type": "architecture",
-        "content": "System context: frontend: React 19, Vite, TypeScript, Tailwind CSS 4, backend: Supabase Edge Functions (Deno), database: PostgreSQL (Supabase), storage: Supabase Storage, ai: OpenAI GPT-4o Vision (planned). External dependencies: Supabase (DB, Storage, Edge Functions), Nightscout (CGM glucose data), OpenAI GPT-4o Vision (meal analysis), CareLink CSV (manual pump export).",
-        "source_file": "governance/architecture/system-context.md",
-        "created": "2026-02-12T22:17:38.156820+00:00",
+        "id": "PAT-F-001",
+        "type": "pattern",
+        "content": "Supabase Edge Functions import npm packages via esm.sh CDN: https://esm.sh/@supabase/supabase-js@2",
+        "source_file": ".raise/rai/memory/patterns.jsonl",
+        "created": "2026-02-12",
         "metadata": {
-          "arch_type": "architecture_context",
-          "tech_stack": {
-            "frontend": "React 19, Vite, TypeScript, Tailwind CSS 4",
-            "backend": "Supabase Edge Functions (Deno)",
-            "database": "PostgreSQL (Supabase)",
-            "storage": "Supabase Storage",
-            "ai": "OpenAI GPT-4o Vision (planned)"
-          },
-          "external_dependencies": [
-            "Supabase (DB, Storage, Edge Functions)",
-            "Nightscout (CGM glucose data)",
-            "OpenAI GPT-4o Vision (meal analysis)",
-            "CareLink CSV (manual pump export)"
+          "context": [
+            "deno",
+            "supabase",
+            "edge-functions",
+            "imports"
           ],
-          "users": [
-            "T1D patient (single user, PWA)"
+          "learned_from": "t020",
+          "scope": "project"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "PAT-F-002",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "PAT-F-002",
+        "type": "pattern",
+        "content": "OpenAI Vision responses may wrap JSON in markdown code blocks — extract with regex /{[\\s\\S]*}/ before JSON.parse",
+        "source_file": ".raise/rai/memory/patterns.jsonl",
+        "created": "2026-02-12",
+        "metadata": {
+          "context": [
+            "openai",
+            "vision",
+            "json",
+            "parsing"
           ],
-          "governed_by": [
-            ".specify/memory/constitution.md",
-            "governance/guardrails.md"
+          "learned_from": "t020",
+          "scope": "project"
+        }
+      },
+      "changed_fields": []
+    },
+    {
+      "node_id": "PAT-F-003",
+      "change_type": "added",
+      "old_value": null,
+      "new_value": {
+        "id": "PAT-F-003",
+        "type": "pattern",
+        "content": "For single-file stories, combine tightly coupled tasks into one commit rather than tracking separately — decomposition is useful for thinking but overhead for execution",
+        "source_file": ".raise/rai/memory/patterns.jsonl",
+        "created": "2026-02-12",
+        "metadata": {
+          "context": [
+            "planning",
+            "decomposition",
+            "story"
           ],
-          "project": "carbtrack-ai",
-          "status": "current"
+          "learned_from": "t020",
+          "scope": "project"
         }
       },
       "changed_fields": []
     },
     {
-      "node_id": "arch-design",
+      "node_id": "PAT-F-004",
       "change_type": "added",
       "old_value": null,
       "new_value": {
-        "id": "arch-design",
-        "type": "architecture",
-        "content": "System design: 7 layers (app, pages, components, services, lib, edge-functions, test-utils). app: app. pages: pages. components: components. services: services. lib: lib. edge-functions: edge-functions. test-utils: test-utils.",
-        "source_file": "governance/architecture/system-design.md",
-        "created": "2026-02-12T22:17:38.157364+00:00",
+        "id": "PAT-F-004",
+        "type": "pattern",
+        "content": "Full story lifecycle (start → design → plan → implement → review → close) can complete in a single session for moderate Edge Function stories",
+        "source_file": ".raise/rai/memory/patterns.jsonl",
+        "created": "2026-02-12",
         "metadata": {
-          "arch_type": "architecture_design",
-          "layers": [
-            {
-              "name": "app",
-              "modules": [
-                "app"
-              ]
-            },
-            {
-              "name": "pages",
-              "modules": [
-                "pages"
-              ]
-            },
-            {
-              "name": "components",
-              "modules": [
-                "components"
-              ]
-            },
-            {
-              "name": "services",
-              "modules": [
-                "services"
-              ]
-            },
-            {
-              "name": "lib",
-              "modules": [
-                "lib"
-              ]
-            },
-            {
-              "name": "edge-functions",
-              "modules": [
-                "edge-functions"
-              ]
-            },
-            {
-              "name": "test-utils",
-              "modules": [
-                "test-utils"
-              ]
-            }
+          "context": [
+            "story",
+            "lifecycle",
+            "velocity"
           ],
-          "guardrails_reference": "governance/guardrails.md",
-          "constitution_reference": ".specify/memory/constitution.md",
-          "project": "carbtrack-ai",
-          "status": "current"
+          "learned_from": "SES-001",
+          "scope": "project"
         }
       },
       "changed_fields": []
     },
     {
-      "node_id": "bc-application-layer",
+      "node_id": "PAT-F-005",
       "change_type": "added",
       "old_value": null,
       "new_value": {
-        "id": "bc-application-layer",
-        "type": "bounded_context",
-        "content": "",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:17:38.160835+00:00",
+        "id": "PAT-F-005",
+        "type": "pattern",
+        "content": "Validation stories: use structured audit table (PASS/FAIL/PARTIAL per checklist item with file:line evidence). Design phase can be skipped (Simple complexity) when the checklist itself serves as the spec.",
+        "source_file": ".raise/rai/memory/patterns.jsonl",
+        "created": "2026-02-13",
         "metadata": {
-          "bc_type": "application_layer",
-          "modules": [
-            "app/App"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "bc-food-catalog",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "bc-food-catalog",
-        "type": "bounded_context",
-        "content": "Educadies food reference catalog management",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:17:38.160835+00:00",
-        "metadata": {
-          "bc_type": "bounded_context",
-          "modules": [
-            "services/catalogService"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "bc-glucose-import",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "bc-glucose-import",
-        "type": "bounded_context",
-        "content": "CareLink CSV parsing and Nightscout synchronization",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:17:38.160835+00:00",
-        "metadata": {
-          "bc_type": "bounded_context",
-          "modules": [
-            "services/csvUploadService",
-            "edge-functions/import-carelink-csv",
-            "pages/CargaDatosPage"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "bc-meal-tracking",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "bc-meal-tracking",
-        "type": "bounded_context",
-        "content": "Core domain — meal capture, AI analysis, carb confirmation, history",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:17:38.160835+00:00",
-        "metadata": {
-          "bc_type": "bounded_context",
-          "modules": [
-            "services/mealService",
-            "components/CaptureMeal",
-            "components/MealCard",
-            "pages/HoyPage",
-            "pages/BitacoraPage"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "bc-pump-profile",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "bc-pump-profile",
-        "type": "bounded_context",
-        "content": "ISF and I:C ratio configuration",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:17:38.160835+00:00",
-        "metadata": {
-          "bc_type": "bounded_context",
-          "modules": [
-            "services/profileService",
-            "pages/PerfilPage"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "bc-recommendations",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "bc-recommendations",
-        "type": "bounded_context",
-        "content": "Cross-analysis of meals + glucose for insights (placeholder)",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:17:38.160835+00:00",
-        "metadata": {
-          "bc_type": "bounded_context",
-          "modules": [
-            "pages/LaboratorioPage"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "bc-shared-kernel",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "bc-shared-kernel",
-        "type": "bounded_context",
-        "content": "",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:17:38.160835+00:00",
-        "metadata": {
-          "bc_type": "shared_kernel",
-          "modules": [
-            "lib/supabase",
-            "components/BottomNav",
-            "components/FilterBar",
-            "test-utils/mockSupabase"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "lyr-app",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "lyr-app",
-        "type": "layer",
-        "content": "",
-        "source_file": "governance/architecture/system-design.md",
-        "created": "2026-02-12T22:17:38.160851+00:00",
-        "metadata": {
-          "modules": [
-            "app"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "lyr-components",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "lyr-components",
-        "type": "layer",
-        "content": "",
-        "source_file": "governance/architecture/system-design.md",
-        "created": "2026-02-12T22:17:38.160851+00:00",
-        "metadata": {
-          "modules": [
-            "components"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "lyr-edge-functions",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "lyr-edge-functions",
-        "type": "layer",
-        "content": "",
-        "source_file": "governance/architecture/system-design.md",
-        "created": "2026-02-12T22:17:38.160851+00:00",
-        "metadata": {
-          "modules": [
-            "edge-functions"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "lyr-lib",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "lyr-lib",
-        "type": "layer",
-        "content": "",
-        "source_file": "governance/architecture/system-design.md",
-        "created": "2026-02-12T22:17:38.160851+00:00",
-        "metadata": {
-          "modules": [
-            "lib"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "lyr-pages",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "lyr-pages",
-        "type": "layer",
-        "content": "",
-        "source_file": "governance/architecture/system-design.md",
-        "created": "2026-02-12T22:17:38.160851+00:00",
-        "metadata": {
-          "modules": [
-            "pages"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "lyr-services",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "lyr-services",
-        "type": "layer",
-        "content": "",
-        "source_file": "governance/architecture/system-design.md",
-        "created": "2026-02-12T22:17:38.160851+00:00",
-        "metadata": {
-          "modules": [
-            "services"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "lyr-test-utils",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "lyr-test-utils",
-        "type": "layer",
-        "content": "",
-        "source_file": "governance/architecture/system-design.md",
-        "created": "2026-02-12T22:17:38.160851+00:00",
-        "metadata": {
-          "modules": [
-            "test-utils"
-          ]
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "mod-app",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "mod-app",
-        "type": "module",
-        "content": "Application root — routing and layout shell",
-        "source_file": "governance/architecture/modules/app.md",
-        "created": "2026-02-12T22:17:38.157613+00:00",
-        "metadata": {
-          "depends_on": [
-            "pages",
-            "components"
+          "context": [
+            "validation",
+            "audit",
+            "quickstart",
+            "QA"
           ],
-          "depended_by": [],
-          "components": 1,
-          "status": "current"
+          "learned_from": "t047",
+          "scope": "project"
         }
       },
       "changed_fields": []
     },
     {
-      "node_id": "mod-components",
+      "node_id": "PAT-F-006",
       "change_type": "added",
       "old_value": null,
       "new_value": {
-        "id": "mod-components",
-        "type": "module",
-        "content": "Reusable UI components shared across pages",
-        "source_file": "governance/architecture/modules/components.md",
-        "created": "2026-02-12T22:17:38.157812+00:00",
+        "id": "PAT-F-006",
+        "type": "pattern",
+        "content": "Confirm intent when a skill is re-invoked after being explicitly skipped — user may have meant a different command",
+        "source_file": ".raise/rai/memory/patterns.jsonl",
+        "created": "2026-02-13",
         "metadata": {
-          "depends_on": [
-            "services"
+          "context": [
+            "skills",
+            "workflow",
+            "communication"
           ],
-          "depended_by": [
-            "pages"
-          ],
-          "components": 8,
-          "status": "current"
+          "learned_from": "SES-003",
+          "scope": "project"
         }
       },
       "changed_fields": []
     },
     {
-      "node_id": "mod-edge-functions",
+      "node_id": "SES-001",
       "change_type": "added",
       "old_value": null,
       "new_value": {
-        "id": "mod-edge-functions",
-        "type": "module",
-        "content": "Server-side Deno Edge Functions for AI analysis and CareLink import",
-        "source_file": "governance/architecture/modules/edge-functions.md",
-        "created": "2026-02-12T22:17:38.158010+00:00",
+        "id": "SES-001",
+        "type": "session",
+        "content": "Completed full T020 story lifecycle (plan → implement → review → close) + lint/tsc cleanup chore",
+        "source_file": ".raise/rai/personal/sessions/index.jsonl",
+        "created": "2026-02-12",
         "metadata": {
-          "depends_on": [],
-          "depended_by": [
-            "services"
+          "topic": "Completed full T020 story lifecycle (plan → implement → review → close) + lint/tsc cleanup chore",
+          "outcomes": [
+            "analyze-meal Edge Function implemented with GPT-4o Vision + Educadies cross-reference (207 lines)",
+            "Story plan created (5 tasks, moderate complexity)",
+            "All 8 MUST acceptance criteria verified, 3 guardrails satisfied",
+            "Retrospective completed with 3 patterns persisted (PAT-F-001..003)",
+            "Story merged to main, branch cleaned up",
+            "6 pre-existing lint/tsc errors fixed across frontend (chore)",
+            "Tests 5/5, lint 0 errors, build clean"
           ],
-          "components": 7,
-          "status": "current"
+          "log_path": null,
+          "scope": "personal"
         }
       },
       "changed_fields": []
     },
     {
-      "node_id": "mod-lib",
+      "node_id": "SES-002",
       "change_type": "added",
       "old_value": null,
       "new_value": {
-        "id": "mod-lib",
-        "type": "module",
-        "content": "Supabase client initialization and shared infrastructure",
-        "source_file": "governance/architecture/modules/lib.md",
-        "created": "2026-02-12T22:17:38.158195+00:00",
+        "id": "SES-002",
+        "type": "session",
+        "content": "Orphaned session cleanup — session was not formally closed after T020 completion",
+        "source_file": ".raise/rai/personal/sessions/index.jsonl",
+        "created": "2026-02-13",
         "metadata": {
-          "depends_on": [],
-          "depended_by": [
-            "services"
-          ],
-          "components": 1,
-          "status": "current"
+          "topic": "Orphaned session cleanup — session was not formally closed after T020 completion",
+          "outcomes": [],
+          "log_path": null,
+          "scope": "personal"
         }
       },
       "changed_fields": []
     },
     {
-      "node_id": "mod-pages",
+      "node_id": "SES-003",
       "change_type": "added",
       "old_value": null,
       "new_value": {
-        "id": "mod-pages",
-        "type": "module",
-        "content": "Top-level page components — one per tab in BottomNav",
-        "source_file": "governance/architecture/modules/pages.md",
-        "created": "2026-02-12T22:17:38.158405+00:00",
+        "id": "SES-003",
+        "type": "session",
+        "content": "Completed T047 quickstart validation (last MVP task) and closed Epic E1. All 49/49 tasks done, 27/28 checklist items PASS, zero fixes needed. Cleaned up all branches.",
+        "source_file": ".raise/rai/personal/sessions/index.jsonl",
+        "created": "2026-02-13",
         "metadata": {
-          "depends_on": [
-            "services",
-            "components"
+          "topic": "Completed T047 quickstart validation (last MVP task) and closed Epic E1. All 49/49 tasks done, 27/28 checklist items PASS, zero fixes needed. Cleaned up all branches.",
+          "outcomes": [
+            "T047 quickstart validation: full story lifecycle (start → plan → implement → review → close)",
+            "Code audit of all 8 quickstart sections: 27 PASS, 1 N/A, 0 FAIL",
+            "Validation gates green: lint 0 errors, build clean, 5/5 tests pass",
+            "Epic E1 retrospective and formal close",
+            "Branch cleanup: local 001-mvp-asistente-ch + remote deleted",
+            "Orphaned session SES-001 closed"
           ],
-          "depended_by": [
-            "app"
-          ],
-          "components": 6,
-          "status": "current"
+          "log_path": null,
+          "scope": "personal"
         }
       },
       "changed_fields": []
     },
     {
-      "node_id": "mod-services",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "mod-services",
-        "type": "module",
-        "content": "Domain-specific Supabase operations — one service per domain",
-        "source_file": "governance/architecture/modules/services.md",
-        "created": "2026-02-12T22:17:38.158612+00:00",
-        "metadata": {
-          "depends_on": [
-            "lib"
-          ],
-          "depended_by": [
-            "components",
-            "pages"
-          ],
-          "components": 18,
-          "status": "current"
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "mod-test-utils",
-      "change_type": "added",
-      "old_value": null,
-      "new_value": {
-        "id": "mod-test-utils",
-        "type": "module",
-        "content": "Test infrastructure — mock Supabase client and setup",
-        "source_file": "governance/architecture/modules/test-utils.md",
-        "created": "2026-02-12T22:17:38.158798+00:00",
-        "metadata": {
-          "depends_on": [],
-          "depended_by": [],
-          "components": 1,
-          "status": "current"
-        }
-      },
-      "changed_fields": []
-    },
-    {
-      "node_id": "arch-domain-model",
+      "node_id": "epic-e1",
       "change_type": "modified",
       "old_value": {
-        "id": "arch-domain-model",
-        "type": "architecture",
-        "content": "Domain model: 0 bounded contexts — none defined. Shared kernel: none.",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:01:25.422701+00:00",
+        "id": "epic-e1",
+        "type": "epic",
+        "content": "MVP Asistente CH — Photo recognition, daily tracking, meal CRUD - In Progress",
+        "source_file": "governance/backlog.md",
+        "created": "2026-02-12T22:17:38.148964+00:00",
         "metadata": {
-          "arch_type": "architecture_domain_model",
-          "bounded_contexts": [],
-          "shared_kernel": {},
-          "project": "carbtrack-ai",
-          "status": "draft"
+          "epic_id": "E1",
+          "name": "MVP Asistente CH — Photo recognition, daily tracking, meal CRUD",
+          "status": "in_progress",
+          "scope_doc": "RF-01, RF-02, RF-06, RF-07",
+          "priority": "P1",
+          "project_id": "carbtrack-ai"
         }
       },
       "new_value": {
-        "id": "arch-domain-model",
-        "type": "architecture",
-        "content": "Domain model: 5 bounded contexts — meal-tracking, glucose-import, food-catalog, pump-profile, recommendations. Shared kernel: lib/supabase, components/BottomNav, components/FilterBar, test-utils/mockSupabase.",
-        "source_file": "governance/architecture/domain-model.md",
-        "created": "2026-02-12T22:17:38.156289+00:00",
+        "id": "epic-e1",
+        "type": "epic",
+        "content": "MVP Asistente CH — Photo recognition, daily tracking, meal CRUD - Complete (2026-02-13)",
+        "source_file": "governance/backlog.md",
+        "created": "2026-02-13T16:08:26.556466+00:00",
         "metadata": {
-          "arch_type": "architecture_domain_model",
-          "bounded_contexts": [
-            {
-              "name": "meal-tracking",
-              "modules": [
-                "services/mealService",
-                "components/CaptureMeal",
-                "components/MealCard",
-                "pages/HoyPage",
-                "pages/BitacoraPage"
-              ],
-              "description": "Core domain — meal capture, AI analysis, carb confirmation, history"
-            },
-            {
-              "name": "glucose-import",
-              "modules": [
-                "services/csvUploadService",
-                "edge-functions/import-carelink-csv",
-                "pages/CargaDatosPage"
-              ],
-              "description": "CareLink CSV parsing and Nightscout synchronization"
-            },
-            {
-              "name": "food-catalog",
-              "modules": [
-                "services/catalogService"
-              ],
-              "description": "Educadies food reference catalog management"
-            },
-            {
-              "name": "pump-profile",
-              "modules": [
-                "services/profileService",
-                "pages/PerfilPage"
-              ],
-              "description": "ISF and I:C ratio configuration"
-            },
-            {
-              "name": "recommendations",
-              "modules": [
-                "pages/LaboratorioPage"
-              ],
-              "description": "Cross-analysis of meals + glucose for insights (placeholder)"
-            }
-          ],
-          "shared_kernel": {
-            "modules": [
-              "lib/supabase",
-              "components/BottomNav",
-              "components/FilterBar",
-              "test-utils/mockSupabase"
-            ]
-          },
-          "application_layer": {
-            "modules": [
-              "app/App"
-            ]
-          },
-          "project": "carbtrack-ai",
-          "status": "current"
+          "epic_id": "E1",
+          "name": "MVP Asistente CH — Photo recognition, daily tracking, meal CRUD",
+          "status": "complete",
+          "scope_doc": "RF-01, RF-02, RF-06, RF-07",
+          "priority": "P1",
+          "project_id": "carbtrack-ai"
         }
       },
       "changed_fields": [
         "content",
         "metadata"
       ]
+    },
+    {
+      "node_id": "epic-e2",
+      "change_type": "modified",
+      "old_value": {
+        "id": "epic-e2",
+        "type": "epic",
+        "content": "CareLink Import & Nightscout Sync - In Progress",
+        "source_file": "governance/backlog.md",
+        "created": "2026-02-12T22:17:38.148968+00:00",
+        "metadata": {
+          "epic_id": "E2",
+          "name": "CareLink Import & Nightscout Sync",
+          "status": "in_progress",
+          "scope_doc": "RF-03",
+          "priority": "P1",
+          "project_id": "carbtrack-ai"
+        }
+      },
+      "new_value": {
+        "id": "epic-e2",
+        "type": "epic",
+        "content": "CareLink Import & Nightscout Sync - Complete (2026-02-13)",
+        "source_file": "governance/backlog.md",
+        "created": "2026-02-13T16:08:26.556471+00:00",
+        "metadata": {
+          "epic_id": "E2",
+          "name": "CareLink Import & Nightscout Sync",
+          "status": "complete",
+          "scope_doc": "RF-03",
+          "priority": "P1",
+          "project_id": "carbtrack-ai"
+        }
+      },
+      "changed_fields": [
+        "content",
+        "metadata"
+      ]
+    },
+    {
+      "node_id": "project-carbtrack-ai",
+      "change_type": "modified",
+      "old_value": {
+        "id": "project-carbtrack-ai",
+        "type": "project",
+        "content": "Project backlog for carbtrack-ai",
+        "source_file": "governance/backlog.md",
+        "created": "2026-02-12T22:17:38.148286+00:00",
+        "metadata": {
+          "name": "carbtrack-ai",
+          "status": "draft",
+          "current_epic": null,
+          "target_date": null,
+          "epic_count": 4
+        }
+      },
+      "new_value": {
+        "id": "project-carbtrack-ai",
+        "type": "project",
+        "content": "Project backlog for carbtrack-ai",
+        "source_file": "governance/backlog.md",
+        "created": "2026-02-13T16:08:26.555790+00:00",
+        "metadata": {
+          "name": "carbtrack-ai",
+          "status": "active",
+          "current_epic": null,
+          "target_date": null,
+          "epic_count": 4
+        }
+      },
+      "changed_fields": [
+        "metadata"
+      ]
     }
   ],
-  "impact": "architectural",
-  "affected_modules": [
-    "mod-app",
-    "mod-components",
-    "mod-edge-functions",
-    "mod-lib",
-    "mod-pages",
-    "mod-services",
-    "mod-test-utils"
-  ],
-  "summary": "24 nodes changed (23 added, 1 modified), 7 modules affected (mod-app, mod-components, mod-edge-functions, mod-lib, mod-pages, mod-services, mod-test-utils)"
+  "impact": "none",
+  "affected_modules": [],
+  "summary": "12 nodes changed (9 added, 3 modified)"
 }
